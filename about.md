@@ -24,6 +24,9 @@ A few of my current interests:
 - [Libre Computer]
 - [Raspberry Pi]
 - [intermezzOS]
+- [Github]
+- [Github Pages]
+- [Jekyll]
 
 Wish I still had my old TRS-80. But thanks to Wikipedia I can still look at one!
 
@@ -49,3 +52,6 @@ Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.org/licen
 [Libre Computer]: https://libre.computer/
 [Orange Pi]: http://www.orangepi.org/
 [intermezzOS]: http://intermezzos.github.io/
+[Github]: http://github.com/cjimti
+[Github Pages]: https://pages.github.com/
+[Jekyll]: https://jekyllrb.com/
