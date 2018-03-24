@@ -2,6 +2,8 @@
 published: true
 layout: post
 title: Microservices
+description: An overview of Microservices, best practices and resources related to them.
+tags: Microservices Docker Containers 12Factor
 ---
 
 The following is a collection of articles on [Microservices]. The [Microservices] architecture is a variant of the 
