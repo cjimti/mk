@@ -5,7 +5,7 @@ permalink: /about/
 published: true
 ---
 
-I have been writing software professionaly for over 20 years now and started with BASIC as a kid on a cool little TRS-80 (well actually it was huge by todays standards). GOTO 40
+I have been writing software professionaly for over 20 years now. I started as a kid with BASIC  on a cool little TRS-80 Model 4p (well actually it was huge by todays standards). GOTO 40
 
 I am a full stack software and systems architect based in Los Angeles, California. This site is a just a place for me to store some notes and thoughts about some of the work I do, well less about my work and really my hobby, wich is exploring technologies that interest me. I am most at home in greed field development, but my day job does keep me grounded in the realities of legacy systems. Of course we live in a day when legacy means a technology or programming language more than a couple years old.
 
@@ -49,4 +49,3 @@ Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.org/licen
 [Libre Computer]: https://libre.computer/
 [Orange Pi]: http://www.orangepi.org/
 [intermezzOS]: http://intermezzos.github.io/
-
