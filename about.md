@@ -21,6 +21,7 @@ A few of my current interests:
 - [Apache Kafka]
 - [Apache Cassandra] - [Articles](/tag/cassandra/)
 - [ELK]
+- [PiFi] (Raspberry Pi Wifi API)
 - [Armbian]
 - [Orange Pi]
 - [Libre Computer]
@@ -41,6 +42,7 @@ Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.org/licen
 
 [mk@imti.co](mailto:mk@imti.co)
 
+[PiFi]: http://pifi.imti.co
 [Serverless]: https://martinfowler.com/articles/serverless.html
 [Microservices]: http://mk.imti.co/microservices/
 [Docker]: https://www.docker.com/
