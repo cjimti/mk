@@ -3,7 +3,7 @@ published: true
 layout: post
 title: Don't Install cqlsh
 description: Don't Install cqlsh, or anything for that matter...
-tags: github-pages jekyll
+tags: cassandra docker cqlsh
 ---
 
 Case: **Cassandra development and your local workstation.**
