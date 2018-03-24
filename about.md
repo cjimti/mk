@@ -32,6 +32,8 @@ Wish I still had my old TRS-80. But thanks to Wikipedia I can still look at one!
 Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.org/licenses/by/3.0), via Wikimedia Commons
 
 
+{% include archive.html %}
+
 ### Contact me
 
 [mk@imti.co](mailto:mk@imti.co)
