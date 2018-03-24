@@ -12,13 +12,14 @@ I am a full stack software and systems architect based in Los Angeles, Californi
 A few of my current interests:
 
 - [Microservices] - [Articles](/tag/microservices/)
+- [Serverless]
 - [Docker] - [Articles](/tag/docker/)
 - [Kubernettes] - [Articles](/tag/kubernetes/)
 - [Helm]
 - [Golang]
 - [Rust]
 - [Apache Kafka]
-- [Apache Cassandra]
+- [Apache Cassandra] - [Articles](/tag/cassandra/)
 - [ELK]
 - [Armbian]
 - [Orange Pi]
@@ -40,6 +41,7 @@ Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.org/licen
 
 [mk@imti.co](mailto:mk@imti.co)
 
+[Serverless]: https://martinfowler.com/articles/serverless.html
 [Microservices]: http://mk.imti.co/microservices/
 [Docker]: https://www.docker.com/
 [Kubernettes]: https://kubernetes.io/
