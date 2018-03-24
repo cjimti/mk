@@ -32,6 +32,12 @@ The following is a collection of articles on [Microservices]. The [Microservices
 - Independent packages
 - Namespace Isolation
 
+#### Alpine Linux
+[Alpine Linux](https://alpinelinux.org/) **Small. Simple. Secure.** Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox.
+- [Alpine container image](https://hub.docker.com/_/alpine/)
+- [Docker gets minimalist with plan to migrate images to Alpine Linux](http://siliconangle.com/blog/2016/02/09/docker-gets-minimalist-with-plan-to-migrate-images-to-alpine-linux/)
+- [Solomon Hykes, founder and CTO of Docker (on the move to Alpine)](https://news.ycombinator.com/item?id=11000827)
+
 ## Articles
 - Background concept - ["Open Data: Small Pieces Loosely Joined"](http://radar.oreilly.com/2006/09/open-data-small-pieces-loosely.html), Tim O’Reilly
 - Modern software design problems and solutions - ["12-Fractured Apps"](https://medium.com/@kelseyhightower/12-fractured-apps-1080c73d481c), Kelsey Hightower (SysAdmin @ Google)
