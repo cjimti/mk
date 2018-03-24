@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 layout: post
 title: Kubernetes
 ---
@@ -141,4 +141,3 @@ Command | Description
 
 
 [Kubernetes Basics]: https://kubernetes.io/docs/tutorials/kubernetes-basics/
-
