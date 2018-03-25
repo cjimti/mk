@@ -37,7 +37,9 @@ or `kubectl get services`.
 So I'm going to ignore my confused local install of `cqlsh`, the 
 broken state of my Python and the mess I made of it's libraries. I'm just going to run:
 
-`docker run -it --rm cassandra cqlsh node1.example.com -u itsme -p mypassword`
+```bash
+docker run -it --rm cassandra cqlsh node1.example.com -u itsme -p mypassword`
+```
 
 It's a one time pull of the [Cassandra Docker] image and once im done the `--rm` flag
 cleans up the stopped container. 
@@ -45,7 +47,9 @@ cleans up the stopped container.
 But that's a lot of command for me to think about when i just need my `cqlsh` so 
 I add a simple alias to my `.bashrc`
 
-`alias cqlsh='docker run -it --rm cassandra cqlsh` 
+```bash
+alias cqlsh='docker run -it --rm cassandra cqlsh` 
+```
 
 From now on I run the command `cqlsh` and get just that, will all it dependencies in isolation, 
 not worried about Python versions or state of my local workstation. Just keep Docker 
@@ -56,11 +60,15 @@ I am often needing to pass cql scripts into [`cqlsh`]. So I updated my alias to 
 mount my current directory into a `/src` directory in the container. All have have
 to remember is that that path to a local file is `./src` and not `./`. 
 
-`alias cqlsh='docker run -it --rm -v "$(pwd)":/src cassandra cqlsh`
+```bash
+alias cqlsh='docker run -it --rm -v "$(pwd)":/src cassandra cqlsh`
+```
 
 This allows me to run commands that pass in files, like:
 
-`cqlsh node1.example.com 9042 -f /src/setup_some_keyspace_and_tables.cql`
+```bash
+$ cqlsh node1.example.com 9042 -f /src/setup_some_keyspace_and_tables.cql
+```
 
 The [Cassandra Docker] image is 323MB, and when run without a command will start up
 a fully functional Cassandra node, which is usefull for testing. However if
