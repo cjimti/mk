@@ -33,7 +33,7 @@ For anyone planning to support a production Kubernetes cluster and wants to unde
 
 ## Test Installation
 
-```bash
+```
 $ minikube version
 minikube version: v0.25.0
 
@@ -70,7 +70,6 @@ heapster was successfully enabled
 
 # open the dashboard (in a browser)
 $ minikube dashboard
-
 ```
 
 ## Get some status
