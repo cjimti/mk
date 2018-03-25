@@ -2,12 +2,11 @@
 published: true
 layout: post
 title: Microservices
-description: An overview of Microservices, best practices and resources related to them.
+description: 'An overview of Microservices, best practices and resources related to them.'
 tags: microservices docker containers 12factor
 ---
 
-The following is a collection of articles, videos and notes on [Microservices]. The [Microservices] architecture is a variant of the 
-[service-oriented architecture] (SOA), a collection of loosely coupled services.
+The following is a collection of articles, videos and notes on [Microservices]. The [Microservices] architecture is a variant of the [service-oriented architecture] (SOA), a collection of loosely coupled services.
 
 ## Articles
 - Background concept - ["Open Data: Small Pieces Loosely Joined"](http://radar.oreilly.com/2006/09/open-data-small-pieces-loosely.html), Tim O’Reilly
@@ -55,12 +54,7 @@ The following is a collection of articles, videos and notes on [Microservices]. 
 - [Docker gets minimalist with plan to migrate images to Alpine Linux](http://siliconangle.com/blog/2016/02/09/docker-gets-minimalist-with-plan-to-migrate-images-to-alpine-linux/)
 - [Solomon Hykes, founder and CTO of Docker (on the move to Alpine)](https://news.ycombinator.com/item?id=11000827)
 
-We can demonstrate using an Alpine Linux container by executing the `echo` command included with Alpine:
-`docker run --rm alpine echo "hello"`. This command pulls the Alpine container 
-if you don't already have it. Since the `echo` command completes after echoing it's message there is nothing elses
-to do and the container ceases execution and remains in a stopped state. 
-However the `--rm` flag removes the container after it runs, this means you won't end up with 
-a bunch of useless stopped containers after running it multiple times.
+We can demonstrate using an Alpine Linux container by executing the `echo` command included with Alpine: `docker run --rm alpine echo "hello"`. This command pulls the Alpine container if you don't already have it. Since the `echo` command completes after echoing it's message there is nothing elses to do and the container ceases execution and remains in a stopped state. However, the `--rm` flag removes the container after it runs, this means you won't end up with a bunch of useless stopped containers after running it multiple times.
 
 
 [Microservices]: https://en.wikipedia.org/wiki/Microservices
