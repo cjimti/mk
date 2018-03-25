@@ -30,6 +30,7 @@ A few of my current interests:
 - [Github] - [Articles](/tag/github/)
 - [Github Pages] - [Articles](/tag/github-pages/)
 - [Jekyll] - [Articles](/tag/jekyll/)
+- [Markdown]
 
 Wish I still had my old TRS-80. But thanks to Wikipedia I can still look at one!
 
@@ -61,3 +62,4 @@ Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.org/licen
 [Github]: http://github.com/cjimti
 [Github Pages]: https://pages.github.com/
 [Jekyll]: https://jekyllrb.com/
+[Markdown]: https://daringfireball.net/projects/markdown/syntax
