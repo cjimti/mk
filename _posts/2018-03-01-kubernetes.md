@@ -4,13 +4,9 @@ layout: post
 title: Kubernetes
 tags: kubernetes microservices docker minikube
 ---
-Getting started with Kubernetes for local development. I develop on a
-Mac however much of this is easily translated to windows. 
+Getting started with Kubernetes for local development. I develop on a Mac however much of this is easily translated to windows. 
 
-The following is essentially a getting started guide wrapped around my
-personal development notes. This is also for my co-workers in helping them get
-up to speed quickly. If you see an error feel free make a pull request or just
-add an issue.
+The following is primarily a getting started guide wrapped around my personal development notes. This set of notes are specifically for my co-workers in helping them get up to speed quickly. If you see an error feel free to make a pull request or just add an issue.
 
 ## Deeper Reading and Resources
 
@@ -68,11 +64,11 @@ $ minikube addons list
 - storage-provisioner: enabled
 
 
-# enable heapster for cpu and mem
+# enable heapster for CPU and mem
 $ minikube addons enable heapster
 heapster was successfully enabled
 
-# open the dashboard (in browser)
+# open the dashboard (in a browser)
 $ minikube dashboard
 
 ```
@@ -108,7 +104,7 @@ Run a "hello world" using example echoserver
 # get a list of commands
 $ kubectl run --help
 
-# run a hellow world echo server
+# run a hello world echo server
 $ kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
 
 deployment "hello-minikube" created
@@ -118,7 +114,7 @@ $ kubectl expose deployment hello-minikube --type=NodePort
 
 service "hello-minikube" exposed
 
-# get the url
+# get the URL
 $ minikube service hello-minikube --url
 
 http://192.168.99.100:31923
