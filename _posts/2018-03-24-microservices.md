@@ -107,15 +107,14 @@ kubectl run go-ok --image=cjimti/go-ok
 ```
 The `kubectl run` command gave us a **Deployment**, **Pod** and **Replica Set** to support our go-ok container.
 
-In the Dashboard you can see the running deployment, pod and replica set.
+In the Dashboard you can see the running deployment, pod and replica set. Run `minikube dashboard` to bring it up in a web browser.
 
 ![k8s dashboard go-ok](/_posts/k8s-dashboard.jpg)
 
 
-
 #### [Deployments]
 
-List the [deployments] in the cluster:
+List the [deployments] in the cluster (default namespace):
 ```
 kubectl get deployments
 ```
@@ -147,18 +146,58 @@ kubectl get pod go-ok-5bc6b8bf6c-sltjk -o yaml
 ```
 <script src="https://gist.github.com/cjimti/530022b6b9cd57db86dff67419f13044.js"></script>
 
+#### [Replica Sets]
+
+List all [Replica Sets] in the cluster (default namespace):
+```bash
+kubectl get rs
+```
+```plain
+NAME               DESIRED   CURRENT   READY     AGE
+go-ok-5bc6b8bf6c   1         1         1         20m
+```
+Get the yaml configuration of the Replica Set:
+```
+kubectl get rs go-ok-5bc6b8bf6c -o yaml
+```
+<script src="https://gist.github.com/cjimti/97e22b3b779764e8f199d22f565f6a17.js"></script>
 
 
+#### Expose A Container [Services]
 
-All containers run in Pods. We expose the container with the following:
+We expose the container with the following:
 ```bash
 kubectl expose deployments go-ok --port 8080 --type NodePort
 ```
-Use the type NodePort with Minikube since we are not on a cloud provider and so unable to use the LoadBalancer type.
+```plain
+kubectl get services
+```
+Use the type NodePort with Minikube. Since we are not on a cloud provider and so unable to use the LoadBalancer type.
+
+The `go-ok` container listens on it's own port 8080. We ask kubernetes to assign a random port number that will route to a running `go-ok` container to it's port 8080.
+
+List all the services on the cluster (default namespace):
+```bash
+kubectl get services
+```
+```plain
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+go-ok        NodePort    10.110.158.111   <none>        8080:32414/TCP   3m
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP          24d
+```
+
+
+> If you set the type field to "NodePort", the Kubernetes master will allocate a port from a flag-configured range (default: 30000-32767), and each Node will proxy that port (the same port number on every  Node) into your Service.
 
 
 
 
+
+### [Labels and Selectors]
+
+[Labels and Selectors]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
+[Services]: https://kubernetes.io/docs/concepts/services-networking/service/
+[Replica Set]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 [Pods]: https://kubernetes.io/docs/concepts/workloads/pods/pod/
 [Deployments]: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 [Install Minikube]: https://kubernetes.io/docs/tasks/tools/install-minikube/
