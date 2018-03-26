@@ -174,6 +174,8 @@ kubectl get services
 ```
 Use the type NodePort with Minikube. Since we are not on a cloud provider and so unable to use the LoadBalancer type.
 
+> If you set the type field to "NodePort", the Kubernetes master will allocate a port from a flag-configured range (default: 30000-32767), and each Node will proxy that port (the same port number on every  Node) into your Service.
+
 The `go-ok` container listens on it's own port 8080. We ask kubernetes to assign a random port number that will route to a running `go-ok` container to it's port 8080.
 
 List all the services on the cluster (default namespace):
@@ -186,8 +188,15 @@ go-ok        NodePort    10.110.158.111   <none>        8080:32414/TCP   3m
 kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP          24d
 ```
 
+The go-ok services is now running on port 32414 as is seen in the PORT(S) column: `8080:32414/TCP`
 
-> If you set the type field to "NodePort", the Kubernetes master will allocate a port from a flag-configured range (default: 30000-32767), and each Node will proxy that port (the same port number on every  Node) into your Service.
+Get the yaml configuration of the service:
+```bash
+kubectl get service go-ok -o yaml
+``
+<script src="https://gist.github.com/cjimti/bfb8cc086f9ff122910f1a9411d0be3f.js"></script>
+
+
 
 
 
