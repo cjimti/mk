@@ -225,10 +225,31 @@ Pods:
 Manually port forward to a container (on the local network interface):
 `kubectl port-forward go-ok-5bc6b8bf6c-sltjk 10080:8080`
 
+## [Secrets] & [Config Maps]
+
+Creating a [Secret].
+```bash
+kubectl create secret generic tls-certs --from-file=tls
+```
+```bash
+kubectl describe secrets tls-certs
+```
+
+Creating a [Config Map].
+```bash
+kubctl create configmap nginx-proxy-conf --from-file nginx/proxy.conf
+```
+```bash
+kubectp describe configmap nginx-proxy-conf
+```
+
+
 
 
 ### [Labels and Selectors]
 
+[Config Maps]: http://kubernetes.io/docs/user-guide/configmap/
+[Secret]: http://kubernetes.io/docs/user-guide/secrets/
 [Labels and Selectors]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
 [Services]: https://kubernetes.io/docs/concepts/services-networking/service/
 [Replica Set]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
