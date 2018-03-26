@@ -200,7 +200,7 @@ kubectl get service go-ok -o yaml
 <script src="https://gist.github.com/cjimti/bfb8cc086f9ff122910f1a9411d0be3f.js"></script>
 
 The service is now viewable in the [Dashboard]:
-![k8s services dashboard go-ok]({{site.baseurl}}/_posts/k8s-kubernetes-dashboard-services.jpg)
+![k8s services dashboard go-ok](/_posts/k8s-kubernetes-dashboard-services.jpg)
 
 
 #### Architecture Overview
@@ -208,10 +208,10 @@ The service is now viewable in the [Dashboard]:
 [Deployments] contain [ReplicaSets] which contain [Pods] and [Services]. A good visual illustration of this is in the [Dashboard]:
 
 **Deployment Details**
-![k8s dashboard deployment details]({{site.baseurl}}/_posts/k8s-deploument-details.jpg)
+![k8s dashboard deployment details](/_posts/k8s-deploument-details.jpg)
 
 **Replica Set Details***
-![k8s dashboard replica set details]({{site.baseurl}}/_posts/k8s-dashboard-replicaset-details.jpg)
+![k8s dashboard replica set details](/_posts/k8s-dashboard-replicaset-details.jpg)
 
 
 
