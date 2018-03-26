@@ -8,6 +8,20 @@ Getting started with Kubernetes for local development. I develop on a Mac howeve
 
 The following is primarily a getting started guide wrapped around my personal development notes. This set of notes are specifically for my co-workers in helping them get up to speed quickly. If you see an error feel free to make a pull request or just add an issue.
 
+Table of Contents
+=================
+
+* [Deeper Reading and Resources](#deeper-reading-and-resources)
+	* [Free Courses](#free-courses)
+    * [Paid Courses](#paid-courses)
+* [Prerequisites](#prerequisites)
+* [Test Installation](#test-installation)
+* [Get some status](#get-some-status)
+	* [Architecture](#architecture)
+* [Create a Deployment](#create-a-deployment)
+* [Useful Commands](#useful-commands)
+
+
 ## Deeper Reading and Resources
 
 ### Free Courses
