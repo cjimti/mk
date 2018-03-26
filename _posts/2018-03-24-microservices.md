@@ -210,7 +210,7 @@ The service is now viewable in the [Dashboard]:
 **Deployment Details**
 ![k8s dashboard deployment details](/images/k8s-deploument-details.jpg)
 
-**Replica Set Details***
+**Replica Set Details**
 ![k8s dashboard replica set details](images/k8s-dashboard-replicaset-details.jpg)
 
 
