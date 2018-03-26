@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Microservices
+title: Microservices & Kubernetes
 description: 'An overview of Microservices, best practices and resources related to them.'
 tags: microservices docker containers 12factor
 ---
@@ -56,8 +56,70 @@ The following is a collection of articles, videos, and notes on [Microservices].
 
 We can demonstrate using an Alpine Linux container by executing the `echo` command included with Alpine: `docker run --rm alpine echo "hello"`. This command pulls the Alpine container if you don't already have it. Since the `echo` command completes after echoing its message, there is nothing else to do and the container ceases execution and remains in a stopped state. However, the `--rm` flag removes the container after it runs, this means you won't end up with a bunch of useless stopped containers after running it multiple times.
 
+## Kubernetes
+
+I use [Minikube] to play with and test helm on my mac laptop. [Minikube] is a great way to learn and experiment with [Kubernetes] without disrupting a production cluster, or having to setup a custom cluster in your datacenter or in the cloud.
+
+### Minikube
+
+In order to follow the examples below you will need to [Install Minikube] and it's dependencies.
+
+- Version: `minikube version`
+```
+minikube version: v0.25.2
+```
+- Status: `minikube status`
+```
+minikube: Stopped
+cluster:
+kubectl:
+```
+- Start: `minikube start`
+```
+Starting local Kubernetes v1.9.4 cluster...
+Starting VM...
+Getting VM IP address...
+Moving files into cluster...
+Downloading localkube binary
+ 163.02 MB / 163.02 MB [============================================] 100.00% 0s
+ 0 B / 65 B [----------------------------------------------------------]   0.00%
+ 65 B / 65 B [======================================================] 100.00% 0sSetting up certs...
+Connecting to cluster...
+Setting up kubeconfig...
+Starting cluster components...
+Kubectl is now configured to use the cluster.
+Loading cached images from config file.
+```
+- Addons: `minikube addons list`
+```
+- addon-manager: enabled
+- coredns: disabled
+- dashboard: enabled
+- default-storageclass: enabled
+- efk: disabled
+- freshpod: disabled
+- heapster: disabled
+- ingress: disabled
+- kube-dns: enabled
+- registry: disabled
+- registry-creds: disabled
+- storage-provisioner: enabled
+```
+- Enable Heapster: `minikube addons enable heapster` to provide CPU and memory usage in the dashboard.
+```
+heapster was successfully enabled
+```
+- Dashboard: `minikube dashboard`
+- Kubernetes cluster status: `kubectl cluster-info`
+- Kubernetes nodes in the cluster: `kubectl get nodes`
 
 
 
+
+
+[demo of multi node minikube]: https://asciinema.org/a/162127
+[Install Minikube]: https://kubernetes.io/docs/tasks/tools/install-minikube/
 [Microservices]: https://en.wikipedia.org/wiki/Microservices
 [service-oriented architecture]: https://en.wikipedia.org/wiki/Service-oriented_architecture
+[Kubernetes]: https://kubernetes.io/
+[Minikube]: https://kubernetes.io/docs/getting-started-guides/minikube/
