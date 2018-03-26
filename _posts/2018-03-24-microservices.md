@@ -57,5 +57,7 @@ The following is a collection of articles, videos, and notes on [Microservices].
 We can demonstrate using an Alpine Linux container by executing the `echo` command included with Alpine: `docker run --rm alpine echo "hello"`. This command pulls the Alpine container if you don't already have it. Since the `echo` command completes after echoing its message, there is nothing else to do and the container ceases execution and remains in a stopped state. However, the `--rm` flag removes the container after it runs, this means you won't end up with a bunch of useless stopped containers after running it multiple times.
 
 
+
+
 [Microservices]: https://en.wikipedia.org/wiki/Microservices
 [service-oriented architecture]: https://en.wikipedia.org/wiki/Service-oriented_architecture
