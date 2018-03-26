@@ -107,7 +107,7 @@ kubectl run go-ok --image=cjimti/go-ok
 ```
 The `kubectl run` command gave us a **Deployment**, **Pod** and **Replica Set** to support our go-ok container.
 
-In the Dashboard you can see the running deployment, pod and replica set. Run `minikube dashboard` to bring it up in a web browser.
+In the [Dashboard] you can see the running deployment, pod and replica set. Run `minikube dashboard` to bring it up in a web browser.
 
 ![k8s dashboard go-ok](/_posts/k8s-dashboard.jpg)
 
@@ -196,8 +196,8 @@ kubectl get service go-ok -o yaml
 ``
 <script src="https://gist.github.com/cjimti/bfb8cc086f9ff122910f1a9411d0be3f.js"></script>
 
-
-
+The service is now viewable in the [Dashboard]:
+![k8s services dashboard go-ok]({{site.baseurl}}/_posts/k8s-kubernetes-dashboard-services.jpg)
 
 
 
@@ -209,6 +209,7 @@ kubectl get service go-ok -o yaml
 [Replica Set]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 [Pods]: https://kubernetes.io/docs/concepts/workloads/pods/pod/
 [Deployments]: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+[Dashboard]: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 [Install Minikube]: https://kubernetes.io/docs/tasks/tools/install-minikube/
 [Microservices]: https://en.wikipedia.org/wiki/Microservices
 [service-oriented architecture]: https://en.wikipedia.org/wiki/Service-oriented_architecture
