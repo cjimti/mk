@@ -203,7 +203,7 @@ The service is now viewable in the [Dashboard]:
 ![k8s services dashboard go-ok](/images/k8s-kubernetes-dashboard-services.jpg)
 
 
-#### Architecture Overview
+#### Architecture Overview: Deployments
 
 [Deployments] contain [ReplicaSets] which contain [Pods] and [Services]. A good visual illustration of this is in the [Dashboard]:
 
@@ -213,7 +213,17 @@ The service is now viewable in the [Dashboard]:
 **Replica Set Details**
 ![k8s dashboard replica set details](images/k8s-dashboard-replicaset-details.jpg)
 
+## More on Pods
 
+A [Pod] represent a Logical Application. An example application would be some API service or backend webserver and an nginx container, these would run together on a [Pod].
+
+Pods:
+- One ore more containers and volumes
+- Shared namespaces
+- One IP per pod
+
+Manually port forward to a container (on the local network interface):
+`kubectl port-forward go-ok-5bc6b8bf6c-sltjk 10080:8080`
 
 
 
