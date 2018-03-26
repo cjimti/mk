@@ -196,7 +196,7 @@ The go-ok services is now running on port 32414 as is seen in the PORT(S) column
 Get the yaml configuration of the service:
 ```bash
 kubectl get service go-ok -o yaml
-``
+```
 <script src="https://gist.github.com/cjimti/bfb8cc086f9ff122910f1a9411d0be3f.js"></script>
 
 The service is now viewable in the [Dashboard]:
