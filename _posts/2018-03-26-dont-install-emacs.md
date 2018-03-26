@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: Don't Install Emacs
 layout: post
 tags: container-as-command emacs docker
