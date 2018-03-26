@@ -246,7 +246,7 @@ kubectp describe configmap nginx-proxy-conf
 ## Declare a [Pod]
 
 Create a `pod.yml`:
-```yam
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -282,11 +282,22 @@ or
 ```bash
 kubectl get pods -l app=go-ok-app,purpose=example
 ```
-
 ``plain
 NAME      READY     STATUS    RESTARTS   AGE
 go-ok     1/1       Running   0          3m
 ```
+
+Add a label to a running [Pod]:
+```bash
+kubectl label pods go-ok owner=cjimti
+```
+
+Delete the pod created from `pod.yaml` as easily as creating it with:
+```bash
+kubectl delete -f pod.yml
+```
+
+Re-create the [Pod] if you are following along.
 
 ## [Services]
 
@@ -296,12 +307,35 @@ go-ok     1/1       Running   0          3m
 
 Create a [Service] using a [Selector]:
 
+`service.yml`:
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: "go-ok"
+spec:
+  selector:
+    app: "go-ok"
+    purpose: "example"
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 80
+      nodePort: 31000 //port exposed on the node (cluster)
+  type: NodePort
+```
+
+List the service created with the config:
+```bash
+kubectl get -f service.yml
+```
 
 
 
 
 ### [Labels and Selectors]
 
+[kubectl]: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 [Config Maps]: http://kubernetes.io/docs/user-guide/configmap/
 [Secret]: http://kubernetes.io/docs/user-guide/secrets/
 [Labels]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
