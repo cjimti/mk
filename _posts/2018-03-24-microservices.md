@@ -107,6 +107,12 @@ kubectl run go-ok --image=cjimti/go-ok
 ```
 The `kubectl run` command gave us a **Deployment**, **Pod** and **Replica Set** to support our go-ok container.
 
+In the Dashboard you can see the running deployment, pod and replica set.
+
+![k8s dashboard go-ok](/_posts/k8s-dashboard.jpg)
+
+
+
 #### [Deployments]
 
 List the [deployments] in the cluster:
@@ -125,6 +131,24 @@ kubectl get deployment -o yaml
 ```
 <script src="https://gist.github.com/cjimti/ee9de951e0efececa14432a3b82d8315.js"></script>
 
+#### [Pods]
+
+List all pods on the cluster (default namespace):
+```bash
+kubectl get pods
+```
+```plain
+NAME                     READY     STATUS    RESTARTS   AGE
+go-ok-5bc6b8bf6c-sltjk   1/1       Running   0          12m
+```
+Get the yaml configuration of the Pod:
+```bash
+kubectl get pod go-ok-5bc6b8bf6c-sltjk -o yaml
+```
+<script src="https://gist.github.com/cjimti/530022b6b9cd57db86dff67419f13044.js"></script>
+
+
+
 
 All containers run in Pods. We expose the container with the following:
 ```bash
@@ -135,7 +159,7 @@ Use the type NodePort with Minikube since we are not on a cloud provider and so 
 
 
 
-
+[Pods]: https://kubernetes.io/docs/concepts/workloads/pods/pod/
 [Deployments]: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 [Install Minikube]: https://kubernetes.io/docs/tasks/tools/install-minikube/
 [Microservices]: https://en.wikipedia.org/wiki/Microservices
