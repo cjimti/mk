@@ -148,6 +148,9 @@ kubectl get pod go-ok-5bc6b8bf6c-sltjk -o yaml
 
 #### [Replica Sets]
 
+> While [ReplicaSets] can be used independently, today it’s mainly used by [Deployments] as a mechanism to orchestrate pod creation, deletion and updates. When you use [Deployments] you don’t have to worry about managing the [ReplicaSets] that they create. Deployments own and manage their [ReplicaSets].
+
+
 List all [Replica Sets] in the cluster (default namespace):
 ```bash
 kubectl get rs
@@ -200,6 +203,18 @@ The service is now viewable in the [Dashboard]:
 ![k8s services dashboard go-ok]({{site.baseurl}}/_posts/k8s-kubernetes-dashboard-services.jpg)
 
 
+#### Architecture Overview
+
+[Deployments] contain [ReplicaSets] which contain [Pods] and [Services]. A good visual illustration of this is in the [Dashboard]:
+
+**Deployment Details**
+![k8s dashboard deployment details]({{site.baseurl}}/_posts/k8s-deploument-details.jpg)
+
+**Replica Set Details***
+![k8s dashboard replica set details]({{site.baseurl}}/_posts/k8s-dashboard-replicaset-details.jpg)
+
+
+
 
 
 ### [Labels and Selectors]
@@ -207,7 +222,10 @@ The service is now viewable in the [Dashboard]:
 [Labels and Selectors]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
 [Services]: https://kubernetes.io/docs/concepts/services-networking/service/
 [Replica Set]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+[ReplicaSets]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 [Pods]: https://kubernetes.io/docs/concepts/workloads/pods/pod/
+[Pod]: https://kubernetes.io/docs/concepts/workloads/pods/pod/
+[Deployment]: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 [Deployments]: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 [Dashboard]: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 [Install Minikube]: https://kubernetes.io/docs/tasks/tools/install-minikube/
