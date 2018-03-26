@@ -269,8 +269,24 @@ spec:
           containerPort: 80
 ```
 
+Create the [Pod]:
+```bash
+kubectl create -f ./pod.yml
+```
 
+Get a list of [Pods] using a label selectors:
+```bash
+kubectl get pods -l app=go-ok-app
+```
+or
+```bash
+kubectl get pods -l app=go-ok-app,purpose=example
+```
 
+``plain
+NAME      READY     STATUS    RESTARTS   AGE
+go-ok     1/1       Running   0          3m
+```
 
 ## [Services]
 
