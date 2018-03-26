@@ -213,7 +213,7 @@ The service is now viewable in the [Dashboard]:
 **Replica Set Details**
 ![k8s dashboard replica set details](images/k8s-dashboard-replicaset-details.jpg)
 
-## More on Pods
+## More on [Pods]
 
 A [Pod] represent a Logical Application. An example application would be some API service or backend webserver and an nginx container, these would run together on a [Pod].
 
@@ -243,6 +243,44 @@ kubctl create configmap nginx-proxy-conf --from-file nginx/proxy.conf
 kubectp describe configmap nginx-proxy-conf
 ```
 
+## Declare a [Pod]
+
+Create a `pod.yml`:
+```yam
+apiVersion: v1
+kind: Pod
+metadata:
+  name: go-ok
+  labels:
+    app: go-ok-app
+    purpose: example
+spec:
+  containers:
+    - name: go-ok
+      image: cjimti/go-ok:v1
+      imagePullPolicy: Always
+      env:
+        - name: PORT
+          value: "80"
+        - name: GIN_MODE
+          value: "release"
+      ports:
+        - name: http
+          containerPort: 80
+```
+
+
+
+
+## [Services]
+
+[Services] are persisten endpoints for [Pods].
+- Use [Labels] to select [Pods]
+- Internal or External IPs
+
+Create a [Service] using a [Selector]:
+
+
 
 
 
@@ -250,7 +288,10 @@ kubectp describe configmap nginx-proxy-conf
 
 [Config Maps]: http://kubernetes.io/docs/user-guide/configmap/
 [Secret]: http://kubernetes.io/docs/user-guide/secrets/
+[Labels]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
+[Selector]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
 [Labels and Selectors]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
+[Service]: https://kubernetes.io/docs/concepts/services-networking/service/
 [Services]: https://kubernetes.io/docs/concepts/services-networking/service/
 [Replica Set]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 [ReplicaSets]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
