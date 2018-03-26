@@ -330,11 +330,37 @@ List the service created with the config:
 kubectl get -f service.yml
 ```
 
+## [Ingress] Controller
+
+Exposing external traffic to our service is done through an [Ingress] controller. Check out [Setting up Nginx Ingress on Kubernetes] for a detailed how-to and also a good write up on [Ingress] itself on Medium: [Kubernetes Ingress]
+
+> Traditionally, you would create a LoadBalancer service for each public system you want to expose. This can get rather expensive. Ingress gives you a way to route requests to services based on the request host or path, centralizing a number of services into a single entrypoint. --[Kubernetes Ingress]
+
+Since I am using [Minikube] on my local workstation I am going to add the domain `local.imti.cloud` to my `/etc/hosts` file and resolve it to the Minikube IP.
+
+Get the Minikube IP:
+```bash
+minikube status
+```
+
+```plain
+minikube: Running
+cluster: Running
+kubectl: Correctly Configured: pointing to minikube-vm at 192.168.99.100
+```
+
+My `/etc/hosts' entry should be `192.168.99.100  local.imti.cloud`. Browsing to [http://local.imti.cloud:30000/](http://local.imti.cloud:30000/) will now give me the [dashboard] for my [Minikube] cluster.
+
+
 
 
 
 ### [Labels and Selectors]
 
+---
+[Setting up Nginx Ingress on Kubernetes]: https://hackernoon.com/setting-up-nginx-ingress-on-kubernetes-2b733d8d2f45
+[Kubernetes Ingress]: https://medium.com/@cashisclay/kubernetes-ingress-82aa960f658e
+[Ingress]: https://kubernetes.io/docs/concepts/services-networking/ingress/
 [kubectl]: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 [Config Maps]: http://kubernetes.io/docs/user-guide/configmap/
 [Secret]: http://kubernetes.io/docs/user-guide/secrets/
@@ -344,6 +370,7 @@ kubectl get -f service.yml
 [Labels and Selectors]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
 [Service]: https://kubernetes.io/docs/concepts/services-networking/service/
 [Services]: https://kubernetes.io/docs/concepts/services-networking/service/
+[Replica Sets]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 [Replica Set]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 [ReplicaSets]: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 [Pods]: https://kubernetes.io/docs/concepts/workloads/pods/pod/
