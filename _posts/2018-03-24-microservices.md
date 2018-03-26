@@ -338,6 +338,7 @@ kubectl get -f service.yml
 [kubectl]: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 [Config Maps]: http://kubernetes.io/docs/user-guide/configmap/
 [Secret]: http://kubernetes.io/docs/user-guide/secrets/
+[Secrets]: http://kubernetes.io/docs/user-guide/secrets/
 [Labels]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
 [Selector]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
 [Labels and Selectors]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
