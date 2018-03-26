@@ -3,7 +3,7 @@ published: true
 layout: post
 title: Don't Install cqlsh
 description: 'Don''t Install cqlsh, or anything for that matter...'
-tags: cassandra docker cqlsh
+tags: cassandra docker cqlsh container-as-command
 ---
 
 Case: **Cassandra development and your local workstation.**
