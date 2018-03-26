@@ -106,18 +106,51 @@ Loading cached images from config file.
  - storage-provisioner: enabled
 ```
 - Enable Heapster: `minikube addons enable heapster` to provide CPU and memory usage in the dashboard.
-```
+```plain
 heapster was successfully enabled
 ```
 - Dashboard: `minikube dashboard`
 - Kubernetes cluster status: `kubectl cluster-info`
 - Kubernetes nodes in the cluster: `kubectl get nodes`
 
+### Kubernetes: Using Kubernetes
+
+Deployments keep containers running in Pods, even when nodes fail. Create a simple deployment, in this case using the cjimti/go-ok container: 
+```bash
+kubectl run go-ok --image=cjimti/go-ok
+```
+The `kubectl run` command gave us a **Deployment**, **Pod** and **Replica Set** to support our go-ok container.
+
+#### [Deployments]
+
+List the [deployments] in the cluster:
+```
+kubectl get deployments
+```
+
+```plain
+NAME      DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+go-ok     1         1         1            1           2m
+```
+
+Get the yaml configuration of the deployment
+```bash
+kubectl get deployment -o yaml
+```
+<script src="https://gist.github.com/cjimti/ee9de951e0efececa14432a3b82d8315.js"></script>
+
+
+All containers run in Pods. We expose the container with the following:
+```bash
+kubectl expose deployments go-ok --port 8080 --type NodePort
+```
+Use the type NodePort with Minikube since we are not on a cloud provider and so unable to use the LoadBalancer type.
 
 
 
 
-[demo of multi node minikube]: https://asciinema.org/a/162127
+
+[Deployments]: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 [Install Minikube]: https://kubernetes.io/docs/tasks/tools/install-minikube/
 [Microservices]: https://en.wikipedia.org/wiki/Microservices
 [service-oriented architecture]: https://en.wikipedia.org/wiki/Service-oriented_architecture
