@@ -91,20 +91,6 @@ Kubectl is now configured to use the cluster.
 Loading cached images from config file.
 ```
 - Addons: `minikube addons list`
-```plain
- - addon-manager: enabled
- - coredns: disabled
- - dashboard: enabled
- - default-storageclass: enabled
- - efk: disabled
- - freshpod: disabled
- - heapster: disabled
- - ingress: disabled
- - kube-dns: enabled
- - registry: disabled
- - registry-creds: disabled
- - storage-provisioner: enabled
-```
 - Enable Heapster: `minikube addons enable heapster` to provide CPU and memory usage in the dashboard.
 ```plain
 heapster was successfully enabled
