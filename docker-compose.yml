@@ -1,3 +1,5 @@
+# Run jekyll build and serve from a Docker container
+# for easy local development of a Github Pages Jekyll site.
 version: '3'
 services:
   build:
