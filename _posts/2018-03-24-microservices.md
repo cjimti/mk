@@ -62,7 +62,7 @@ I use [Minikube] to play with and test helm on my mac laptop. [Minikube] is a gr
 
 ### Minikube
 
-In order to follow the examples below you will need to [Install Minikube] and it's dependencies.
+In order to follow the examples below you will need to [Install Minikube] and it's dependencies. The command [kubectl] is used to interact with the [kubernetes] cluster.
 
 - Version: `minikube version`
 ```
@@ -354,13 +354,15 @@ My `/etc/hosts' entry should be `192.168.99.100  local.imti.cloud`. Browsing to 
 
 ### Ingress Resources
 
+- Official [Kubernetes Ingress] Documentation
+- [Setting up Nginx Ingress on Kubernetes]
 - [Pain(less) NGINX Ingress](http://danielfm.me/posts/painless-nginx-ingress.html)
+- [Kubernetes nginx-ingress-controller](https://daemonza.github.io/2017/02/13/kubernetes-nginx-ingress-controller/)
 
-
-### [Labels and Selectors]
 
 ---
 [Setting up Nginx Ingress on Kubernetes]: https://hackernoon.com/setting-up-nginx-ingress-on-kubernetes-2b733d8d2f45
+[Config Map]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
 [Kubernetes Ingress]: https://medium.com/@cashisclay/kubernetes-ingress-82aa960f658e
 [Ingress]: https://kubernetes.io/docs/concepts/services-networking/ingress/
 [kubectl]: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
