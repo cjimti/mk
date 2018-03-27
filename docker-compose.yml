@@ -1,0 +1,30 @@
+version: '3'
+services:
+  build:
+    image: "cjimti/jekyll"
+    container_name: jekyll-build
+    volumes:
+      - .:/src
+#      - src-vol:/src
+    working_dir: /src
+    command:
+      - "build"
+      - "--watch"
+  serve:
+    image: "cjimti/jekyll"
+    container_name: jekyll-serve
+    ports:
+     - "4000:4000"
+    volumes:
+      - .:/src
+    depends_on:
+      - build
+    working_dir: /src/_site
+    command:
+      - "serve"
+      - "--incremental"
+      - "-H"
+      - "0.0.0.0"
+
+#volumes:
+#  src-vol:
