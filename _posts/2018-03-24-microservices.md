@@ -109,7 +109,7 @@ The `kubectl run` command gave us a **Deployment**, **Pod** and **Replica Set** 
 
 In the [Dashboard] you can see the running deployment, pod and replica set. Run `minikube dashboard` to bring it up in a web browser.
 
-![k8s dashboard go-ok](/_posts/k8s-dashboard.jpg)
+![k8s dashboard go-ok](/images/k8s-dashboard.jpg)
 
 
 #### [Deployments]
@@ -352,7 +352,9 @@ kubectl: Correctly Configured: pointing to minikube-vm at 192.168.99.100
 My `/etc/hosts' entry should be `192.168.99.100  local.imti.cloud`. Browsing to [http://local.imti.cloud:30000/](http://local.imti.cloud:30000/) will now give me the [dashboard] for my [Minikube] cluster.
 
 
+### Ingress Resources
 
+- [Pain(less) NGINX Ingress](http://danielfm.me/posts/painless-nginx-ingress.html)
 
 
 ### [Labels and Selectors]
