@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Control A Remote Kubernetes Cluster
+title: kubectl: Control A Remote Kubernetes Cluster
 tags: kubernetes kubectl minikube
 ---
 
