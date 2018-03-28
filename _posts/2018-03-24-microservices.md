@@ -308,7 +308,7 @@ Re-create the [Pod] if you are following along.
 Create a [Service] using a [Selector]:
 
 `service.yml`:
-```yaml
+~~~ yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -323,7 +323,7 @@ spec:
       targetPort: 80
       nodePort: 31000 //port exposed on the node (cluster)
   type: NodePort
-```
+~~~
 
 List the service created with the config:
 ```bash
