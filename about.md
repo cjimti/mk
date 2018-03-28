@@ -34,7 +34,7 @@ A few of my current interests:
 
 Wish I still had my old TRS-80. But thanks to Wikipedia I can still look at one!
 
-![TRS-80](/images/trs-80.svg)
+![TRS-80](https://mk.imti.co/images/trs-80.svg)
 
 Original Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.org/licenses/by/3.0), via Wikimedia Commons
 
