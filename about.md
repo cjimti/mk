@@ -34,9 +34,9 @@ A few of my current interests:
 
 Wish I still had my old TRS-80. But thanks to Wikipedia I can still look at one!
 
-![TRS-80](https://upload.wikimedia.org/wikipedia/commons/2/2f/TRS-80_Model_4P_Crop_Delsener.jpg)
+![TRS-80](/images/trs-80.svg)
 
-Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.org/licenses/by/3.0), via Wikimedia Commons
+Original Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.org/licenses/by/3.0), via Wikimedia Commons
 
 
 ### Contact me
