@@ -11,7 +11,9 @@ div.highlight {
 .gist-data {max-height: 400px;}
 
 code {
-  font-family:'Bitstream Vera Sans Mono','Courier', monospace;
+  font-family:'Space Mono','Bitstream Vera Sans Mono','Courier', monospace;
+  font-weight: lighter;
+  font-size: .9em;
 }
 
 .highlight .c { color: #586E75 } /* Comment */
