@@ -10,6 +10,8 @@ The blog [IMTI Mk](mk.imti.co) is hosted on [Github pages], a free service of [G
 
 - [Jekyll Tags on Github Pages](http://longqian.me/2017/02/09/github-jekyll-tag/)
 
+I am using tags on this site. Click on the tags in the square brackets above to see it in action.
+
 [Github]: http://github.com/cjimti
 [Github pages]: https://pages.github.com/
 [Jekyll]: https://jekyllrb.com/
