@@ -4,7 +4,9 @@ layout: post
 title: Microservices & Kubernetes
 description: 'An overview of Microservices, best practices and resources related to them.'
 tags: microservices docker containers 12factor
+image: /images/kubernetes-logo.svg
 ---
+
 
 The following is a collection of articles, videos, and notes on [Microservices]. The [Microservices] architecture is a variant of the [service-oriented architecture] (SOA), a collection of loosely coupled services.
 
