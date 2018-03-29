@@ -3,6 +3,7 @@ published: true
 layout: post
 title: Kubernetes
 tags: kubernetes microservices kubectl minikube docker
+featured: kubernetes
 ---
 Getting started with Kubernetes for local development. I develop on a Mac however much of this is easily translated to windows. 
 

@@ -6,13 +6,18 @@ layout: default
   {% for post in site.posts %}
     <article class="post">
 
+
+
       <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
 
-      <div class="entry">
-          {% if post.image %}
-          <a href="{{ post.url }}"><img alt="{{ post.title }}" src="{{post.image}}" style="max-height: 10em; float: left; margin: 0 1.5em 0 0"/></a>
-          {% endif %}
+        <div class="icon-tags" style="float: left; margin: 0 1.5em 0 0">
+            {% assign featured_tags = post.featured | split: " " %}
+            {% for tag in featured_tags %}
+            <div><a href="/tag/{{ tag }}/"><img alt="{{ tag }}" src="/images/tags/200-{{ tag }}.png" style="max-height: 5em"/></a></div>
+            {% endfor %}
+        </div>
 
+      <div class="entry">
         {{ post.excerpt }}
       </div>
 
