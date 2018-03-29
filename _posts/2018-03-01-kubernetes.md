@@ -12,6 +12,7 @@ The following is primarily a getting started guide wrapped around my personal de
 Table of Contents
 =================
 
+
 * [Deeper Reading and Resources](#deeper-reading-and-resources)
 	* [Free Courses](#free-courses)
     * [Paid Courses](#paid-courses)
