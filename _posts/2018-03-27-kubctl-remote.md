@@ -2,8 +2,8 @@
 published: true
 layout: post
 title: kubectl - Control A Remote Kubernetes Cluster
-tags: kubernetes kubectl minikube
-featured: kubernetes
+tags: kubernetes kubectl minikube cli
+featured: kubernetes cli
 ---
 
 I use [Minikube] to run a local [Kubernetes] single node cluster (cluster?). However, I also work with a custom production cluster for work. This cluster consists of development and production nodes. I often need to switch between working on my local [Minikube] and the online [Kubernetes] cluster.

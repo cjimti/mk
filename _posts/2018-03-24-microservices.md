@@ -3,8 +3,8 @@ published: true
 layout: post
 title: Microservices & Kubernetes
 description: 'An overview of Microservices, best practices and resources related to them.'
-tags: microservices docker containers 12factor
-featured: docker
+tags: kubernetes microservices docker containers 12factor
+featured: kubernetes docker
 ---
 
 
