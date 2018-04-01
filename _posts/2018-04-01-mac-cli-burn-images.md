@@ -60,7 +60,9 @@ I have tried a few of the full GUI apps for burning but don't seem to get the sp
 - [dd] on Wikipedia
 - [diskUtil] official Manpage
 - [Everything is a file] / "Everything is a file descriptor"
+- [How do you monitor the progress of dd?]
 
+[How do you monitor the progress of dd?]: https://askubuntu.com/questions/215505/how-do-you-monitor-the-progress-of-dd
 [Everything is a file]: https://en.wikipedia.org/wiki/Everything_is_a_file
 [dd]: https://en.wikipedia.org/wiki/Dd_(Unix)
 [diskUtil]: https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/diskutil.8.html
