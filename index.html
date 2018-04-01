@@ -16,10 +16,10 @@ layout: default
       <a href="{{ post.url }}" class="read-more">Read More</a>
       </div>
 
-      <div style="float: left">
+      <div class="tag-icon-set">
       {% assign featured_tags = post.featured | split: " " %}
       {% for tag in featured_tags %}
-      <a href="/tag/{{ tag }}/"><img alt="{{ tag }}" src="/images/tags/54/{{ tag }}.png" style="max-height: 4em; padding-bottom: 1em"/></a>
+      <a href="/tag/{{ tag }}/"><img alt="{{ tag }}" src="/images/tags/54/{{ tag }}.png" /></a>
       {% endfor %}
       </div>
 
