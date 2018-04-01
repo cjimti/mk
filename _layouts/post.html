@@ -4,7 +4,15 @@ layout: default
 
 <article class="post">
   <h1>{{ page.title }}</h1>
-  <span>[
+
+  <div style="">
+    {% assign featured_tags = page.featured | split: " " %}
+    {% for tag in featured_tags %}
+    <a href="/tag/{{ tag }}/"><img alt="{{ tag }}" src="/images/tags/200-{{ tag }}.png" style="max-height: 4em; padding-bottom: 1em"/></a>
+    {% endfor %}
+  </div>
+
+  <span>File under [
     {% for tag in page.tags %}
       {% capture tag_name %}{{ tag }}{% endcapture %}
       <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
@@ -12,6 +20,7 @@ layout: default
   ]</span>
 
   <div class="entry">
+
     {{ content }}
   </div>
 

@@ -10,7 +10,7 @@ Use your terminal to burn images fast and easy with **[dd]**. I do a lot of prof
 
 I'm one command on your terminal. Technically, it's three, but I don't count listing and unmounting as the final act of burning.
 
-- Insert your SD card and from the command line use [diskUtil] to lists all your drives.
+1. Insert your SD card and from the command line use [diskUtil] to lists all your drives.
 
 ```bash
 diskUtil list
@@ -19,13 +19,13 @@ diskUtil list
 
 You are going to want to stay away from disk0 and disk1. You don't want to kill your hard drive. Also, watch out for other attached storage. I can see my 32g mounted as **/dev/disk3**.
 
-- Unmount the SD card. In my case, it's **/dev/disk3**. If you have additional attached storage, your SD card might be disk 4, 5, or higher.
+2. Unmount the SD card. In my case, it's **/dev/disk3**. If you have additional attached storage, your SD card might be disk 4, 5, or higher.
 
 ```bash
 diskUtil unmounDisk /dev/disk3
 ```
 
-- The last step is the fantastic little utility **[dd]**. [dd] copies any file to almost anywhere. We can use dd to stream the raw bytes from the image directed to our unmounted disk. On a Mac, the raw disk is accessed with an **r** in front of the device name. Raw access to my /dev/disk3 is /dev/**r**disk3. Give three arguments.
+3. The last step is the fantastic little utility **[dd]**. [dd] copies any file to almost anywhere. We can use dd to stream the raw bytes from the image directed to our unmounted disk. On a Mac, the raw disk is accessed with an **r** in front of the device name. Raw access to my /dev/disk3 is /dev/**r**disk3. Give three arguments.
 
 | Arg | Description / Value |
 | --- | ---------------- |
