@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: kubectl - Control A Remote Kubernetes Cluster
+title: Using kubectl to Control a Remote Kubernetes Cluster
 tags: kubernetes kubectl minikube cli
 featured: kubernetes cli
 ---
