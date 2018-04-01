@@ -250,8 +250,12 @@ nav {
 // .main
 //
 
+.posts {
+  padding-bottom: 2.5em;
+}
+
 .posts > .post {
-  padding-bottom: 2em;
+  padding-bottom: 3.5em;
   border-bottom: 1px solid $lightGray;
 }
 
