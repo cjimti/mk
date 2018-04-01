@@ -53,7 +53,7 @@ Wait for **dd** to finish or hit Control-C from time-to-time for some status.
 
 An 8GB image takes about 10-15 minutes on my workstation depending on the quality of the SD card. Cheap or damaged cards will take a very long time to write.
 
-I have tried a few of the full GUI app for burning but don't seem to get the speed and control of just typing a few commands.
+I have tried a few of the full GUI apps for burning but don't seem to get the speed and control of just typing a few commands.
 
 ### Resources
 
