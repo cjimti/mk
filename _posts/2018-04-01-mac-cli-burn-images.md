@@ -49,7 +49,7 @@ I find that a block size of 5m is the sweet spot for my card reader and the SD c
 
 You need to use **sudo** as only a privileged user can write directly to a device in this manner, which is good since you can easily overwrite your hard drive on disk 0 or 1.
 
-Wait for **dd** to finish or hit Control-C from time-to-time for some status.
+Wait for **dd** to finish or hit Control-T from time-to-time for some status.
 
 An 8GB image takes about 10-15 minutes on my workstation depending on the quality of the SD card. Cheap or damaged cards will take a very long time to write.
 
