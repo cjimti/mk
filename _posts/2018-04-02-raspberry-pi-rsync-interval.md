@@ -27,11 +27,13 @@ docker run --rm \
     cjimti/irsync
 ```
 
-Say you need to ensure your device (or another server) always has the latest files from the server. However, syncing hundreds or even thousands of files could take hours or days. First [rsync] will only grab the data you don't have, or may have an outdated version of, yet you can never assume the state of the data on your device. [irsync] will use it's built-in [rsync] to the heavy lifting of determining your state versus the servers. But [rsync] is not perfect and dealing with an unstable network can sometimes cause it to hang or fail.
+Say you need to ensure your device (or another server) always has the latest files from the server. However, syncing hundreds or even thousands of files could take hours or days. First, [rsync] will only grab the data you don't have, or may have an outdated version of, you can never assume the state of the data on your device. [irsync] will use it's built-in [rsync] to do the heavy lifting of determining your state versus the server. But [rsync] is not perfect, and dealing with an unstable network can sometimes cause it to hang or fail. The good news is that, if restarted, [rsync] will pick up where it left off.
+
+In the IOT device world you can't sit watch the transfer and restart it when needed, this is what [irsync] was built for.
 
 [irsync] manages the output of it's internal [rsync] and will restart a synchronization process if the timeout exceeds the specified directive. Most of the files I need to be synchronized are under 200 megabytes, so I sent my timeout to 2 hours per file. If a file takes longer than 2 hours to sync then I assume, there is a network or connection failure and let [irsync] start the process over.
 
-[irsync] allows me to start a file synchronization on an interval. In other words, I want my device to sync every 10 seconds, but I don't want to start an [rsync] every 2 minutes. So if the sync takes 2 hours, then 2 hours and 2 minutes later another synchronization attempt will be made. When my device is up-to-date, these calls are relatively light on the device, and my client knows that only 2 minutes after they update their media it will likely be on it's way to their devices.
+[irsync] allows me to start a file synchronization on an interval. In other words, I want my device to sync every 2 minutes, but I don't want to start an [rsync] every 2 minutes. So if the sync takes 2 hours, then 2 hours and 2 minutes later another synchronization attempt will be made. When my device is up-to-date, these calls are relatively light on the device, and my client knows that only 2 minutes after they update their media it will likely be on it's way to their devices.
 
 ## Demo
 
