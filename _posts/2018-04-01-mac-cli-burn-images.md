@@ -6,9 +6,9 @@ tags: dd cli pi armbian bash
 featured: bash pi armbian
 ---
 
-Use your terminal to burn images fast and easy with **[dd]**. I do a lot of professional and hobby development for projects using devices such as Raspberry Pi, Orange Pi, Libre Computer, Tinker Board, etc. I run across a lot of tutorials with people downloading and using big GUI apps with clunky drag and drop interfaces to burn images.
+Use your terminal to burn images fast and easy with **[dd]**. I do a lot of professional and hobby development for projects using devices such as [Raspberry Pi], [Orange Pi], [Libre Computer], [Tinker Board], etc. I run across a lot of tutorials with people downloading and using big GUI apps with clunky drag and drop interfaces to burn images.
 
-I'm one command on your terminal. Technically, it's three, but I don't count listing and unmounting as the final act of burning.
+It's one command in your terminal. Technically, it's three, but I don't count listing and unmounting as the final act of burning.
 
 ## 1 - List Disks
 
@@ -62,6 +62,10 @@ I have tried a few of the full GUI apps for burning but don't seem to get the sp
 - [Everything is a file] / "Everything is a file descriptor"
 - [How do you monitor the progress of dd?]
 
+[Raspberry Pi]: https://www.raspberrypi.org/
+[Libre Composer]: https://libre.computer/
+[Tinker Board]: https://www.asus.com/us/Single-Board-Computer/Tinker-Board/
+[Orange Pi]: http://www.orangepi.org/
 [How do you monitor the progress of dd?]: https://askubuntu.com/questions/215505/how-do-you-monitor-the-progress-of-dd
 [Everything is a file]: https://en.wikipedia.org/wiki/Everything_is_a_file
 [dd]: https://en.wikipedia.org/wiki/Dd_(Unix)
