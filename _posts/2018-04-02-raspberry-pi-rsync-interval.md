@@ -10,7 +10,7 @@ A recurring requirement for my [IOT] projects involves keeping a set of files sy
 
 The [rsync] utility works excellent on [Raspberry Pi] as well as an assortment of [Armbian] installed devices. However, writing scripts to manage [rsync] when it fails, or restarting it on some interval when it finishes can be a pain. I have a dozen rickety, cobbled-together [bash] hacks that have somewhat worked in the past. I needed something more stable, portable and upgradeable.
 
-[![irsync: interval rsync](https://raw.githubusercontent.com/cjimti/irsync/master/irsync.png)](https://github.com/cjimti/irsync)
+[![irsync: interval rsync](https://raw.githubusercontent.com/cjimti/irsync/master/irsync-mast.jpg)](https://github.com/cjimti/irsync)
 
 I built [irsync] to operate on any ([amd64/x86-64] or [armhf]) system that has [Docker] running on it.
 
