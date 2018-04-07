@@ -60,12 +60,14 @@ If you have read this far, you might be be the kind of personal to appreciate a 
 
 ### Resources
 
+- [Backup & Recovery: Inexpensive Backup Solutions for Open Systems] by O'Reilly Media
 - [irsync]
 - [rsync] on Wikipedia
 - [Armbian]
 - [Docker]
 - [irsync t-shirt]
 
+[Backup & Recovery: Inexpensive Backup Solutions for Open Systems]: https://amzn.to/2Esq5jq
 [armhf]: https://en.wikipedia.org/wiki/ARM_architecture
 [amd64/x86-64]: https://en.wikipedia.org/wiki/X86-64
 [irsync]: https://github.com/cjimti/irsync
