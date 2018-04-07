@@ -51,12 +51,9 @@ You can run a simple little demo on your local workstation using a docker-compos
 
 I recorded a video performing the demo above:
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/gT_P2a-xpPw?rel=0' frameborder='0' allowfullscreen></iframe></div>
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=imti-20&marketplace=amazon&region=US&placement=B07BZ8R8B2&asins=B07BZ8R8B2&linkId=867bc96f9391e223acbbb948a4683a79&show_border=false&link_opens_in_new_window=false&price_color=333333&title_color=0066C0&bg_color=FFFFFF">
+    </iframe>
 
-
-If you have read this far, you might be be the kind of personal to appreciate a high-end fashion statement:
-
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=imti-20&marketplace=amazon&region=US&placement=B07535Y9T6&asins=B07535Y9T6&linkId=a25380f0e9555c267fb2204b90143ec9&show_border=true&link_opens_in_new_window=true"></iframe>
 
 ### Resources
 
@@ -75,4 +72,4 @@ If you have read this far, you might be be the kind of personal to appreciate a 
 [bash]: https://www.gnu.org/software/bash/
 [IOT]: https://en.wikipedia.org/wiki/Internet_of_things
 [Docker]: https://www.docker.com/
-[irsync t-shirt]: https://amzn.to/2ErshYH
+[irsync t-shirt]: https://amzn.to/2GLvPGQ
