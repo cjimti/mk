@@ -14,18 +14,26 @@ The [rsync] utility works excellent on [Raspberry Pi] as well as an assortment o
 
 I built [irsync] to operate on any ([amd64/x86-64] or [armhf]) system that has [Docker] running on it.
 
-An example [Docker] run command:
+If we stick with the defaults, the interval duration is 30 seconds and the activity timeout is 2 hours.
+
+**An example [Docker] run command local to local:**
 
 ```bash
-docker run --rm \
-    -v "$(pwd)"/data:/data \
-    -e RSYNC_PASSWORD=password \
-    -e IRSYNC_INTERVAL=30 \
-    -e IRSYNC_FROM=rsync://user@example.com:873/data/"\
-    -e IRSYNC_TO=./data \
-    -e IRSYNC_DELETE=true \
-    cjimti/irsync
+docker run --rm -v "$(pwd)"/data:/data cjimti/irsync \
+    -pvrt --delete /data/source/ /data/dest/
 ```
+
+**An example [Docker] run to sync server to local:**
+
+```bash
+docker run --rm -e RSYNC_PASSWORD=password \
+    -v "$(pwd)"/data:/data cjimti/irsync \
+    -pvrt --delete rsync://user@example.com:873/data/ /data/dest/
+```
+
+**docker-compose example:**
+
+<script src="https://gist.github.com/cjimti/dbbb951ec389be4b0202ef0cffb5e668.js"></script>
 
 Say you need to ensure your device (or another server) always has the latest files from the server. However, syncing hundreds or even thousands of files could take hours or days. First, [rsync] will only grab the data you don't have, or may have an outdated version of, you can never assume the state of the data on your device. [irsync] will use it's built-in [rsync] to do the heavy lifting of determining your state versus the server. But [rsync] is not perfect, and dealing with an unstable network can sometimes cause it to hang or fail. The good news is that, if restarted, [rsync] will pick up where it left off.
 
