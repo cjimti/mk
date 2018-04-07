@@ -53,6 +53,27 @@ I recorded a video performing the demo above:
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/gT_P2a-xpPw?rel=0' frameborder='0' allowfullscreen></iframe></div>
 
+## Custom Docker Container
+
+Another great implementation method involves creating a custom Docker image for each dource and destination synchronizations you want to keep running. See the following example Dockerfile:
+
+<script src="https://gist.github.com/cjimti/4d01753a76db9f49b9db8daf5c37db40.js"></script>
+
+**Build:**
+
+```bash
+docker build -t custom-sync .
+```
+
+**Run:**
+
+```bash
+docker run -d --name custom-sync --restart on-failure \
+    -v "$(pwd)"/data:/data custom-sync
+```
+
+
+## Wear it
 
 If you have read this far, you might be be the kind of person to appreciate a high-end fashion statement:
 
