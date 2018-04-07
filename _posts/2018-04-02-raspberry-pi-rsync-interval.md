@@ -51,9 +51,12 @@ You can run a simple little demo on your local workstation using a docker-compos
 
 I recorded a video performing the demo above:
 
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=imti-20&marketplace=amazon&region=US&placement=B07BZ8R8B2&asins=B07BZ8R8B2&linkId=867bc96f9391e223acbbb948a4683a79&show_border=false&link_opens_in_new_window=false&price_color=333333&title_color=0066C0&bg_color=FFFFFF">
-    </iframe>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/gT_P2a-xpPw?rel=0' frameborder='0' allowfullscreen></iframe></div>
 
+
+If you have read this far, you might be be the kind of personal to appreciate a high-end fashion statement:
+
+<a target="_blank"  href="https://www.amazon.com/gp/product/B07BZ8R8B2/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B07BZ8R8B2&linkCode=as2&tag=imti-20&linkId=2ae79aaf417450259d43834db6c71e74"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=B07BZ8R8B2&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=imti-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=imti-20&l=am2&o=1&a=B07BZ8R8B2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 ### Resources
 
@@ -72,4 +75,4 @@ I recorded a video performing the demo above:
 [bash]: https://www.gnu.org/software/bash/
 [IOT]: https://en.wikipedia.org/wiki/Internet_of_things
 [Docker]: https://www.docker.com/
-[irsync t-shirt]: https://amzn.to/2GLvPGQ
+[irsync t-shirt]: https://amzn.to/2ErshYH
