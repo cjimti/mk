@@ -62,11 +62,17 @@ I have tried a few of the full GUI apps for burning but don't seem to get the sp
 - [diskUtil] official Manpage
 - [Everything is a file] / "Everything is a file descriptor"
 - [How do you monitor the progress of dd?]
+- [Libre Computer Site]
+- [Tinker Board Site]
+- [Orange Pi Site]
 
 [Raspberry Pi]: https://www.raspberrypi.org/
-[Libre Composer]: https://libre.computer/
-[Tinker Board]: https://www.asus.com/us/Single-Board-Computer/Tinker-Board/
-[Orange Pi]: http://www.orangepi.org/
+[Libre Computer Site]: https://libre.computer/
+[Libre Computer]: https://amzn.to/2GLp8Vg
+[Tinker Board]: https://amzn.to/2HiX9NZ
+[Tinker Board Site]: https://www.asus.com/us/Single-Board-Computer/Tinker-Board/
+[Orange Pi]: https://amzn.to/2H5DL9v
+[Orange Pi Site]: http://www.orangepi.org/
 [How do you monitor the progress of dd?]: https://askubuntu.com/questions/215505/how-do-you-monitor-the-progress-of-dd
 [Everything is a file]: https://en.wikipedia.org/wiki/Everything_is_a_file
 [dd]: https://en.wikipedia.org/wiki/Dd_(Unix)
