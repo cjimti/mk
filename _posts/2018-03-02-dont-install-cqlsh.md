@@ -5,6 +5,7 @@ title: Don't Install cqlsh
 description: 'Don''t Install cqlsh, or anything for that matter...'
 tags: cassandra docker cqlsh container-as-command cli
 featured: cassandra docker cli
+mast: cqlsh
 ---
 
 We live in a world of process isolation and tools that make utilizing it extremely simple, with apps like [Docker] can perform dependency management with **dependency isolation**. As I am slowly becoming a fanboy of containerization, I look forward to the day when typing `ps` on my local workstation or remote server is nearly synonymous with commands like `docker ps` or `kubectl get services`.

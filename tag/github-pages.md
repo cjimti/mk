@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: github-pages"
+title: "github-pages articles"
 tag: github-pages
 robots: noindex
 ---

@@ -4,6 +4,7 @@ layout: post
 title: Kubernetes - 413 Request Entity Too Large
 tags: kubernetes kubectl docker
 featured: kubernetes docker
+mast: shapes
 ---
 
 When setting up [nginx ingress] on [Kubernetes] for a private [Docker Registry], I ran into an error when trying to push an image to it.

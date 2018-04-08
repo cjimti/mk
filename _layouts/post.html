@@ -1,10 +1,50 @@
 ---
 layout: default
 ---
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mk.imti.co/{{ page.id }}/"
+  },
+  "headline": "{{ page.title }}",
+  "image": [
+    "https://mk.imti.co/images/mast/{{ page.mast }}-250s.jpg",
+    "https://mk.imti.co/images/mast/{{ page.mast }}.jpg",
+   ],
+  "datePublished": "{{ page.date | date: "%FT%T%:z" }}",
+  "dateModified": {{ page.date | date: "%FT%T%:z" }}",
+  "author": {
+    "@type": "Person",
+    "name": "Craig Johnston"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "mk.imti.co",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mk.imti.co/images/mk-logo-circle.png"
+    }
+  },
+  "description": "{{ post.excerpt }}"
+}
+</script>
+
+
+{% if page.mast != null %}<img src="/images/mast/{{ page.mast }}.jpg">{% endif %}
 
 <article class="post">
   <h1>{{ page.title }}</h1>
 
+  <div class="entry">
+
+    {{ content }}
+  </div>
+
+
+  <h2>Meta</h2>
   <div class="tag-icon-set-post">
     {% assign featured_tags = page.featured | split: " " %}
     {% for tag in featured_tags %}
@@ -18,11 +58,6 @@ layout: default
       <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
     {% endfor %}
   ]</span>
-
-  <div class="entry">
-
-    {{ content }}
-  </div>
 
   <div class="date">
     Written on {{ page.date | date: "%B %e, %Y" }}

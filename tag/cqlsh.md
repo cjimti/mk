@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: cqlsh"
+title: "cqlsh articles"
 tag: cqlsh
 robots: noindex
 ---

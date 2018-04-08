@@ -4,6 +4,7 @@ layout: post
 title: Burn SD Images on MacOs
 tags: dd cli pi armbian bash
 featured: bash pi armbian
+mast: smelt
 ---
 
 Use your terminal to burn images fast and easy with **[dd]**. I do a lot of professional and hobby development for projects using devices such as [Raspberry Pi], [Orange Pi], [Libre Computer], [Tinker Board], etc. I run across a lot of tutorials with people downloading and using big GUI apps with clunky drag and drop interfaces to burn images.

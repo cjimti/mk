@@ -2,29 +2,35 @@
 layout: default
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
+<div class="posts" style="margin-bottom: 1em">
+    {% for post in site.posts %}
     <article class="post">
+        <div class="home-mast" {% if post.mast != null %}style="background: url('/images/mast/{{ post.mast }}.jpg') no-repeat left center;"{% endif %}>
+            <div class="mast-body">
+                <h1 class="home-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
 
-      <h1 class="home-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+            </div>
+        </div>
 
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
+        <div class="entry">
+            {{ post.excerpt }}
+        </div>
 
-      <div style="float: right">
-      <a href="{{ post.url }}" class="read-more">Read More</a>
-      </div>
+        <div style="float: right">
+            <a href="{{ post.url }}" class="read-more">Read More</a>
+        </div>
 
-      <div class="tag-icon-set">
-      {% assign featured_tags = post.featured | split: " " %}
-      {% for tag in featured_tags %}
-      <a href="/tag/{{ tag }}/"><img alt="{{ tag }}" src="/images/tags/54/{{ tag }}.png" /></a>
-      {% endfor %}
-      </div>
+        <div class="tag-icon-set" style="height: 100px">
+            {% assign featured_tags = post.featured | split: " " %}
+            {% for tag in featured_tags %}
+            <a href="/tag/{{ tag }}/"><img alt="{{ tag }}" src="/images/tags/54/{{ tag }}.png"/></a>
+            {% endfor %}
+        </div>
+
 
     </article>
-  {% endfor %}
+
+    {% endfor %}
 </div>
 
 {% include archive.html %}

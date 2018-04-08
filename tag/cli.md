@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: cli"
+title: "cli articles"
 tag: cli
 robots: noindex
 ---

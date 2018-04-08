@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: armbian"
+title: "armbian articles"
 tag: armbian
 robots: noindex
 ---

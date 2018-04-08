@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: emacs"
+title: "emacs articles"
 tag: emacs
 robots: noindex
 ---

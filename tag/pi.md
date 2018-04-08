@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: pi"
+title: "pi articles"
 tag: pi
 robots: noindex
 ---

@@ -4,6 +4,7 @@ layout: post
 title: rSync Files on Interval
 tags: rsync docker pi armbian cli
 featured: docker pi armbian cli
+mast: gears
 ---
 
 A recurring requirement for my [IOT] projects involves keeping a set of files synced with a central server. Many of these projects include media players, kiosk systems, or applications that need frequently updated configuration files, all while entirely unattended, and in most cases unreachable through firewalls. I have one project that alone has 2000+ devices pulling media continuously from an [rsync] server. Many of these devices are on doggy wifi networks.

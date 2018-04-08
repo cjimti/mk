@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: dd"
+title: "dd articles"
 tag: dd
 robots: noindex
 ---

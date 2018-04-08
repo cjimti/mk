@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: cassandra"
+title: "cassandra articles"
 tag: cassandra
 robots: noindex
 ---

@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: bash"
+title: "bash articles"
 tag: bash
 robots: noindex
 ---

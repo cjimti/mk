@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: kubectl"
+title: "kubectl articles"
 tag: kubectl
 robots: noindex
 ---

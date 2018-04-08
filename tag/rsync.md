@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: rsync"
+title: "rsync articles"
 tag: rsync
 robots: noindex
 ---

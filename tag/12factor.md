@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: 12factor"
+title: "12factor articles"
 tag: 12factor
 robots: noindex
 ---

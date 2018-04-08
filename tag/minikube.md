@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: minikube"
+title: "minikube articles"
 tag: minikube
 robots: noindex
 ---
