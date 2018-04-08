@@ -10,9 +10,13 @@
     <meta name="description" content="{{ site.description }}">
     <meta property="og:description" content="{{ site.description }}" />
     {% endif %}
-    <meta name="author" content="{{ site.name }}" />
-
+    <meta name="author" content="mk.imti.co" />
     {% if page.title %}
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="twitter:title" content="{{ page.title }}" />
+    {% endif %}
+    <meta name="twitter:creator" content="@cjimti" />
+    <meta property="og:url" content="https://mk.imti.co{{ page.url }}" />
+    {% if page.mast %}
+    <meta property="og:image" content="https://mk.imti.co/images/mast/{{ page.mast }}-250s.jpg" />
     {% endif %}
