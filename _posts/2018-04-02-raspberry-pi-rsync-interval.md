@@ -82,6 +82,7 @@ If you have read this far, you might be be the kind of person to appreciate a hi
 
 ### Resources
 
+- [Raspberry Pi]
 - [Backup & Recovery: Inexpensive Backup Solutions for Open Systems] by O'Reilly Media
 - [irsync]
 - [rsync] on Wikipedia
@@ -94,7 +95,7 @@ If you have read this far, you might be be the kind of person to appreciate a hi
 [amd64/x86-64]: https://en.wikipedia.org/wiki/X86-64
 [irsync]: https://github.com/cjimti/irsync
 [rsync]: https://en.wikipedia.org/wiki/Rsync
-[Raspberry Pi]: https://en.wikipedia.org/wiki/Raspberry_Pi
+[Raspberry Pi]: https://amzn.to/2qlJT3d
 [Armbian]: https://www.armbian.com/
 [bash]: https://www.gnu.org/software/bash/
 [IOT]: https://en.wikipedia.org/wiki/Internet_of_things
