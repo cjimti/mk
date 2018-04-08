@@ -28,7 +28,7 @@ layout: default
       "url": "https://mk.imti.co/images/mk-logo-circle.png"
     }
   },
-  "description": "{{ page.excerpt }}"
+  "description": "{{ page.excerpt | strip_html | url_encode }}"
 }
 </script>
 
