@@ -18,6 +18,15 @@ layout: compress
 
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="/feed.xml" />
 
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "mk.imti.co",
+          "url": "https://mk.imti.co",
+          "logo": "https://mk.imti.co/images/mk-logo-circle.png"
+        }
+    </script>
+
     {% if site.tags != "" %}
       {% include collecttags.html %}
     {% endif %}
