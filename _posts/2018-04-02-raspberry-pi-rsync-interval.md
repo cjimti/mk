@@ -57,7 +57,7 @@ I recorded a video performing the demo above:
 
 ## Custom Docker Container
 
-Another useful implementation method involves creating a custom Docker image for each dource and destination synchronizations you want to keep running. See the following example Dockerfile:
+Another useful implementation method involves creating a custom Docker image for each source and destination synchronizations you want to keep running. See the following example Dockerfile:
 
 <script src="https://gist.github.com/cjimti/4d01753a76db9f49b9db8daf5c37db40.js"></script>
 
