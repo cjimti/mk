@@ -2,6 +2,7 @@
 published: true
 layout: post
 title: rSync Files on Interval
+description: irsync is an Open Source IOT DevOps utility to keep files synchronized from a remote server.
 tags: rsync docker pi armbian cli
 featured: docker pi armbian cli
 mast: gears

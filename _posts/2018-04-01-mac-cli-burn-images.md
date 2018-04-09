@@ -2,6 +2,7 @@
 published: true
 layout: post
 title: Burn SD Images on MacOs
+description: Use the command line to burn SD cards, easy and fast.
 tags: dd cli pi armbian bash
 featured: bash pi armbian
 mast: smelt

@@ -6,17 +6,23 @@
     {% if page.excerpt %}
     <meta name="description" content="{{ page.excerpt| strip_html }}" />
     <meta property="og:description" content="{{ page.excerpt| strip_html }}" />
+    <meta property="twitter:description" content="{{ page.excerpt| strip_html }}" />
     {% else %}
     <meta name="description" content="{{ site.description }}">
     <meta property="og:description" content="{{ site.description }}" />
+    <meta property="twitter:description" content="{{ site.description }}" />
     {% endif %}
     <meta name="author" content="mk.imti.co" />
     {% if page.title %}
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="twitter:title" content="{{ page.title }}" />
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="@cjimti" />
     {% endif %}
     <meta name="twitter:creator" content="@cjimti" />
     <meta property="og:url" content="https://mk.imti.co{{ page.url }}" />
     {% if page.mast %}
     <meta property="og:image" content="https://mk.imti.co/images/mast/{{ page.mast }}-250s.jpg" />
+    <meta property="twitter:image" content="https://mk.imti.co/images/mast/{{ page.mast }}-250s.jpg" />
+    <meta property="twitter:image:alt" content="{{ page.title }}" />
     {% endif %}
