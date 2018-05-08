@@ -23,7 +23,7 @@ SELECT [what] FROM [location] WHERE [a condition is true]
 
 ### Designing a Query
 
-Start with the analog. A proper database schema is going to be as generic as possible, typically to accommodate a broader set of requirements than your specific query.
+Start with the analog. A proper database schema is going to be as generic as possible, typically to accommodate a broader set of requirements than your specific query. Design the query to declare what you want from the database and use aliases to abstract the underlying implementation.
 
 ### The Analog
 We are going to make a [Paleo Bowl](https://www.stupideasypaleo.com/2017/03/02/bitchin-bowl-recipe/) (I live on these things.) For this meal, we need meat, vegetable, and dressing.  So I might start my query like this.
