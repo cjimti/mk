@@ -28,7 +28,7 @@ We are going to make a [Paleo Bowl](https://www.stupideasypaleo.com/2017/03/02/b
 SELECT meat, price
 ```
 
-I know what is what I want, so I declare it. I know I can get it at the grocery store in the meat, so I declare that as well.
+I know what it is that I want, so I declare it. I know I can get it at the grocery store in the meat aisle, so I declare that as well.
 
 ```sql
 SELECT meat FROM meat_aisle.
