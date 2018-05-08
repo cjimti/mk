@@ -63,7 +63,7 @@ tri-tip, 699
 
 It might seem strange at first to alias the beautifully generic product table to a specific like "meat." However, I know I need other ingredients and may be joining the same product table multiple times, and calling "product," "product2" is a terrible thing, but encountered too often. SQL is a declarative language for humans to interact with databases. The SQL should be readable by both.
 
-If you are interested in really mastering SQL, I can highly recommend three books that got me through some of the most incredibly intricate database designs with challenging and unique requirements. Thanks to [Joe Celko](https://amzn.to/2rs09jC). I have successfully developed numerous queries that have been efficiently processing millions of records every day for over a decade.
+If you are interested in really mastering SQL, I can highly recommend three books that got me through some of the most incredibly intricate database designs with challenging and unique requirements. Thanks to [Joe Celko](https://amzn.to/2rs09jC), I have successfully developed numerous queries that have been efficiently processing millions of records every day for over a decade.
 
 - [Joe Celko's SQL for Smarties](https://amzn.to/2wn5232)
 - [Joe Celko's Trees and Hierarchies in SQL for Smarties](https://amzn.to/2KFBL6J)
