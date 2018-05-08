@@ -16,7 +16,7 @@ The Basics
 Declaring what you want by selecting joining and aliasing in the development of readable SQL queries.
 
 ```sql
-SELECT [what] FROM [location] WHERE [a condition is true]]
+SELECT [what] FROM [location] WHERE [a condition is true]
 ```
 
 **[what]** is the columns you want back. The statement "SELECT *" litters hundreds of examples and often scattered though sloppy code. "SELECT *" is generally an anti-pattern, it hides your dependencies, even if you genuinely want everything it is not clear in that statement what everything is. SQL is declarative, and so you should declare something, rather than being vague.
