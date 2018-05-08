@@ -35,7 +35,7 @@ SELECT meat, price
 I know what it is that I want, so I declare it. I know I can get it at the grocery store in the meat aisle, so I declare that as well.
 
 ```sql
-SELECT meat FROM meat_aisle.
+SELECT meat FROM meat_aisle
 ```
 
 I have some preferences, so I declare a specific as a condition.
