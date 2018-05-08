@@ -73,6 +73,8 @@ It might seem strange at first to alias the beautifully generic product table to
 
 My query should not be concerned about describing the underlying schema; the database does a great job at that.  My query is best understood by clearly representing what I am trying to accomplish with it.
 
+### Mastery
+
 If you are interested in really mastering SQL, I can highly recommend three books that got me through some of the most incredibly intricate database designs with challenging and unique requirements. Thanks to [Joe Celko](https://amzn.to/2rs09jC), I have successfully developed numerous queries that have been efficiently processing millions of records every day for over a decade.
 
 - [Joe Celko's SQL for Smarties](https://amzn.to/2wn5232)
