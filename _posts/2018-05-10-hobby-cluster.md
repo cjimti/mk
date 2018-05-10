@@ -121,7 +121,7 @@ You will need a public and private key for each server. Here is a simple bash sc
 pairs all at once (thanks [Hobby Kube](https://github.com/hobby-kube/)]:
 
 ```bash
-for I in 1 2 3; do
+for i in 1 2 3; do
   private_key=$(wg genkey)
   public_key=$(echo $private_key | wg pubkey)
   echo "Server $i private key: $private_key"
