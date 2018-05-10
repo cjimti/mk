@@ -10,6 +10,8 @@ mast: taylor
 Unable to connect to the server: x509: certificate is valid for ...
 
 
+kubeadm alpha phase certs all --apiserver-advertise-address=0.0.0.0 --apiserver-cert-extra-sans=10.161.233.80,114.215.201.87
+
 ### Resources
 
 - [Stack Overflow]

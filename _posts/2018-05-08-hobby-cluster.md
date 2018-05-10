@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 layout: post
 title: Production Hobby Cluster
 tags: kubernetes kubectl cli
@@ -7,9 +7,9 @@ featured: kubernetes cli
 mast: cluster
 ---
 
-Setting up a production-grade Kubernetes cluster can be done on a hobby budget, and if this is true why mess around with a lesser grade. If you are investing time to learn distributed cloud computing or microservices, is the distance between $0 and **$15 dollars a month** worth the time in translating best practices? Kubernetes is designed to host production applications. My personal web application may only be hobbies, but they might as well be production grade hobbies. I have read my thousandth tutorial on how to do things the wrong way; well, the not-good-for-production-way, you know for "learning". The following are my notes as I unlearn the "not for production" tutorial way and re-apply my prodcution notes to my $15 dollar-a-month production grade hobby way.
+Setting up a production-grade Kubernetes cluster can be done on a hobby budget, and if this is true why mess around with a lesser grade. If you are investing time to learn distributed cloud computing or microservices, is the distance between $0 and ** 15 dollars a month** worth the time in translating best practices? Kubernetes is designed to host production applications. My personal web applications may only be hobbies, but they might as well be production grade hobbies. I have read my thousandth tutorial on how to do things the wrong way; well, the not-good-for-production-way, you know for "learning." The following are my notes as I unlearn the "not for production" tutorial way and re-apply my production notes to my $15 dollar-a-month production grade hobby way.
 
-In this article I'll be using three $5 servers from [vultr.com](https://www.vultr.com/?ref=7418713) (referral link). There are a handful of cheap cloud providers these days and in keeping competitive they keep getting cheaper and better. For my $15 dollars a month I am getting three 1 vCore, 1G ram and 25G of storage each. The applications I am hosting are written in Go and Python and they make very efficient use of their resources.
+In this article, I'll be using three $5 servers from [vultr.com](https://www.vultr.com/?ref=7418713) (referral link). There are a handful of cheap cloud providers these days, and in keeping competitive, they keep getting cheaper and better. For my 15 dollars a month I am getting three 1 vCore, 1G ram and 25G of storage each. I host application primarily written in Go and Python, and they make very efficient use of their resources.
 
 Start with three **[Ubuntu 18.04 x64](https://amzn.to/2KLn3eE)** boxes of 1 vCore, 1G ram and 25G of storage each in Los Angeles (because I work in Los Angeles).
 
@@ -17,7 +17,7 @@ Start with three **[Ubuntu 18.04 x64](https://amzn.to/2KLn3eE)** boxes of 1 vCor
 
 #### Firewall
 
-[ufw](https://help.ubuntu.com/community/UFW) makes easy work of security. Iptables are great but `ufw` is just dead-simple, and it's production grade security since it's really just wrapping more complicated Iptable rules.
+[ufw](https://help.ubuntu.com/community/UFW) makes easy work of security. Fine-grained Iptable rules are cool but `ufw` is just dead-simple, and it's production grade security since it's just wrapping more complicated Iptable rules.
 
 Login to the box and setup security:
 ```bash
@@ -41,9 +41,9 @@ sudo apt-get update
 sudo apt-get install wireguard -y
 ```
 
-Although according to the documentation it's fine to run [WireGuard] over the public interface, if your host allows it you might as well setup a private network. On [Vultr](https://www.vultr.com/?ref=7418713) it is as easy as checking a box on setup or clicking on "Add Private Network" in the server settings.
+Although according to the documentation it's okay to run [WireGuard] over the public interface if your host allows it you might as well set up a private network. On [Vultr](https://www.vultr.com/?ref=7418713) it is as simple as checking a box setup or clicking on "Add Private Network" in the server settings.
 
-On the **Ubuntu 18.04** servers you need to manually add the new private network interface:
+On the **Ubuntu 18.04** servers you need to add the new private network interface manually:
 
 In `/etc/netplan/10-ens7.yaml` add the following lines (replace 10.99.0.200/16 with the assigned private IP and range):
 ```yaml
@@ -57,7 +57,7 @@ network:
       addresses: [10.5.96.4/20]
 ```
 
-In my case the subnet mask is 255.255.240.0 which equates to a /20. [Check out this cheat sheet for a quick IP range refrence](https://www.aelius.com/njh/subnet_sheet.html)
+In my case, the subnet mask is 255.255.240.0 which equates to a /20. [Check out this cheat sheet for a quick IP range refrence](https://www.aelius.com/njh/subnet_sheet.html)
 
 Then run the command:
 
@@ -78,7 +78,7 @@ ens7: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-You should be able to ping the private ips of other servers on the same private network out the new interface, in my case **ens7**.
+You should be able to ping the private IPs of other servers on the same private network out the new interface, in my case **ens7**.
 
 ```bash
 ping -I ens7 10.5.96.4
@@ -94,10 +94,10 @@ rtt min/avg/max/mdev = 0.808/1.144/1.481/0.338 ms
 
 **Configuring [WireGuard]**
 
-You will need a public and private key for each server. Here is a simple bash script for generating them all at once (thanks [Hobby Kube](https://github.com/hobby-kube/)]:
+You will need a public and private key for each server. Here is a simple bash script for generating the key pairs all at once (thanks [Hobby Kube](https://github.com/hobby-kube/)]:
 
 ```bash
-for i in 1 2 3; do
+for I in 1 2 3; do
   private_key=$(wg genkey)
   public_key=$(echo $private_key | wg pubkey)
   echo "Server $i private key: $private_key"
@@ -127,7 +127,7 @@ AllowedIps = 10.0.1.3/32
 Endpoint = 10.8.23.95:51820
 ```
 
-You will need to open up the port 51820 on the new private interface for each server. On my new servers the interface is **ens7** as seen when we ran `ifconfig` above.
+You will need to open up the port 51820 on the new private interface for each server. On my new servers, the interface is **ens7** as seen when we ran `ifconfig` above.
 
 ```bash
 ufw allow in on ens7 to any port 51820
@@ -167,7 +167,7 @@ the following line:
 Environment="DOCKER_OPTS=--iptables=false --ip-masq=false"
 ```
 
-You will need to restart Docker and reload deamons:
+You will need to restart Docker and reload daemons:
 
 ```bash
 systemctl restart docker
@@ -215,7 +215,7 @@ StartLimitInterval=0
 WantedBy=multi-user.target
 ```
 
-The config key `--initial-cluster` is just the initial cluster. You can easily add more nodes in the future without modifying this value.
+The config key `--initial-cluster` is just the initial cluster. You can quickly add more nodes in the future without modifying this value.
 
 Enable startup and run etcd on each server:
 
@@ -224,7 +224,7 @@ systemctl enable etcd.service # launch etcd during system boot
 systemctl start etcd.service
 ```
 
-Run the command `journalctl -xe` if you encounter any errors. The first time I started up exctd if failed due to a a typo.
+Run the command `journalctl -xe` if you encounter any errors. The first time I started up exctd if failed due to a typo.
 
 Check the status of the new [Etcd] cluster:
 
@@ -280,11 +280,11 @@ Run the following command on lax1:
 kubeadm init --config /tmp/master-configuration.yml
 ```
 
-After running `kubeadm init` make sure you copy the output. This is the command to join other nodes. Specifically copy the `--token`, it will look something like this `3b1e9s.t21tgbbyx1yt7lrp`.
+After running `kubeadm init` make sure you copy the output, specifically the `--token`, it will look something like this `3b1e9s.t21tgbbyx1yt7lrp`.
 
-Next we will use [Weave Net] to create a Pod network. [Weave Net] is great since it is stable, production ready and has no configuration.
+Next, we will use [Weave Net] to create a Pod network. [Weave Net] is excellent since it is stable, production ready and has no configuration.
 
-Create a `.kube` directory for the current user (in my case root). This will give [Weave Net] access to Kubernetes with a symlinked config file.
+Create a `.kube` directory for the current user (in my case root).  `kubectl` will access the local Kubernetes with a symlinked config file in the logged-in users home path.
 
 ```bash
 [ -d $HOME/.kube ] || mkdir -p $HOME/.kube
@@ -304,9 +304,9 @@ ufw allow in on weave
 ufw reload
 ```
 
-We need [Weave Net] to route traffic over our VPN. With the following commands we can setup a new **10.96.0.0/16** network for [Weave Net] to route on our new VPN interface.
+We need [Weave Net] to route traffic over our VPN. With the following commands, we can set up a new **10.96.0.0/16** network for [Weave Net] to route on our new VPN interface.
 
-On each of the servers run the following command replacing the 10.0.1.1 with .2 and .3 to match the server's VPN ip.
+On each of the servers run the following command replacing the 10.0.1.1 with .2 and .3 to match the server's VPN IP.
 
 ```
 ip route add 10.96.0.0/16 dev wg0 src 10.0.1.1
@@ -347,7 +347,7 @@ kubeadm join --token=<TOKEN> 10.0.1.1:6443 --discovery-token-unsafe-skip-ca-veri
 
 ### Permissions: RBAC (Role Based Access Control)
 
-Setup permissive RBAC. This has no effect on a clusters ability to be "production grade" since security models can change beased on the requirements of the cluster. You want a secure cluster and you get that with the security setup in the steps above. What you don't need in a small cluster is a complicated security model. You can add that later.
+Setup permissive RBAC. A permissive RBAC does not affect a clusters ability to be "production grade" since security models can change based on the requirements of the cluster. You want a secure cluster, and you get that with the security setup in the steps above. What you don't need in a small cluster is a complicated security model. You can add that later.
 
 ```bash
 kubectl create clusterrolebinding permissive-binding \
@@ -357,29 +357,98 @@ kubectl create clusterrolebinding permissive-binding \
   --group=system:serviceaccounts
 ```
 
-For now we will grab the deployment token and use that for remote authentication. Run the following command on the cluster and get token from the `token:` key in the yaml output.
+### kubectl: Remote Access
+
+The easiest way to connect to the new cluster is to download and use its configuration file.
 
 ```bash
-# list the system secrets on the culster in the kube-system namespace
-kubectl -n kube-system get secrets
+# if you don't have kubectl installed use homebrew (https://brew.sh/) to install it.
+brew install kubectl
 
-# find the pod starting with deployment-controller-token and output it 
-# as yaml.
-kubectl -n kube-system get secret deployment-controller-token-trkcw -o yaml
+# on your local workstation
+cd ~/.kube
+scp root@lax1.example.com:./.kube/config lax1_config
 ```
 
-We will use this token on out local workstation.
+Edit the new lax1_config file and change the yaml key **server** under the **cluster** 
+section to the location of your server `server: https://lax1.example.com:6443` you may also 
+want to change the context name to something more descriptive like **lax1**.
 
+The environment variable **[KUBECONFIG]** holds paths to config files for `kubectl`. In your shell profile 
+(`.bash_profile` or `.bashrc`) add:
+ 
+ ```plain
+export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config:$HOME/.kube/lax1_config
+ ```
+ 
+Logging in to a new terminal on your workstation and try switching between contexts
+(`kubectl config use-context lax1`):
+
+```bash
+# kubectl configuration help
+kubectl config -h
+
+# display the configs visible to kubectl
+kubectl config view
+
+# get the current context
+kubectl config current-context
+
+# use the new lax1 context
+kubectl config use-context lax1
+
+# get the list of nodes from lax
+kubectl get nodes
+
+```
+
+### Deploy an Application
+
+Create a file called `tcp-echo-service.yml`
+
+<script src="https://gist.github.com/cjimti/cb051976caa20f5c53311a7a75e85487.js"></script>
+
+kubectl can use URLs or local files for input:
+
+```bash
+# create a service
+kubectl create -f https://gist.githubusercontent.com/cjimti/cb051976caa20f5c53311a7a75e85487/raw/4de6963a07cbd0d0f919ccfd832dd3b94e24229f/tcp-echo-service.yml
+
+# list services
+kubectl get services
+
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP          1d
+tcp-echo     NodePort    10.109.249.93   <none>        5000:32413/TCP   3m
+```
+
+In my case, the port **32413** was assigned to the new TCP echo service. 
+
+Create a deployment configuration called `tcp-echo-deployment.yml`:
+
+<script src="https://gist.github.com/cjimti/f936f728b28cdaf3f0edb26b2a7b8c99.js"></script>
+
+kubectl can use URLs or local files for input:
+
+```bash
+kubectl create -f https://gist.githubusercontent.com/cjimti/f936f728b28cdaf3f0edb26b2a7b8c99/raw/52abd43fbbfaded9559eb67b22b322b065877ab7/tcp-echo-depoloyment.yml
+
+# describe the deployment
+kubectl describe deployment tcp-echo
+
+```
 
 
 ## Resources
 
+- [KUBECONFIG]
 - [systemd]
 - [Weave Net]
 - [Etcd]
 - [WireGuard]
-- [Hobby Kube] A fantastic writeup and where I got started.
+- [Hobby Kube] A fantastic write-up and how I got started.
 
+[KUBECONFIG]: https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/
 [systemd]: https://wiki.ubuntu.com/systemd
 [WireGuard]: https://www.wireguard.io/
 [Weave Net]: https://www.weave.works/oss/net/
