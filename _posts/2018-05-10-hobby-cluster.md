@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 layout: post
 title: Production Hobby Cluster
 tags: kubernetes kubectl cli
