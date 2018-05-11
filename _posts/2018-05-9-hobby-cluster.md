@@ -16,8 +16,10 @@ I have read my thousandth tutorial on how to do things the wrong way; well, the 
 for "learning." The following are my notes as I unlearn the "not for production" tutorial way and re-apply my production 
 notes to a 15 dollar-a-month production grade hobby way.
 
-In this article, I'll be using three $5 servers from [vultr.com](https://www.vultr.com/?ref=7418713) (referral link). 
-There are a handful of cheap cloud providers these days, and in keeping competitive, they keep getting cheaper and better. 
+In this article, I'll be using three $5 servers from [Vultr] (referral link). 
+There are a handful of cheap cloud providers these days, and in keeping competitive, they keep getting cheaper and better.
+Another good pick is [Digital Ocean]. You might want to run a [Vultr]
+cluster in LA with a set of services and a [Digital Ocean].
 
 For my 15 dollars a month I am getting three 1 vCore, 1G ram and 25G of storage each. I host application primarily written 
 in Go and Python, and they make very efficient use of their resources.
@@ -475,6 +477,8 @@ kubectl describe deployment tcp-echo
 
 ## Resources
 
+- [Digital Ocean]
+- [Vultr]
 - [KUBECONFIG]
 - [systemd]
 - [Weave Net]
@@ -482,6 +486,8 @@ kubectl describe deployment tcp-echo
 - [WireGuard]
 - [Hobby Kube] A fantastic write-up and how I got started.
 
+[Digital Ocean]: https://m.do.co/c/97b733e7eba4
+[vultr]: https://www.vultr.com/?ref=7418713
 [KUBECONFIG]: https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/
 [systemd]: https://wiki.ubuntu.com/systemd
 [WireGuard]: https://www.wireguard.io/
