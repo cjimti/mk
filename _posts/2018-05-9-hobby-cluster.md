@@ -56,10 +56,11 @@ ufw enable
 [WireGuard] is the VPN I use for cluster communication security. [Install WireGuard](https://www.wireguard.com/install/) 
 by following their instructions for Ubuntu below:
 
+<script src="https://gist.github.com/cjimti/3402964e0a2a89c076f9fb0430028dff.js"></script>
+
 ```bash
-sudo add-apt-repository ppa:wireguard/wireguard
-sudo apt-get update
-sudo apt-get install wireguard -y
+# run each command manually or pip the gist to sh
+curl -L https://git.io/vpDYE | sh
 ```
 
 Although according to the documentation it's okay to run [WireGuard] over the public interface if your host allows it 
