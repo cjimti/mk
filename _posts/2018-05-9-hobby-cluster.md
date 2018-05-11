@@ -59,7 +59,7 @@ by following their instructions for Ubuntu below:
 <script src="https://gist.github.com/cjimti/3402964e0a2a89c076f9fb0430028dff.js"></script>
 
 ```bash
-# run each command manually or pip the gist to sh
+# run each command manually or pipe the gist to sh
 curl -L https://git.io/vpDYE | sh
 ```
 
