@@ -7,27 +7,18 @@ featured: kubernetes cli
 mast: cluster
 ---
 
-Setting up a production-grade Kubernetes cluster can be done on a hobby budget, and if this is true why mess around with 
-a lesser grade. If you are investing time to learn distributed cloud computing or microservices, is the distance between 
-$0 and **15 dollars a month** worth the time in translating best practices? Kubernetes is designed to host production 
-applications. My personal web applications may only be hobbies, but they might as well be production grade hobbies. 
+Setting up a production-grade Kubernetes cluster can be done on a hobby budget, and if this is true why mess around with a lesser grade. If you are investing time to learn distributed cloud computing or microservices, is the distance between $0 and **15 dollars a month** worth the time in translating best practices? Kubernetes is designed to host production applications. My personal web applications may only be hobbies, but they might as well be production grade hobbies. 
 
-I have read my thousandth tutorial on how to do things the wrong way; well, the not-good-for-production-way, you know 
-for "learning." The following are my notes as I unlearn the "not for production" tutorial way and re-apply my production 
-notes to a 15 dollar-a-month production grade hobby way.
+I have read my thousandth tutorial on how to do things the wrong way; well, the not-good-for-production-way, you know for "learning." The following are my notes as I unlearn the "not for production" tutorial way and re-apply my production notes to a 15 dollar-a-month production grade hobby way.
 
 In this article, I'll be using three $5 servers from [Vultr] (referral link). 
-There are a handful of cheap cloud providers these days, and in keeping competitive, they keep getting cheaper and better.
-Another good pick is [Digital Ocean]. You might want to run a [Vultr]
-cluster in LA with a set of services and a [Digital Ocean] cluster in New York with another set of services.
+There are a handful of cheap cloud providers these days, and in keeping competitive, they keep getting cheaper and better. Another good pick is [Digital Ocean]. You might want to run a [Vultr] cluster in LA with a set of services and a [Digital Ocean] cluster in New York with another set of services.
 
-For my 15 dollars a month I am getting three 1 vCore, 1G ram and 25G of storage each. I host application primarily written 
-in Go and Python, and they make very efficient use of their resources.
+For my 15 dollars a month I am getting three 1 vCore, 1G ram and 25G of storage each. I host application primarily written in Go and Python, and they make very efficient use of their resources.
 
-Start with three **[Ubuntu 18.04 x64](https://amzn.to/2KLn3eE)** boxes of 1 vCore, 1G ram and 25G of storage each in Los 
-Angeles (because I work in Los Angeles).
+Start with three **[Ubuntu 18.04 x64](https://amzn.to/2KLn3eE)** boxes of 1 vCore, 1G ram and 25G of storage each in Los Angeles (because I work in Los Angeles).
 
-I am calling my new servers lax1, lax2 and lax3.
+I am calling my new servers lax1, lax2, and lax3.
 
 ### Security
 
@@ -35,9 +26,9 @@ I don't need my hobby cluster turning into a [crypto-mining platform while I sle
 
 #### Firewall
 
-[ufw](https://help.ubuntu.com/community/UFW) makes easy work of security. Fine-grained `Iptables` rules are nice (and 
+[ufw](https://help.ubuntu.com/community/UFW) makes easy work of security. Fine-grained `iptables` rules are nice (and 
 complicated, and easy to get wrong) but `ufw` is just dead-simple, and it's production grade security since it's just 
-wrapping more complicated `Iptables` rules.
+wrapping more complicated `iptables` rules.
 
 Login to the box and setup security:
 
@@ -63,10 +54,7 @@ by following their instructions for Ubuntu below:
 curl -L https://git.io/vpDYE | sh
 ```
 
-Although according to the documentation it's okay to run [WireGuard] over the public interface; if your host allows it 
-you might as well set up a private network. On [Vultr] it is as simple as checking 
-a box setup or clicking on "Add Private Network" in the server settings. However on [Vultr] servers you need to add the 
-new private network interface manually, this is not the case with [Digital Ocean]:
+Although according to the documentation it's okay to run [WireGuard] over the public interface; if your host allows it, you might as well set up a private network. On [Vultr] it is as simple as checking a box setup or clicking on "Add Private Network" in the server settings. However on [Vultr] servers you need to add the new private network interface manually, this is not the case with [Digital Ocean]:
 
 In `/etc/netplan/10-ens7.yaml` add the following lines (replace 10.99.0.200/16 with the assigned private IP and range):
 ```yaml
@@ -161,8 +149,7 @@ AllowedIps = 10.0.1.3/32
 Endpoint = 10.8.23.95:51820
 ```
 
-You will need to open up the port 51820 on the new private interface for each server. On my new servers, the interface 
-is **ens7** as seen when we ran `ifconfig` above.
+You will need to open up the port 51820 on the new private interface for each server. On my new servers, the interface is **ens7** as seen when we ran `ifconfig` above.
 
 ```bash
 ufw allow in on ens7 to any port 51820
@@ -252,8 +239,7 @@ StartLimitInterval=0
 WantedBy=multi-user.target
 ```
 
-The config key `--initial-cluster` is just the initial cluster. You can quickly add more nodes in the future without 
-modifying this value.
+The config key `--initial-cluster` is just the initial cluster. You can quickly add more nodes in the future without modifying this value.
 
 Enable startup and run [Etcd] on each server:
 
@@ -262,7 +248,7 @@ systemctl enable etcd.service # launch etcd during system boot
 systemctl start etcd.service
 ```
 
-Run the command `journalctl -xe` if you encounter any errors. The first time I started up [excd] it failed due to a typo.
+Run the command `journalctl -xe` if you encounter any errors. The first time I started up [etcd], it failed due to a typo.
 
 Check the status of the new [Etcd] cluster:
 
@@ -414,9 +400,7 @@ kubeadm join --token=<TOKEN> 10.0.1.1:6443 --discovery-token-unsafe-skip-ca-veri
 
 ### Permissions: RBAC (Role Based Access Control)
 
-Setup permissive RBAC. A permissive RBAC does not affect a clusters ability to be "production grade" since security 
-models can change based on the requirements of the cluster. You want a secure cluster, and you get that with the security 
-setup in the steps above. What you don't need in a small cluster is a complicated security model. You can add that later.
+Setup permissive RBAC. A permissive RBAC does not affect a clusters ability to be "production grade" since security models can change based on the requirements of the cluster. You want a secure cluster, and you get that with the security setup in the steps above. What you don't need in a small cluster is a complicated security model. You can add that later.
 
 ```bash
 kubectl create clusterrolebinding permissive-binding \
@@ -527,4 +511,3 @@ kubectl describe deployment tcp-echo
 [Weave Net]: https://www.weave.works/oss/net/
 [Etcd]: https://coreos.com/etcd/docs/latest/getting-started-with-etcd.html
 [Hobby Kube]: https://github.com/hobby-kube/guide
-
