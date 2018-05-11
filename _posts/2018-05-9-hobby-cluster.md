@@ -350,9 +350,9 @@ network for [Weave Net] to route on our new VPN interface.
 
 On each of the servers run the following command replacing the 10.0.1.1 with .2 and .3 to match the server's VPN IP.
 
-```
+```bash
 ip route add 10.96.0.0/16 dev wg0 src 10.0.1.1
-``
+```
 
 Add the [systemd] service unit file `/etc/systemd/system/overlay-route.service` to ensure this network configuration happens on boot.
 
