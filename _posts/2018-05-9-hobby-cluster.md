@@ -37,17 +37,17 @@ I don't need my hobby cluster turning into a [crypto-mining platform while I sle
 
 [ufw](https://help.ubuntu.com/community/UFW) makes easy work of security. Fine-grained `Iptables` rules are nice (and 
 complicated, and easy to get wrong) but `ufw` is just dead-simple, and it's production grade security since it's just 
-wrapping more complicated Iptable rules.
+wrapping more complicated `Iptables` rules.
 
 Login to the box and setup security:
+
+<script src="https://gist.github.com/cjimti/4088e76e5016202a8da93fd041dd9fae.js"></script>
+
 ```bash
-# lock down the box
-ufw --force reset
-ufw allow ssh
-ufw allow 6443 # Kubernetes API
-ufw allow 80
-ufw allow 443
-ufw default deny incoming
+# you can run the gist above directly if you wish
+curl -L https://git.io/vpDYI | sh
+
+# enable the firewall
 ufw enable
 ```
 
