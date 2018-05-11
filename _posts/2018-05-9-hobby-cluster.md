@@ -345,13 +345,38 @@ ufw allow in on weave
 ufw reload
 ```
 
-We need [Weave Net] to route traffic over our VPN. With the following commands, we can set up a new **10.96.0.0/16** 
-network for [Weave Net] to route on our new VPN interface.
+Check your rules on each server:
+
+```bash
+ufw status
+
+Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       Anywhere
+6443                       ALLOW       Anywhere
+80                         ALLOW       Anywhere
+443                        ALLOW       Anywhere
+51820 on eth1              ALLOW       Anywhere
+Anywhere on wg0            ALLOW       Anywhere
+Anywhere on weave          ALLOW       Anywhere
+22/tcp (v6)                ALLOW       Anywhere (v6)
+6443 (v6)                  ALLOW       Anywhere (v6)
+80 (v6)                    ALLOW       Anywhere (v6)
+443 (v6)                   ALLOW       Anywhere (v6)
+51820 (v6) on eth1         ALLOW       Anywhere (v6)
+Anywhere (v6) on wg0       ALLOW       Anywhere (v6)
+Anywhere (v6) on weave     ALLOW       Anywhere (v6)
+```
+
+We need [Weave Net] to route traffic over our VPN. With the following commands, we can set **10.96.0.0/16** 
+as an overlay network route for Wireguard.
 
 On each of the servers run the following command replacing the 10.0.1.1 with .2 and .3 to match the server's VPN IP.
 
 ```bash
-ip route add 10.96.0.0/16 dev wg0 src 10.0.1.1
+ip route add 10.96.0.0/16 dev wg0 src 10.0.1.1 # .2, .3 etc..
 ```
 
 Add the [systemd] service unit file `/etc/systemd/system/overlay-route.service` to ensure this network configuration happens on boot.
