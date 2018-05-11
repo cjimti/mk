@@ -19,7 +19,7 @@ notes to a 15 dollar-a-month production grade hobby way.
 In this article, I'll be using three $5 servers from [Vultr] (referral link). 
 There are a handful of cheap cloud providers these days, and in keeping competitive, they keep getting cheaper and better.
 Another good pick is [Digital Ocean]. You might want to run a [Vultr]
-cluster in LA with a set of services and a [Digital Ocean].
+cluster in LA with a set of services and a [Digital Ocean] cluster in New York with another set of services.
 
 For my 15 dollars a month I am getting three 1 vCore, 1G ram and 25G of storage each. I host application primarily written 
 in Go and Python, and they make very efficient use of their resources.
