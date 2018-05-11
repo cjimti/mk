@@ -63,11 +63,10 @@ by following their instructions for Ubuntu below:
 curl -L https://git.io/vpDYE | sh
 ```
 
-Although according to the documentation it's okay to run [WireGuard] over the public interface if your host allows it 
-you might as well set up a private network. On [Vultr](https://www.vultr.com/?ref=7418713) it is as simple as checking 
-a box setup or clicking on "Add Private Network" in the server settings.
-
-On the **Ubuntu 18.04** servers you need to add the new private network interface manually:
+Although according to the documentation it's okay to run [WireGuard] over the public interface; if your host allows it 
+you might as well set up a private network. On [Vultr] it is as simple as checking 
+a box setup or clicking on "Add Private Network" in the server settings. However on [Vultr] servers you need to add the 
+new private network interface manually, this is not the case with [Digital Ocean]:
 
 In `/etc/netplan/10-ens7.yaml` add the following lines (replace 10.99.0.200/16 with the assigned private IP and range):
 ```yaml
@@ -123,13 +122,21 @@ rtt min/avg/max/mdev = 0.808/1.144/1.481/0.338 ms
 You will need a public and private key for each server. Here is a simple bash script for generating the key 
 pairs all at once (thanks [Hobby Kube](https://github.com/hobby-kube/)]:
 
+<script src="https://gist.github.com/cjimti/d04392fb9c726d4b2612f24599b28251.js"></script>
+
 ```bash
-for i in 1 2 3; do
-  private_key=$(wg genkey)
-  public_key=$(echo $private_key | wg pubkey)
-  echo "Server $i private key: $private_key"
-  echo "Server $i public key:  $public_key"
-done
+# you can run the gist directly with a pipe from curl to sh
+curl -L https://git.io/vpDYP |sh
+```
+
+Example output
+```plain
+Server 1 private key: cB8gRedh0f03ndqmQZCbFPL2D9zEyi101kF3xeRRwGI=
+Server 1 public key:  BXIF16yXX9F5yR0uYxpAbT1TbDXTsfXH+pi2nQgtz10=
+Server 2 private key: OB2rLNluGmM9XlYOErTaZV/hD41dVKX1cH5jl7HV0Gg=
+Server 2 public key:  rJd1kLa3Ru51c3bpsPfGZhCfT7sjBtj93nlOKG+oako=
+Server 3 private key: qKhwlt8Hhwl+YCvr6cQzvC+ByzySEVpm3WgnAOhHAHk=
+Server 3 public key:  7n07YYLqTWxokR8Tg2q2Vs7aGe++5YAhr2fAFz2EVDY=
 ```
 
 Cut and paste the output somewhere safe as you will need it for configuring each server.
