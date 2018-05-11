@@ -455,6 +455,7 @@ kubectl get nodes
 
 ```
 
+
 ### Deploy an Application
 
 Create a file called `tcp-echo-service.yml`
@@ -472,10 +473,10 @@ kubectl get services
 
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP          1d
-tcp-echo     NodePort    10.109.249.93   <none>        5000:32413/TCP   3m
+tcp-echo     NodePort    10.109.249.93   <none>        5000:30552/TCP   3m
 ```
 
-In my case, the port **32413** was assigned to the new TCP echo service. 
+In my case, the port **32413** was assigned to the new TCP echo service.
 
 Create a deployment configuration called `tcp-echo-deployment.yml`:
 
@@ -489,8 +490,96 @@ kubectl create -f http://bit.ly/tcp-echo-deployment
 # describe the deployment
 kubectl describe deployment tcp-echo
 
+# ensure that your pods are up and running
+Replicas: 2 desired | 2 updated | 2 total | 2 available | 0 unavailable
+
 ```
 
+In my case, using NodePort without specifying a port, lets the cluster assign one at random. The `tcp-echo` service got port 30552. If networking is set up, currently we should be able to contact the new TCP echo server at that port on all three servers.
+
+Use netcat to test the new TCP echo service. This test service returns some useful diagnostic information, namely the node we connected to (lax2 in the case below lax2,) the specific pod name, the pod IP access, the namespace and the data we sent to it.
+
+First, we can test the port on the physical node with netcat:
+
+```bash
+nc -vz lax1.example.com 30552
+
+found 0 associations
+found 1 connections:
+     1:    flags=82<CONNECTED,PREFERRED>
+    outif en0
+    src 192.168.86.24 port 54133
+    dst 206.189.232.176 port 30552
+    rank info not available
+    TCP aux info available
+
+```
+
+In my case, lax1 is at 206.189.232.176 (at the moment), and we were able to connect to the port. Next, we can send some data and review the output from the tcp-echo server.
+
+```bash
+echo "testing 1,2,3..." | nc lax1.example 30552
+
+Welcome, you are connected to node lax2.
+Running on Pod tcp-echo-5f7fdcf7bc-rm6qt.
+In namespace default.
+With IP address 10.34.0.1.
+Service default.
+testing 1,2,3...
+```
+No pods are running on lax1, lax2 serviced the request. The output demonstrates that our network is operating as intended and the `tcp-echo` service passed along the message to a `tcp-echo` pod running on lax2.
+
+Let's scale our two `tcp-echo` pods to four.
+
+```bash
+kubectl scale deployments/tcp-echo --replicas=4
+
+kubectl get pods -o wide
+
+NAME                        READY     STATUS    RESTARTS   AGE       IP          NODE
+tcp-echo-5f7fdcf7bc-7v5tc   1/1       Running   0          1h        10.40.0.2   lax2
+tcp-echo-5f7fdcf7bc-h4k7z   1/1       Running   0          24m       10.34.0.2   lax3
+tcp-echo-5f7fdcf7bc-rm6qt   1/1       Running   0          1h        10.34.0.1   lax3
+tcp-echo-5f7fdcf7bc-tkmhl   1/1       Running   0          24m       10.40.0.3   lax2
+
+```
+
+The scaling works, but I don't want my extra $5 a month node to go to waste merely hosting the master. To allow the master to run pods, it must be untainted.
+
+```bash
+kubectl taint nodes --all node-role.kubernetes.io/master-
+
+node "lax1" untainted
+taint "node-role.kubernetes.io/master:" not found
+taint "node-role.kubernetes.io/master:" not found
+```
+
+In order to test our lax1 node as a pod host, we need give the cluster a reason to use it.
+
+```bash
+# scale back our tcp-echo 
+kubectl scale deployments/tcp-echo --replicas=2
+
+# then scale up again to 4
+kubectl scale deployments/tcp-echo --replicas=4
+
+kubectl get pods -o wide
+
+NAME                        READY     STATUS    RESTARTS   AGE       IP          NODE
+tcp-echo-5f7fdcf7bc-7v5tc   1/1       Running   0          1h        10.40.0.2   lax2
+tcp-echo-5f7fdcf7bc-86tpz   1/1       Running   0          4s        10.32.0.2   lax1
+tcp-echo-5f7fdcf7bc-c47z5   1/1       Running   0          4s        10.40.0.3   lax2
+tcp-echo-5f7fdcf7bc-rm6qt   1/1       Running   0          1h        10.34.0.1   lax3
+
+```
+
+We now have two pods running on lax2, one on each lax1 and lax3.
+
+I am going to end this post here at a good place. The example above is not the fastest cluster on earth, but that has everything to do with the budgeted $5 instances and not much in regards to configuration. If we needed this to handle an enterprise workload all we need to do is upgrade the server instances, not re-architect our entire infrastructure. Scaling to handle enterprise workloads might take only an hour or two of adding nodes.
+
+I maintain two personal hobby clusters, one with [Digital Ocean] hosted in New York and one with [Vultr] hosted in Los Angeles. I recommend my employer Deasil. If you need enterprise-level hosting including co-location, data center, and NOC services, Contact [Deasil Networks](https://deasil.network/about). If you need any software development check out [Deasil Works](https://deasil.works/).
+
+Are you in the business or collecting, moving, buffering, queueing, processing or presenting data on your cluster? If so, check out https://txn2.com/.
 
 ## Resources
 
