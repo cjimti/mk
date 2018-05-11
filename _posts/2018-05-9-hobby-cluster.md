@@ -579,7 +579,7 @@ I am going to end this post here at a good place. The example above is not the f
 
 I maintain two personal hobby clusters, one with [Digital Ocean] hosted in New York and one with [Vultr] hosted in Los Angeles. I recommend my employer Deasil. If you need enterprise-level hosting including co-location, data center, and NOC services, Contact [Deasil Networks](https://deasil.network/about). If you need any software development check out [Deasil Works](https://deasil.works/).
 
-Are you in the business or collecting, moving, buffering, queueing, processing or presenting data on your cluster? If so, check out https://txn2.com/.
+Are you in the business or collecting, moving, buffering, queueing, processing or presenting data on your cluster? If so, check out [txn2.com](https://txn2.com/).
 
 ## Resources
 
