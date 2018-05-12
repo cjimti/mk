@@ -9,8 +9,7 @@ mast: cluster
 
 Setting up a production-grade Kubernetes cluster can be done on a hobby budget, and if this is true why mess around with a lesser grade. If you are investing time to learn distributed cloud computing or microservices, is the distance between $0 and **15 dollars a month** worth the time in translating best practices? Kubernetes is designed to host production applications. My personal web applications may only be hobbies, but they might as well be production grade hobbies. 
 
-[![k8s performance hobby clusters](/images/content/k8s-tshirt-thumbnail.png)](https://amzn.to/2wzP4mg)
-[![k8s performance hobby clusters](/images/content/phc-logo.png)](https://amzn.to/2wzP4mg)
+[![k8s performance hobby clusters](/images/content/k8s-tshirt-banner.jpg)](https://amzn.to/2wzP4mg)
 
 I have read my thousandth tutorial on how to do things the wrong way; well, the not-good-for-production-way, you know for "learning." The following are my notes as I unlearn the "not for production" tutorial way and re-apply my production notes to a 15 dollar-a-month production grade hobby way.
 
@@ -582,8 +581,7 @@ I am going to end this post here at a good place. The example above is not the f
 
 If in a few days you find yourself setting up a cluster in Japan or Germany on [Linode], and another two in Australia and France on [vultr], then you may have just joined the PHC (Performance Hobby Clusters) club. Some people tinker late at night on their truck, we benchmark and test the resilience of node failures on our overseas, budget kubernetes clusters. It's all about going big, on the cheap.
 
-[![k8s performance hobby clusters](/images/content/k8s-tshirt-thumbnail.png)](https://amzn.to/2wzP4mg)
-[![k8s performance hobby clusters](/images/content/phc-logo.png)](https://amzn.to/2wzP4mg)
+[![k8s performance hobby clusters](/images/content/k8s-tshirt-banner.jpg)](https://amzn.to/2wzP4mg)
 
 
 I maintain three personal hobby clusters, one with [Digital Ocean] hosted in New York and one with [Vultr] hosted in Los Angeles and another with [Linode] in Japan. I recommend my employer Deasil. If you need enterprise-level hosting including co-location, data center, and NOC services, Contact [Deasil Networks](https://deasil.network/about). If you need any software development check out [Deasil Works](https://deasil.works/).
