@@ -496,6 +496,42 @@ kubectl describe deployment tcp-echo
 Replicas: 2 desired | 2 updated | 2 total | 2 available | 0 unavailable
 
 ```
+> Pods not communicating? If you run a `kubectl describe pod NAMEOFPOD` and get back **unreachable:NoExecute** under the **Tolerations** section, you may need to check your `ufw` status.
+
+```plain
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+```
+
+Run `ufw status` again and ensure that you have **Anywhere on wg0** and **Anywhere on weave** rules in place.
+
+```
+Anywhere on wg0            ALLOW       Anywhere
+Anywhere on weave          ALLOW       Anywhere
+```
+
+If these rules are not there run:
+
+```bash
+ufw allow in on wg0
+ufw allow in on weave
+ufw reload
+```
+
+If everything looks correct but the pods are still not communicating, disable the firewall and re-deploy in order to rule out any firewall issues.
+
+```bash
+# disable the firewall
+ufw disable
+
+# delete deployment
+kubectl delete -f http://bit.ly/tcp-echo-deployment
+
+# re-create deployment
+kubectl create -f http://bit.ly/tcp-echo-deployment
+```
+
+#### Testing the Cluster
 
 In my case, using NodePort without specifying a port, lets the cluster assign one at random. The `tcp-echo` service got port 30552. If networking is set up, currently we should be able to contact the new TCP echo server at that port on all three servers.
 
