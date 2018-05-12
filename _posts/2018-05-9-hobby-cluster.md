@@ -586,7 +586,7 @@ If in a few days you find yourself setting up a cluster in Japan or Germany on [
 [![k8s performance hobby clusters](/images/content/phc-logo.png)](https://amzn.to/2wzP4mg)
 
 
-I maintain two personal hobby clusters, one with [Digital Ocean] hosted in New York and one with [Vultr] hosted in Los Angeles. I recommend my employer Deasil. If you need enterprise-level hosting including co-location, data center, and NOC services, Contact [Deasil Networks](https://deasil.network/about). If you need any software development check out [Deasil Works](https://deasil.works/).
+I maintain three personal hobby clusters, one with [Digital Ocean] hosted in New York and one with [Vultr] hosted in Los Angeles and another with [Linode] in Japan. I recommend my employer Deasil. If you need enterprise-level hosting including co-location, data center, and NOC services, Contact [Deasil Networks](https://deasil.network/about). If you need any software development check out [Deasil Works](https://deasil.works/).
 
 Are you in the business or collecting, moving, buffering, queueing, processing or presenting data on your cluster? If so, check out [txn2.com](https://txn2.com/).
 
