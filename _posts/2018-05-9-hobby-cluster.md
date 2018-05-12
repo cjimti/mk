@@ -577,12 +577,19 @@ We now have two pods running on lax2, one on each lax1 and lax3.
 
 I am going to end this post here at a good place. The example above is not the fastest cluster on earth, but that has everything to do with the budgeted $5 instances and not much in regards to configuration. If we needed this to handle an enterprise workload all we need to do is upgrade the server instances, not re-architect our entire infrastructure. Scaling to handle enterprise workloads might take only an hour or two of adding nodes.
 
+If in a few days you find yourself setting up a cluster in Japan or Germany on [Linode], and another two in Australia and France on [vultr], then you may have just joined the PHC (Performance Hobby Clusters) club. Some people tinker late at night on their truck, we benchmark and test the resilience of node failures on our overseas, budget kubernetes clusters. It's all about going big, on the cheap.
+
+[![k8s performance hobby clusters](/images/content/phc-logo.png)](https://amzn.to/2wzP4mg)
+[![k8s performance hobby clusters](/images/content/k8s-tshirt-thumbnail.png)](https://amzn.to/2wzP4mg)
+
+
 I maintain two personal hobby clusters, one with [Digital Ocean] hosted in New York and one with [Vultr] hosted in Los Angeles. I recommend my employer Deasil. If you need enterprise-level hosting including co-location, data center, and NOC services, Contact [Deasil Networks](https://deasil.network/about). If you need any software development check out [Deasil Works](https://deasil.works/).
 
 Are you in the business or collecting, moving, buffering, queueing, processing or presenting data on your cluster? If so, check out [txn2.com](https://txn2.com/).
 
 ## Resources
 
+- [Linode]
 - [Digital Ocean]
 - [Vultr]
 - [KUBECONFIG]
@@ -590,8 +597,9 @@ Are you in the business or collecting, moving, buffering, queueing, processing o
 - [Weave Net]
 - [Etcd]
 - [WireGuard]
-- [Hobby Kube] A fantastic write-up and how I got started.
+- [Hobby Kube] A fantastic write-up (with teraform scripts) and how I got started.
 
+[Linode]: https://www.linode.com/?r=848a6b0b21dc8edd33124f05ec8f99207ccddfde
 [Digital Ocean]: https://m.do.co/c/97b733e7eba4
 [vultr]: https://www.vultr.com/?ref=7418713
 [KUBECONFIG]: https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/
