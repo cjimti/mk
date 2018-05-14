@@ -7,7 +7,7 @@ featured: kubernetes cli
 mast: broken
 ---
 
-Just set up a brand new cluster? Changed the domain or IP or your admin node? Then you may have encountered the error
+Just set up a brand new cluster? Changed the domain or IP of your admin node? Then you may have encountered the error
 **Unable to connect to the server: x509: certificate is valid for ...**. The following is a fix for this common issue. However, there are often other reasons to rebuild your cluster cert, and it's relatively easy.
 
 TL;DR: "I don't care about the fix I need to remote control my cluster. Security? Whats that?": 
