@@ -8,7 +8,7 @@ featured: cassandra docker cli
 mast: cqlsh
 ---
 
-We live in a world of process isolation and tools that make utilizing it extremely simple, with apps like [Docker] can perform dependency management with **dependency isolation**. As I am slowly becoming a fanboy of containerization, I look forward to the day when typing `ps` on my local workstation or remote server is nearly synonymous with commands like `docker ps` or `kubectl get services`.
+We live in a world of process isolation and tools that make utilizing it extremely simple, with apps like [Docker] we can perform dependency management with **dependency isolation**. As I am slowly becoming a fanboy of containerization, I look forward to the day when typing `ps` on my local workstation or remote server is nearly synonymous with commands like `docker ps` or `kubectl get services`.
 
 Case: **Cassandra development and your local workstation.**
 
@@ -33,7 +33,7 @@ From now on I run the command `cqlsh` and get just that, will all its dependenci
 The alias above is helpful for the times I just want a cqlsh terminal to issue a few commands. However, I often need to pass cql scripts into [`cqlsh`]. So I updated my alias to always mount my current directory into a `/src` directory in the container. All I have have to remember is that that path to a local file is `./src` and not `./`. 
 
 ```bash
-alias cqlsh='docker run -it --rm -v "$(pwd)":/src cassandra cqlsh`
+alias cqlsh='docker run -it --rm -v "$(pwd)":/src cassandra cqlsh
 ```
 
 This allows me to run commands that pass in files, like:
