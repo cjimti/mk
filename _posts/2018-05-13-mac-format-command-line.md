@@ -54,7 +54,7 @@ I used the following command to format my stack of drives and now have a ton of 
 **Mac OS Extended Journaled (JHFS+)**:
 
 ```bash
-diskutil eraseDisk JHFS+ 3TBackup /dev/disk6s2
+diskutil eraseDisk JHFS+ 3TBackup /dev/disk2
 ```
 
 I'll probably stick with just using bare hard drives and a dock from now on. Drives are pretty cheap these days, and if you don't need to keep your drive in a backpack, then I can attest they sit nicely on my bookshelf neatly labeled on their sides.
