@@ -4,6 +4,7 @@ layout: post
 title: Command Line and Bulk Image Optimization
 tags: cli mac linux web
 featured: cli
+mast: taylor
 ---
 
 ```bash
