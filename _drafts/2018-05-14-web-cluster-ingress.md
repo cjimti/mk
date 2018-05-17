@@ -7,7 +7,7 @@ featured: kubernetes cli
 mast: webcluster
 ---
 
-There are more than a handful of ways to set up [ingress] on a custom Kubernetes cluster. I have become a huge fan of [Traefik], and not just because it is written in [go](https://golang.org/), well maybe a little, but that should'nt matter right? [Traefik] does a lot more than just [ingress] on [Kubernetes] but that is where out focus lyes for now.
+There are more than a handful of ways to set up [ingress] on a custom Kubernetes cluster.
 
 If you are looking to experiment or learn on a non-production cluster, I suggest you check out my previous article [Production Hobby Cluster], a step-by-step guide for setting up a custom production capable Kubernetes cluster.
 
