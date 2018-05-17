@@ -11,7 +11,7 @@ There are more than a handful of ways to set up port **80** and **443** web [ing
 
 This article builds on the [Production Hobby Cluster] guide. The following closely the official [deploy ingress] Installation Guide with a few adjustments suitable for the [Production Hobby Cluster], specifically the use of a [DaemonSet] rather than a [Deployment] and leveraging **hostNetwork** and **hostPort** for our [DaemonSet] [Pod]s
 
-By now you may be managing multiple clusters. 'kubectl` is a great tool to use on your local workstation to manage remote clusters and will little effort you can quickly point it to a new cluster and switch between them all day. Check out my article [kubectl Context Multiple Clusters](https://mk.imti.co/kubectl-remote-context/) for a quick tutorial.
+By now you may be managing multiple clusters. [kubectl] is a great tool to use on your local workstation to manage remote clusters and will little effort you can quickly point it to a new cluster and switch between them all day. Check out my article [kubectl Context Multiple Clusters](https://mk.imti.co/kubectl-remote-context/) for a quick tutorial.
 
 ### Namespace
 
@@ -231,6 +231,7 @@ If in a few days you find yourself setting up a cluster in Japan or Germany on [
 - [minikube]
 - [Hobby Kube] A fantastic write-up (with terraform scripts) and how I got started.
 
+[kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [ok]: https://github.com/txn2/ok
 [txn2]: https://txn2.com
 [ServiceAccount]: https://kubernetes.io/docs/admin/service-accounts-admin/
