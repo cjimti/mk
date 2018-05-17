@@ -186,7 +186,7 @@ kubectl create -f https://gist.githubusercontent.com/cjimti/ae86bb7d3f777ac61e9f
 
 Finally, we have the easy task of creating an ingress route. The following is a minimal template since you need to point a domain name to your cluster:
 
-```plain
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
