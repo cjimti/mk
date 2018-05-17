@@ -9,9 +9,9 @@ mast: webcluster
 
 There are more than a handful of ways to set up port **80** and **443** web [ingress] on a custom [Kubernetes] cluster. Specifically a bare metal cluster. If you are looking to experiment or learn on a non-production cluster, but something more true to production than [minikube], I suggest you check out my previous article [Production Hobby Cluster], a step-by-step guide for setting up a custom production capable Kubernetes cluster.
 
-This article builds on the [Production Hobby Cluster] guide. The following closely the official [deploy ingress] Installation Guide with a few adjustments suitable for the [Production Hobby Cluster], specifically the use of a [DaemonSet] rather than a [Deployment] and leveraging **hostNetwork** and **hostPort** for the [Pod]s on our [DaemonSet]. There are quite a few [ingress nginx examples] in the official repository if you are looking for a smore specific implementation.
+This article builds on the [Production Hobby Cluster] guide. The following closely the official [deploy ingress] Installation Guide with a few adjustments suitable for the [Production Hobby Cluster], specifically the use of a [DaemonSet] rather than a [Deployment] and leveraging **hostNetwork** and **hostPort** for the [Pod]s on our [DaemonSet]. There are quite a few [ingress nginx examples] in the official repository if you are looking for a more specific implementation.
 
-By now you may be managing multiple clusters. [kubectl] is a great tool to use on your local workstation to manage remote clusters and will little effort you can quickly point it to a new cluster and switch between them all day. Check out my article [kubectl Context Multiple Clusters](https://mk.imti.co/kubectl-remote-context/) for a quick tutorial.
+By now you may be managing multiple clusters. [kubectl] is a great tool to use on your local workstation to manage remote clusters, and with little effort you can quickly point it to a new cluster and switch between them all day. Check out my article [kubectl Context Multiple Clusters](https://mk.imti.co/kubectl-remote-context/) for a quick tutorial.
 
 ### Namespace
 
@@ -88,7 +88,7 @@ kubectl create -f https://gist.githubusercontent.com/cjimti/b06886efc63131922822
 
 ### [DaemonSet]
 
-Creating a [DaemonSet] ensures that we have one Ingress Nginx controller [Pod] running on each node. Having an Ingress Controller on each node is crucial since we are using the host network and assigning the host ports 80 and 443 for HTTP and HTTPS ingress on each node. When adding a new node to the cluster, the [DaemonSet] ensures it gets an Ingress Nginx controller.
+Creating a [DaemonSet] ensures that we have one Ingress Nginx controller [Pod] running on each node. Having an Ingress Controller on each node is crucial since we are using the host network and assigning the host ports 80 and 443 for HTTP and HTTPS ingress on each node. When adding a new node to the cluster, the [DaemonSet] ensures it gets an Ingress Nginx controller [Pod].
 
 <script src="https://gist.github.com/cjimti/b9e820a18b06bd8a735b3b0676724826.js"></script>
 
@@ -112,7 +112,7 @@ kubectl create -f https://gist.githubusercontent.com/cjimti/d733ed08d59b3779233f
 
 ### Test
 
-Make sure the **default-http-backend** pod and **nginx-ingress-controller** controller pods are running, the **nginx-ingress-controller** should be running on each node.
+Make sure the **default-http-backend** [pod] and **nginx-ingress-controller** controller [pod]s are running, the **nginx-ingress-controller** should be running on each node.
 
 ```bash
 kubectl get pods -n ingress-nginx -o wide
@@ -126,7 +126,7 @@ nginx-ingress-controller-wjhcf         1/1       Running   7          1d        
 
 ```
 
-Test each node by issuing a simple `curl` call it:
+Test each node by issuing a simple `curl` call:
 
 ```bash
 # Example call
@@ -152,7 +152,7 @@ default backend - 404
 
 ```
 
-In this case, the **nginx-ingress-controller** [Pod] running on 45.77.71.39 responded adequately by passing the unknown route to the **default-http-backend** which correctly output a basic 404 page. Issue a `curl` call (or browse to them in a web browser) for each of your [Pod]s to test them.
+In this case, the **nginx-ingress-controller** [Pod] running on 45.77.71.39 responded adequately by passing the unknown route to the **default-http-backend** which correctly output a basic 404 page. Issue a `curl` call (or browse to them in a web browser) to each of your Nodes to test them.
 
 ### Add an Ingress
 
@@ -231,6 +231,7 @@ If in a few days you find yourself setting up a cluster in Japan or Germany on [
 - [minikube]
 - [Hobby Kube] A fantastic write-up (with terraform scripts) and how I got started.
 
+[Nodes]: https://kubernetes.io/docs/concepts/architecture/nodes/
 [ingress nginx examples]: https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [ok]: https://github.com/txn2/ok
