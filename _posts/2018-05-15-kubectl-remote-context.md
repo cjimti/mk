@@ -111,6 +111,10 @@ kubectl config use-context work-dev
 
 Now you can make Kubernetes clusters all over the place and have a single `kubectl` on your local workstation to manage them all.
 
+### **Unable to connect to the server: x509: certificate is valid for ...**.
+
+If you changed the cluster server to a hostname (like lax2.example.com) and did not use that name when setting up the cluster with `kubeadm`, then you will need to rebuild the cert on the master. This is easy to do. Check out my article [Kubectl x509 Unable to Connect] for a few simple steps. Otherwise, just use the public IP address of the master node.
+
 ---
 
 If in a few days you find yourself setting up a cluster in Japan or Germany on [Linode], and another two in Australia and France on [vultr], then you may have just joined the PHC (Performance [Hobby Cluster]s) club. Some people tinker late at night on their truck, we benchmark and test the resilience of node failures on our overseas, budget kubernetes clusters. It's all about going big, on the cheap.
@@ -130,3 +134,4 @@ If in a few days you find yourself setting up a cluster in Japan or Germany on [
 [Linode]: https://www.linode.com/?r=848a6b0b21dc8edd33124f05ec8f99207ccddfde
 [vultr]: https://www.vultr.com/?ref=7418713
 [kubectl]: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+[Kubectl x509 Unable to Connect]: https://mk.imti.co/kubectl-remote-x509-valid/
