@@ -2,7 +2,7 @@
 published: true
 layout: post
 title: Ingress on Custom Kubernetes
-tags: kubernetes kubectl cli phc.txn2.net
+tags: kubernetes kubectl cli ingress phc.txn2.net
 featured: kubernetes cli
 mast: webcluster
 ---
