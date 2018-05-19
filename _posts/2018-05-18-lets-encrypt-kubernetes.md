@@ -23,7 +23,7 @@ After [Helm] installs [cert-manager] you end up with a [ServiceAccount] [Cluster
 - clusterissuers.certmanager.k8s.io
 - issuers.certmanager.k8s.io
 
-Although it's more information than you need right now, it's good to know what [Helm] installed for [cert-manager].
+It's good to know what [Helm] installed for [cert-manager] and these three [CustomResourceDefinition]s represent the configurations we are creating in the next steps.
 
 [cert-manager] uses ether an [Issuer] or [ClusterIssuer] to represent a certificate authority. [Issuer] is bound to a [namespace] so for our [Production Hobby Cluster] we will use a [ClusterIssuer].
 
