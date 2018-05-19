@@ -7,19 +7,19 @@ featured: kubernetes cli
 mast: lock
 ---
 
-[Basic Auth] is one of the oldest and easiest ways to secure a web page or API endpoint. [Basic Auth] does not have many features and lacks the sophistication of more modern access controls. However, [Basic Auth] is supported by nearly every major web client, library, and utility. [Basic Auth] is secure, stable and perfect for quick security on Kubernetes projects. [Basic Auth]  can easily we swapped out later as requirements demand or provide a foundation for implementations such as [OAuth 2] and [JWT].
+[Basic Auth] is one of the oldest and easiest ways to secure a web page or API endpoint. [Basic Auth] does not have many features and lacks the sophistication of more modern access controls (see [Ingress Nginx Auth Examples]). However, [Basic Auth] is supported by nearly every major web client, library, and utility. [Basic Auth] is secure, stable and perfect for quick security on Kubernetes projects. [Basic Auth]  can easily we swapped out later as requirements demand or provide a foundation for implementations such as [OAuth 2] and [JWT].
 
 First, you need an [Ingress] controller on your Kubernetes cluster and at least one ingress rule that we can apply [Basic Auth]. If you are following along with my articles on building a [Production Hobby Cluster] Kubernetes and do not yet have [Ingress] installed, you should read [Ingress on Custom Kubernetes][Ingress] before getting started.
 
 #### Security
 
-The [Basic Auth] process sends credentials to the server in the clear, specifically [base64], but quickly reversed back into a human-readable string. Because of this, it is essential we are issuing calls over [SSL][Let's Encrypt]. However, then again if the information or service being password protected should be hidden, then [SSL][Let's Encrypt] would already be required.
+The [Basic Auth] process sends credentials to the server in the clear, although encrypted and [base64]'d, they can be quickly reversed back into a human-readable string. Because of this, it is essential we are issuing calls over [SSL][Let's Encrypt]. However, if the information or service being password protected should be hidden, then [SSL][Let's Encrypt] encrypted communication would already be required.
 
 For the [Production Hobby Cluster] we use [Let's Encrypt], so if you have not done so already you can check out my article on setting up [Let's Encrypt] for your custom cluster read: [Let's Encrypt, Kubernetes].
 
 ### Create a User and Password
 
-Start by creating an [htpasswd] file that contains the [Basic Auth] credentials. The following creates a user called **sysop**, choose whatever you like.
+Start by creating an [htpasswd] file that contains the [Basic Auth] credentials. The following creates a user called **sysop**, choose whatever username you like.
 
 ```bash
 htpasswd -c ./htpasswd sysop
@@ -29,7 +29,7 @@ After entering a password for the new user twice, you end up with the file `htpa
 
 ### Create a [Secret]
 
-Kubernetes can create a **generic** [Secret] from the `htpasswd` file, or from any file, however, the format of the `htpasswd` file is necessary for use with [Basic Auth].  [Basic Auth]  uses the new [Secret] in the annotation section of our [Ingress] configuration.
+Kubernetes can create a **[generic]** [Secret] from the `htpasswd` file, or from any file, however, the format of the `htpasswd` file is necessary for use with [Basic Auth].  [Ingress] uses the new [Secret] in it's annotation section to provide [Basic Auth].
 
 The [kubectl create secret] command can create a secret from a local file, directory or literal value using the **[generic]** directive. In the example below I call the new secret **sysop**, named after the single set of credentials stored in it. However, if you are grouping many credentials, it would be better to give it a more generic name.
 
@@ -62,7 +62,7 @@ metadata:
 type: Opaque
 ```
 
-You should avoid publishing your new [Secret] like I just did since the `auth:` value under `data:` is only a [base64] encoded version of the username/password pair and the password be reversed quickly with a dictionary or other password cracking utilities.
+Of course, you should avoid publishing your new [Secret] like I just did, since the `auth:` value under `data:` is only a [base64] encoded version of the username and encoded password pair. The password may be reversed quickly with a dictionary attack or other password cracking utilities.
 
 ### Protect [Ingress]
 
@@ -106,6 +106,7 @@ The [Ingress] for [ok-auth.la.txn2.net](https://ok-auth.la.txn2.net) is now [Bas
 
 If you found this article useful, you may want to check out all the articles used to build on the [Production Hobby Cluster] tagged with [phc.txn2.net].
 
+Additional example of [Ingress] authentication can be found at the official [Ingress Nginx Auth Examples] repository.
 
 ---
 
@@ -113,6 +114,7 @@ If in a few days you find yourself setting up a cluster in Japan or Germany on [
 
 [![k8s performance hobby clusters](https://github.com/cjimti/mk/raw/master/images/content/k8s-tshirt-banner.jpg)](https://amzn.to/2wzP4mg)
 
+[Ingress Nginx Auth Examples]: https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/auth
 [phc.txn2.net]: http://localhost:4000/tag/phc.txn2.net/
 [generic]: https://kubernetes-v1-4.github.io/docs/user-guide/kubectl/kubectl_create_secret_generic/
 [kubectl create secret]: https://kubernetes-v1-4.github.io/docs/user-guide/kubectl/kubectl_create_secret/
@@ -129,3 +131,4 @@ If in a few days you find yourself setting up a cluster in Japan or Germany on [
 [Linode]: https://www.linode.com/?r=848a6b0b21dc8edd33124f05ec8f99207ccddfde
 [vultr]: https://www.vultr.com/?ref=7418713
 [Secret]: https://kubernetes.io/docs/concepts/configuration/secret/
+[ok]: https://github.com/txn2/ok
