@@ -106,7 +106,7 @@ The [Ingress] for [ok-auth.la.txn2.net](https://ok-auth.la.txn2.net) is now [Bas
 
 If you found this article useful, you may want to check out all the articles used to build on the [Production Hobby Cluster] tagged with [phc.txn2.net].
 
-Additional example of [Ingress] authentication can be found at the official [Ingress Nginx Auth Examples] repository.
+Additional examples of [Ingress] authentication can be found at the official [Ingress Nginx Auth Examples] repository.
 
 ---
 
