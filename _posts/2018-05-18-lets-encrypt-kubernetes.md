@@ -161,7 +161,7 @@ spec:
       - www.example.com
 ```
 
-The two `http01` sections under `acme:` demonstrate using the http-01 challenge with and without an existing ingress. The http-01 challenge creates or uses an existing ingress to create a route for [Let's Encrypt] to determine that you control the domain. If you do not yet have an [ingress] configuration or have [Ingress] setup yet, I suggest my article [Ingress on Custom Kubernetes] which builds on the [Production Hobby Cluster] guide.
+The two `http01` sections under `acme:` demonstrate using the http-01 challenge with and without an existing ingress. The http-01 challenge creates or uses an existing ingress to create a route for [Let's Encrypt] to determine that you control the domain. If you do not yet have an [ingress] configuration or have [Ingress] setup yet, I suggest checking out my article [Ingress on Custom Kubernetes], which builds on the [Production Hobby Cluster] guide.
 
 Create the test [Certificate] with `kubectl`:
 ```bash
@@ -264,7 +264,7 @@ spec:
 ```
 
 I named the [Ingress] configuration `10-ingress.yml` and all the domains use a
-in the tls [Secret] defined in `secretName: phc-production-tls`.
+in the TLS [Secret] defined in `secretName: phc-production-tls`.
 
 ```yaml
 apiVersion: extensions/v1beta1
