@@ -2,7 +2,7 @@
 published: true
 layout: post
 title: Kubernetes Custom Upstream DNS
-tags: kubernetes kubectl helm cli dns
+tags: kubernetes kubectl helm cli dns phc.txn2.net
 featured: kubernetes cli
 mast: cardindex
 ---

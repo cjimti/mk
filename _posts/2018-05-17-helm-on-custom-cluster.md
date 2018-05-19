@@ -2,7 +2,7 @@
 published: true
 layout: post
 title: Helm on Custom Kubernetes
-tags: kubernetes kubectl helm cli
+tags: kubernetes kubectl helm cli phc.txn2.net
 featured: kubernetes cli
 mast: helm
 ---

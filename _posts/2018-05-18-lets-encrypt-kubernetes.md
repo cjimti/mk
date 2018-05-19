@@ -2,7 +2,7 @@
 published: true
 layout: post
 title: Let's Encrypt, Kubernetes
-tags: kubernetes kubectl helm cli
+tags: kubernetes kubectl helm cli tls phc.txn2.net
 featured: kubernetes cli
 mast: letsenc
 ---

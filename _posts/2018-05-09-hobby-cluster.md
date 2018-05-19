@@ -2,7 +2,7 @@
 published: true
 layout: post
 title: Production Hobby Cluster
-tags: kubernetes kubectl cli
+tags: kubernetes kubectl cli phc.txn2.net
 featured: kubernetes cli
 mast: cluster
 ---
