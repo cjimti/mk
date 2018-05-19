@@ -304,7 +304,7 @@ spec:
     - phc.imti.co
     secretName: phc-production-tls
 ```
-I could have easily created a seperate cert for imti.co and grouped it under a seperate `hosts:` section. However I'll probably be redirecting it in the future so it suits my needs at the moment.
+I could have easily created a seperate cert for imti.co and grouped it under a seperate `hosts:` section. However I'll probably be redirecting it in the future so it suits my need at the moment.
 
 ---
 
