@@ -44,6 +44,16 @@ curl -L https://git.io/vpDYI | sh
 ufw enable
 ```
 
+#### Swap
+
+[Only move stuff to SWAP when you are completely OUT of RAM.](https://askubuntu.com/questions/259739/kswapd0-is-taking-a-lot-of-cpu?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa)
+
+Run the following on each server:
+
+```bash
+echo vm.swappiness=0 | sudo tee -a /etc/sysctl.conf
+```
+
 #### VPN
 
 [WireGuard] is the VPN I use for cluster communication security. [Install WireGuard](https://www.wireguard.com/install/) 

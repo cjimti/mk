@@ -22,8 +22,10 @@ For the [Production Hobby Cluster] we use [Let's Encrypt], so if you have not do
 Start by creating an [htpasswd] file that contains the [Basic Auth] credentials. The following creates a user called **sysop**, choose whatever username you like.
 
 ```bash
-htpasswd -c ./htpasswd sysop
+htpasswd -c ./htpasswd auth
 ```
+
+It is important to name the file **auth** as the file name is used when the secret is generated.
 
 After entering a password for the new user twice, you end up with the file `htpasswd`. This file can also be named anything you like.
 
@@ -36,7 +38,7 @@ The [kubectl create secret] command can create a secret from a local file, direc
 Create the [Secret]:
 
 ```bash
-kubectl create secret generic sysop --from-file htpasswd
+kubectl create secret generic sysop --from-file auth
 ```
 
 Ensure the [Secret] was created successfully by viewing the details:

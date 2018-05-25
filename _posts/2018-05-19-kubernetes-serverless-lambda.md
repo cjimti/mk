@@ -1,6 +1,5 @@
 ---
 published: false
-published: false
 layout: post
 title: Kubernetes, Fission Serverless Application Platform
 tags: kubernetes kubectl helm cli serverless lambda phc.txn2.net
@@ -22,7 +21,11 @@ While [vendor lock-in] is fine when you are developing services specifically for
 
 You need to [install Helm] first if you do not already have it. Otherwise, check out my article [Helm on Custom Kubernetes], especially if you are following along with my [Production Hobby Cluster] guides.
 
-Next we install [Fission] **0.7.2**
+Next, install [Fission] **0.7.2** using [helm] in the fission [namespace] using the the [Service] type [NodePort]:
+
+```bash
+helm install --namespace fission --set serviceType=NodePort,routerServiceType=NodePort https://github.com/fission/fission/releases/download/0.7.2/fission-all-0.7.2.tgz
+```
 
 
 ---
@@ -68,5 +71,7 @@ If in a few days you find yourself setting up a cluster in Japan or Germany on [
 [Certificate]: https://cert-manager.readthedocs.io/en/latest/reference/certificates.html
 [Secret]: https://kubernetes.io/docs/concepts/configuration/secret/
 [Ingress on Custom Kubernetes]: https://mk.imti.co/web-cluster-ingress/
+[NodePort]: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+[Service]: https://kubernetes.io/docs/concepts/services-networking/service/
 [Go]: https://golang.org/
 [Python3]: https://www.python.org/
