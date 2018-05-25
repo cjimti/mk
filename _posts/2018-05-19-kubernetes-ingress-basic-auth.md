@@ -25,7 +25,7 @@ Start by creating an [htpasswd] file that contains the [Basic Auth] credentials.
 htpasswd -c ./htpasswd auth
 ```
 
-It is important to name the file **auth** as the file name is used when the secret is generated.
+It is important to name the file **auth**. The filename is used as the key in the key-value pair under the `data` section of secret.
 
 After entering a password for the new user twice, you end up with the file `htpasswd`. This file can also be named anything you like.
 
