@@ -13,7 +13,7 @@ mast: jwt
 
 ![txToken Proxy](/images/content/txToken-00.png)
 
-[txToken] exposes an HTTP POST endpoint accepting JSON data, used to make a proxied POST to a remote, server along with a preset bearer token. Validation of this token on the remote side is optional and only needed if the remote wishes to authenticate the [txToken] call using the shared key.
+[txToken] exposes an HTTP POST endpoint accepting JSON data, used to make a proxied POST to a remote server along with a preset bearer token. Validation of this token on the remote side is optional and only needed if the remote wishes to authenticate the [txToken] call using the shared key.
 
 [txToken] can be run as a standalone binary on amd64 or arm6/7 based systems, however [txToken] is most at home in it's [Docker container][Docker] within a [Kubernetes] cluster.
 
@@ -193,7 +193,7 @@ The following is an example of a [Service], [ConfigMap], [Deployment], and [Ingr
 
 ## Resources
 
-If you found this article useful, you may want to check out [all my articles on Kubernetes][phc.txn2.net], used to build on the [Production Hobby Cluster], an excellent environment for developing and testing cloud-native microservices like [txToken]. While using Minikube or similar environments for testing and developing cloud-native [microservice]s. I find it a much better experience to use a more true-to-production cluster.
+If you found this article useful, you may want to check out [all my articles on Kubernetes][phc.txn2.net], used to build on the [Production Hobby Cluster], an excellent environment for developing and testing cloud-native microservices like [txToken]. While using Minikube or similar environments for testing and developing cloud-native [microservice]s, I find it a much better experience to use a more true-to-production cluster.
 
 If in a few days you find yourself setting up a cluster in [Production Hobby Cluster] Japan or Germany on [Linode], and another two in Australia and France on [vultr], then you may have just joined the PHC (Performance [Hobby Cluster]s) club. Some people tinker late at night on their truck, we benchmark and test the resilience of node failures on our overseas, budget kubernetes clusters. It's all about going big, on the cheap.
 
