@@ -21,6 +21,8 @@ layout: compress
     {% if site.tags != "" %}
       {% include collecttags.html %}
     {% endif %}
+
+    {% include analytics.html %}
   </head>
 
   <body>
@@ -53,8 +55,6 @@ layout: compress
         </footer>
       </div>
     </div>
-
-    {% include analytics.html %}
   </body>
 </html>
 
