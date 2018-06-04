@@ -134,7 +134,7 @@ def main():
     else:
         print('We should probably refactor...')
 
-    y = False  # not longer the same as y
+    y = False  # no longer the same as y
     if not y:
         print(f'y has the value: {repr(y)} and the id: {id(y)}')  # eg 4532404640
 
