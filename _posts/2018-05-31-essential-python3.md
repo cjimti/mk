@@ -359,20 +359,8 @@ if __name__ == '__main__': main()
 
 ### Python Books on Amazon
 
-<script type="text/javascript">
-amzn_assoc_placement = "adunit0";
-amzn_assoc_search_bar = "true";
-amzn_assoc_tracking_id = "imti-20";
-amzn_assoc_search_bar_position = "bottom";
-amzn_assoc_ad_mode = "search";
-amzn_assoc_ad_type = "smart";
-amzn_assoc_marketplace = "amazon";
-amzn_assoc_region = "US";
-amzn_assoc_title = "Shop Related Products";
-amzn_assoc_default_search_phrase = "Python";
-amzn_assoc_default_category = "All";
-amzn_assoc_linkid = "318632107f40605e4b6768d184e9190e";
-</script>
-<script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+- [Python Crash Course: A Hands-On, Project-Based Introduction to Programming](https://amzn.to/2LYUpYb)
+- [Learning Python, 5th Edition](https://amzn.to/2JvTno8)
+- [Automate the Boring Stuff with Python: Practical Programming for Total Beginners](https://amzn.to/2sGvSht)
 
 [Python]: https://www.python.org/
