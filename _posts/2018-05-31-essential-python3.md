@@ -13,6 +13,11 @@ I am a professional software developer for a software development company, and f
 
 Each of the following code blocks is executable.
 
+**Quick Refrence:**
+
+* Do not remove this line (it will not be displayed)
+{:toc}
+
 ### Script Execution
 
 Scripts should execute with the environment available python3.
