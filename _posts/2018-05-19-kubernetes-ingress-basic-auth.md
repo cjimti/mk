@@ -3,7 +3,7 @@ published: true
 layout: post
 title: Basic Auth on Kubernetes Ingress
 tags: kubernetes kubectl ingress security phc.txn2.net
-featured: kubernetes cli
+featured: kubernetes
 mast: lock
 ---
 

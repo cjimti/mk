@@ -3,7 +3,7 @@ published: true
 layout: post
 title: Essential Python 3
 tags: coding python
-featured: cli
+featured: python coding
 mast: python
 ---
 
