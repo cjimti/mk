@@ -21,6 +21,8 @@ Although data science expressed in Python is the first and most popular use of J
 
 Beyond the ability to execute code in-line, the most useful features to me are exporting these notebooks as Markdown. Site builders like [Jekyll](https://jekyllrb.com/) and [Hugo](https://gohugo.io/) use [Markdown](https://daringfireball.net/projects/markdown/syntax) to generate [beautiful static websites and blogs](https://gohugo.io/showcase/).
 
+![Notebook Screenshot](https://mk.imti.co/images/content/GolangToJupyter-screen.png)
+
 ## Example
 
 In the sections below I demonstrate simple HTTP client call in Golang with Golang code executed directly in the Jupyter Notebook.
@@ -82,7 +84,7 @@ Although I could easily save this Notebook as HTML, site builders like [Jekyll](
 - [providing the Notebook for download](https://raw.githubusercontent.com/cjimti/mk/master/notebooks/GolangToJupyter.ipynb).
 - linking to Jupyter's [nbviewer](https://nbviewer.jupyter.org/github/cjimti/mk/blob/master/notebooks/GolangToJupyter.ipynb)
 - exported Markdown: [2018-06-10-golang-to-jupyter.md](https://github.com/cjimti/mk/blob/master/_posts/2018-06-10-golang-to-jupyter.md)
-- ...and of course the page you are reading.
+- ...and of course [the page you are reading](https://mk.imti.co/golang-to-jupyter/).
 
 You can run, modify or extend [this article](https://mk.imti.co/notebooks/GolangToJupyter.ipynb) in a Jupyter Notebook server on your local workstation.
 
