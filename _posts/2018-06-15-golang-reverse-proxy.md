@@ -277,7 +277,7 @@ If you are curious how `p.eng.ProcessRequest(w, r)` filters data check out the m
 
 **Middleware**: The method `p.eng.ProcessRequest(w, r)` is called before `p.proxy.ServeHTTP(w, r)` and of course this would be a great place to call dynamically, any number of handler middlewares. We can also inject middleware higher up in the [net/http] package.
 
-**Concurrency**: In the [rweng] method `ProcessRequest` filters run serially, however, if dealing with a vast number of rules a more sophisticated Fan-out, fan-in solution cloud chunk the rules and process them concurrently (assuming you are working on copies of data). See [Go Concurrency Patterns: Pipelines and cancellation].
+**Concurrency**: In the [rweng] method `ProcessRequest` filters run serially, however, if dealing with a vast number of rules a more sophisticated Fan-out, fan-in solution can chunk the rules and process them concurrently (assuming you are working on copies of data). See [Go Concurrency Patterns: Pipelines and cancellation].
 
 
 
@@ -289,7 +289,7 @@ If you are curious how `p.eng.ProcessRequest(w, r)` filters data check out the m
 - [nginx] started as a web server / proxy and now considers itself a platform.
 - [n2proxy] for contraband filtering reverse proxy for plain HTTP and SSL.
 - The [go] programming language.
-- [Forward Proxy vs Reverse Proxy]
+- [Forward Proxy vs. Reverse Proxy]
 - [regular expressions]
 - [Detection of SQL Injection and Cross-site Scripting Attacks]
 - [Go Concurrency Patterns: Pipelines and cancellation]
