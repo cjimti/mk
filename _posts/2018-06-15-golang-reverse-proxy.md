@@ -23,7 +23,7 @@ Proxies give you complete control over the communication between a client and a 
 
 ![n2proxy](https://raw.githubusercontent.com/txn2/n2proxy/master/mast.jpg)
 
-I put [n2proxy] together from a few different projects that had very different needs but the same underpinning solution. A common problem, are older or proprietary systems that lack common security, these older sites and web apps suffer routinely from [XSS], [SQL injection] and many vulnerabilities to malicious data, some legacy systems very architecture prevents a fix at the source.
+I put [n2proxy] together from a few different projects that had very different needs but the same underpinning solution. A common problem, are older or proprietary systems that lack reasonable security standards, these older sites and web apps suffer routinely from [XSS], [SQL injection] and many vulnerabilities to malicious data, some legacy systems very architecture prevents a fix at the source.
 
 [n2proxy] is open source, so you can fork it, contribute to it or write your own just like it, or better. If you want to write your own, I'll be going over the source further down.
 
@@ -33,7 +33,7 @@ I put [n2proxy] together from a few different projects that had very different n
 - Inspect HTTP Post data and nullify it for any data matching a set of patterns.
 - Inspect HTTP Post and make modifications based on matched patterns.
 
-[n2proxy] is compiled tested for Linux, MaxOs and Arm based systems (Raspberry Pi, Tinkerboard, ) as well as stand-alone [Docker] implementations or [Kubernetes].
+[n2proxy] is compiled and tested for Linux, MaxOs and Arm based systems (Raspberry Pi, Tinkerboard, and so on) as well as stand-alone [Docker] implementations or [Kubernetes].
 
 If you are using a Mac I recommend installing [n2proxy] with [brew]:
 
@@ -50,20 +50,20 @@ You need a configuration file to get started:
 wget https://raw.githubusercontent.com/txn2/n2proxy/master/cfg.yml
 ```
 
-I'll be focusing on three main sections of the configuration. **postBan** for nullifying post all data when the system discovers a match, **urlBan** rewrites the path to "/" when the system discovers a match, and **postFilter** uses the powerful and fast [go templates] for modifying post data when the system discovers a match. **postFilter** uses [sprig] with [go templates] to provide over 70 template functions in additional to built-in functions. **postFilter** allows you to make nearly any type of mutation to HTTP post body data, all in the confines of a configuration file.
+I'll be focusing on three main sections of the configuration. **postBan** for nullifying all post data when the system discovers a match, **urlBan** rewrites the path to "/" (slash) when the system discovers a match, and **postFilter** uses the powerful and fast [go templates] for modifying post data in-line when the system discovers a match. **postFilter** uses [sprig] with [go templates] to provide over 70 template functions in additional to built-in functions. **postFilter** allows you to make nearly any type of mutation to HTTP post body data, all in the confines of a configuration file.
 
 **Sample Configuration**
 <script src="https://gist.github.com/cjimti/e664ad48b7f356f9d5b6e66117d6b9ab.js"></script>
 
 Unfortunately **postBan** and **urlBan** might look like alien code, or someone punched their keyboard, however [regular expressions] are an implementation of highly efficient search patterns common to most programming languages. The example set is taken primarily from K. K. Mookhey, and Nilesh Burghate's 2004 article, [Detection of SQL Injection and Cross-site Scripting Attacks]. This list is far from inclusive but get the point across.
 
-Harmful post data and URLs can damage many legacy systems (and even Wordpress and Drupal sites that lack their monthly updates). Since we are a proxy we exist outside the application layer, there is not much we can do elegantly, but then again an elegant response is not entirely necessary when dealing with an attack.
+Harmful post data and URLs can damage many legacy systems (and even Wordpress and Drupal sites that lack their monthly updates). Since [n2proxy] is a proxy, it exists outside the application layer, there is not much it can do elegantly for the end-user on that layer, but then again an elegant response is not entirely necessary when dealing with an attacker.
 
-**postFilter** is the fun section, and if you are interested building API adaptors and translators or rewiring the messages of that closed source [IOT] device so it can post data into some distant web server, this is the section. Although the examples show how to shuffle the letters in the word "taco" and uppercase any instance of "good times", with [go templates] and [sprig] you have a considerable number of possibilities.
+**postFilter** is the fun section, and if you are interested building API adaptors and translators, or rewiring the messages of that closed source [IOT] device so it can post data conforming to the interface of some distant web server, this is the section. Although the examples show how to shuffle the letters in the word "taco" and uppercase any instance of "good times", with [go templates] and [sprig] you have a clear jumping off point for considerable number of possibilities.
 
 ## Running [n2proxy]
 
-I use the command `n2proxy` when working and testing patterns locally, however in production use I prefer using the docker container `docker pull txn2/n2proxy`. See the following examples:
+I use the command line `n2proxy` when working and testing patterns locally, however in production use I prefer using the docker container (`docker pull txn2/n2proxy`). See the following examples:
 
 **Command Version**
 ```bash
@@ -77,11 +77,11 @@ docker run --rm -t -v "$(pwd)":/n2p/ -p 9099:9099 \
     --backend=https://www.google.com/
 ```
 
-The [Docker] method is better when you need it to run in the background or survive reboots.
+The [Docker] method is preferred when you need it to run in the background or survive reboots.
 
 **Background Docker**
 
-Naming your [Docker] container is a good idea if you plan to run more than one proxy (be sure they each get their port).
+Naming your [Docker] container is a good idea if you plan to run more than one proxy (be sure they each get their own port on the host).
 ```bash
 docker run --name n2p-google -d \
     -v "$(pwd)":/n2p/ \
@@ -152,13 +152,13 @@ Postman sends back what is received, and with this, we can see the correct filte
 
 In the **form** and **json** sections we see the word **taco** became **cato** as a result of the `shuffle` function in the first **postFilter** '{{ .Match | shuffle }}' and **good   times** became **GOODTIMES** from the from the `upper` and `nospace` functions in the second **postFilter** {{ .Match | upper | nospace }}
 
-The response from [postman-echo.com] is clear indication that rules in **postFilter** are functioning correctly.
+The response from [postman-echo.com] is a clear indication that rules in **postFilter** are functioning as intended.
 
-For the remainder of this article, I'll be going over the essential pieces of [go] code that are used to create a proxy.
+For the remainder of this article, I'll be going over the essential pieces of [go] code that are used to create [n2proxy].
 
 ## Proxy with Golang
 
-The [go] standard library comes with all the functionality needed in [net/http] and [net/http/httputil].
+The [go] standard libraries [net/http] and [net/http/httputil] come with all the functionality needed for the proxy.
 
 The following source code is an abstract from the file [server.go], which contains the main application [package].
 
@@ -243,7 +243,7 @@ func NewProxy(target string, cfgFile string, logger *zap.Logger) *Proxy {
 }
 ```
 
-Filtering and blocking is the central purpose of this proxy. The `handle` method below has access to `eng` where a method called `ProcessRequest` get a shot at modifying the response and request data. You can think of it as a proxy within a proxy. The following code shows http.ResponseWriter and *http.Request objects sent first to `p.eng.ProcessRequest(w, r)` and finally handled by `p.proxy.ServeHTTP(w, r)`:
+Filtering and blocking is the central purpose of this proxy. The `handle` method below has access to `eng` where a method called `ProcessRequest` gets a shot at modifying the response and request data. You can think of it as a proxy within a proxy. The following code shows **http.ResponseWriter** and **http.Request** objects are sent first to `p.eng.ProcessRequest(w, r)` and finally handled by `p.proxy.ServeHTTP(w, r)`:
 
 ```go
 func (p *Proxy) handle(w http.ResponseWriter, r *http.Request) {
@@ -271,13 +271,13 @@ func (p *Proxy) handle(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-If you are curious how `p.eng.ProcessRequest(w, r)` filters data check out the method `ProcessRequest` in the [rweng] source code (read/write engine). In [rweng]  the function **NewEngFromYml** where the [yaml configuration] file is Unmarshaled into a configuration struct after which all [regex patterns] and [go templates] are pre-compiled.
+If you are curious how `p.eng.ProcessRequest(w, r)` filters data check out the method `ProcessRequest` in the [rweng] source code (read/write engine). In [rweng] the function **NewEngFromYml** is where the [yaml configuration] file is Unmarshaled into a configuration struct after which all [regex patterns] and [go templates] are pre-compiled.
 
 ### Next Steps
 
-**Middleware**: The method `p.eng.ProcessRequest(w, r)` is called before `p.proxy.ServeHTTP(w, r)` and of course this would be a great place to call dynamically, any number of handler middlewares. We can also inject middleware higher up in the [net/http] package.
+**Middleware**: The method `p.eng.ProcessRequest(w, r)` is called before `p.proxy.ServeHTTP(w, r)` and of course this would be a great place to call dynamically any number of handler middlewares. We can also inject middleware higher up in the [net/http] package.
 
-**Concurrency**: In the [rweng] method `ProcessRequest` filters run serially, however, if dealing with a vast number of rules a more sophisticated Fan-out, fan-in solution can chunk the rules and process them concurrently (assuming you are working on copies of data). See [Go Concurrency Patterns: Pipelines and cancellation].
+**Concurrency**: In the [rweng] method `ProcessRequest` filters run serially, however, if dealing with a vast number of rules, a more sophisticated Fan-out, fan-in solution can chunk the rules and process them concurrently (assuming you are working on copies of data). See [Go Concurrency Patterns: Pipelines and cancellation].
 
 
 
@@ -303,7 +303,7 @@ If you are curious how `p.eng.ProcessRequest(w, r)` filters data check out the m
 [regular expressions]:https://en.wikipedia.org/wiki/Regular_expression
 [sprig]: http://masterminds.github.io/sprig/
 [brew]: https://brew.sh/
-[Kubernetes]: https://kubernetes.io/
+[Kubernetes]: https://mk.imti.co/tag/kubernetes/
 [Docker]: https://www.docker.com/
 [haproxy]: http://www.haproxy.org/
 [nginx]: https://www.nginx.com/
