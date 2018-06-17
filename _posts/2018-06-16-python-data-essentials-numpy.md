@@ -42,6 +42,9 @@ This article will focus on [NumPy] because it is the core numeric library that m
 
 This article is written using [Juypter Notebooks] installed and running under [Anaconda]. If you don't already have this setup I highly recomend it, along with downloading this article itself as a notbook, executing and modifying the following examples. All the code below is executes here in [Juypter Notebooks].
 
+**Download Notebook**
+- [2018-06-16-python-data-essentials-numpy.ipynb](http://mk.imti.co/notebooks/2018-06-16-python-data-essentials-numpy.ipynb)
+
 
 
 ```python
