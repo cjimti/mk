@@ -13,7 +13,7 @@ I am a professional software developer for a software development company, and f
 
 Each of the following code blocks is executable.
 
-**Quick Refrence:**
+**Quick Reference:**
 
 * Do not remove this line (it will not be displayed)
 {:toc}
