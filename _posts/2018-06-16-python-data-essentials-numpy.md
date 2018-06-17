@@ -15,15 +15,15 @@ Python is one of [The Most Popular Languages for Data Science], and because of t
 
 ## Microservices Data Eco-System
 
-I am not a data scientist, but like most software architects and full stack developers, I interact with data science at many points. However, where I spend the majority of my time building frameworks and pipelines, data science has been busy churning out amazing libraries.
+I am not a data scientist, but like most software architects and full stack developers, I interact with data science at many points. However, where I spend the majority of my time building frameworks and pipelines, those in data science have been busy churning out amazing libraries.
 
 One of the advantages of microservice architecture allows not only a higher level of the separation of responsibility but allowing each service to leverage the ecosystem most suited to it. While Monoliths often embed DSLs like SQL or use language bindings libraries to use C drivers in a Java application, they must be written to the strengths of the language to get the most out of them.
 
-It's 2018, and in my world [Go] binaries power most of my containerized API endpoints, Python functions run in [kubeless] configurations, and it's all wired together in [kubernetes] with it's robust [services] and [ingress] management. In this team of experts, I let Python do the math, why? Because libraries like [NumPy] and [Pandas] make the kind of math, I need easy, fast and maintainable.
+It's 2018, and in my world [Go] binaries power most of my containerized API endpoints, Python functions run in [kubeless] configurations, and it's all wired together in [kubernetes] with it's robust [services] and [ingress] management. In this team of experts, I let Python do the math, why? Because libraries like [NumPy] and [Pandas] make the kind of math I need easy, fast and maintainable.
 
-The [NumPy] and [Pandas] libraries have a tremendous number of options far too many to cover here, but the documentation is fantastic, so, for this reason, I'll only be going over the essentials. Once you get past the essentials, you'll need the documentation. However, if you are like me you don't do the same job every day, so you only need to be an expert in the essentials of many things and the documentation and google lead you to the experts in whatever niche of functionality you are set to build.
+The [NumPy] and [Pandas] libraries have a tremendous number of options, far too many to cover here, but the documentation is fantastic, so, for this reason, I'll only be going over the essentials. Once you get past the essentials, as always, you'll need the documentation. However, if you are like me you don't do the same job every day, so you only need to be an expert in the essentials of many things and the documentation and google lead you to the experts in whatever niche of functionality you are set to build. My favorite type of resources are by example, and I will attempt that below.
 
-This article will focus on [NumPy] because it is one of the core numeric libraries that most of the [scientific Python ecosystem](http://www.physics.nyu.edu/pine/pymanual/html/apdx3/apdx3_resources.html) is built on. Understanding and using [NumPy] is vital to effective use of [Pandas] and even [Matplotlib].
+This article will focus on [NumPy] because it is the core numeric library that most of the [scientific Python ecosystem](http://www.physics.nyu.edu/pine/pymanual/html/apdx3/apdx3_resources.html) is built on. Understanding and using [NumPy] is vital to effective use of [Pandas], [Matplotlib] and much more.
 
 [data science]:http://www.scipy-lectures.org/intro/intro.html#why-python
 [kubeless]:https://kubeless.io/
@@ -40,7 +40,7 @@ This article will focus on [NumPy] because it is one of the core numeric librari
 
 ## Getting Started with Numpy
 
-This article is written using [Juypter Notebooks] installed and running under [Anaconda]. If you don't already have this setup I highly recomend it, along with download this article itself as a notbook and executing the following examples. All the following code is executes here in [Juypter Notebooks].
+This article is written using [Juypter Notebooks] installed and running under [Anaconda]. If you don't already have this setup I highly recomend it, along with downloading this article itself as a notbook, executing and modifying the following examples. All the code below is executes here in [Juypter Notebooks].
 
 
 
@@ -65,6 +65,7 @@ If you get stuck or interested in learning far more than the examples below, I s
 - [NumPy 1.13 Manual](https://docs.scipy.org/doc/numpy-1.13.0/contents.html)
 - [NumPy 1.13 User Guide](https://docs.scipy.org/doc/numpy-1.13.0/user/index.html)
 - [NumPy 1.13 Reference](https://docs.scipy.org/doc/numpy-1.13.0/reference/index.html#reference)
+- [Cheat Sheet](https://www.dataquest.io/blog/numpy-cheat-sheet/)
 
 For a deep dive on all things [NumPy] try [Scipy Lectures on Numpy](http://www.scipy-lectures.org/intro/numpy/index.html).
 
@@ -105,6 +106,10 @@ Finding the mean of one hundred million random numbers is great use of NumPy, bu
 
 ### Creating Arrays
 
+NumPy's [array](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.array.html) function creates n-dimentional arrays from any object exposing the array interface, an object whose __array__ method returns an array, or any (nested) sequence. 
+
+- [Array Creation](https://docs.scipy.org/doc/numpy-1.13.0/user/basics.creation.html) Documentation
+
 
 ```python
 x = np.array([1,2,3,4,5])
@@ -121,6 +126,8 @@ print(f'shape: {x.shape}')
      size: 5
     shape: (5,)
 
+
+Rank 2 arrays are just arrays within arrays. The outter array holds rows of column data (axis=0) arrays. Row (axis=1) index 0 is being set to [1,1,1].
 
 
 ```python
@@ -142,6 +149,13 @@ print(f'shape: {y.shape}')
 
 
 ### Built-in Array Creation Functions
+
+- [Array creation routines](https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.array-creation.html) official documentation.
+
+[np.zeros] (shape, dtype=float, order='C') returns an array or zeros in the shape specified as a [tuple].
+
+[np.zeros]: https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.zeros.html
+[tuple]:https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences
 
 
 ```python
@@ -170,6 +184,10 @@ print(f'shape: {zros.shape}')
     shape: (10, 12)
 
 
+[np.full] (shape, fill_value, dtype=None, order='C') will fill an array in the specified shape with the value provided. If not data type is specified one will be derrived by the input value.
+
+[np.full]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.full.html
+
 
 ```python
 f = np.full((5,5), 5)
@@ -191,6 +209,11 @@ print(f'shape: {f.shape}')
     dtype: int64
     shape: (5, 5)
 
+
+Use the built in [np.eye] to create in identity matrix or build a custom diagonal with [np.diag].  
+
+[np.eye]: https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.eye.html
+[np.diag]: https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.diag.html
 
 
 ```python
@@ -225,6 +248,23 @@ print(f'Diagonal Matrix:\n{diag}\n')
 
 ### Ranges, Random and Reshaping
 
+**Range Array Creation**
+- [numpy.arange] - Returns evenly spaced values within a given interval.
+- [numpy.linspace] - Returns evenly spaced numbers over a specified interval.
+- [numpy.logspace] - Return numbers spaced evenly on a log scale.
+
+**Random**
+- [Random sampling] - documentation
+
+**Reshaping Arrays**
+- [numpy.reshape] - Documentation
+
+[numpy.reshape]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.reshape.html
+[Random sampling]:https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.random.html
+[numpy.arange]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.arange.html
+[numpy.linspace]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.linspace.html#numpy.linspace
+[numpy.logspace]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.logspace.html#numpy.logspace
+
 
 ```python
 # arange rank 1 arrays
@@ -248,6 +288,10 @@ print(f'Start at 2 and stop at 100 by 10:\n{ar3}\n')
     
 
 
+Use [np.linspace] to return evenly spaced numbers over a specified interval. **endpoint=False** will exclude the stop value, and **retstep=True** is the spacing between samples.
+
+[np.linspace]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.linspace.html
+
 
 ```python
 lsp1 = np.linspace(0, 20, 15)
@@ -269,6 +313,10 @@ print(f'excluding the endpoint:\n{lsp2}\n')
     
 
 
+[np.reshape] gives a new shape to an array without changing its data.
+
+[np.reshape]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.reshape.html
+
 
 ```python
 r1 = np.arange(10)
@@ -282,6 +330,10 @@ print(f'reshaped range of 10 to a 2x5:\n{r2}\n')
      [5 6 7 8 9]]
     
 
+
+[NumPy Random] provides functions for simple random data, permutations and distributions. 
+
+[NumPy Random]:https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.random.html
 
 
 ```python
@@ -306,6 +358,13 @@ print(f'random interger 5x5 between 0 and 99.:\n{rnd2}\n')
      [84 35 86 56 37]]
     
 
+
+[np.random.normal] draws random samples from a normal (Gaussian) distribution. 
+
+Read the [Importance of data distribution in training machine learning models] to understand why we would need random numbers drawn from probability distributions.
+
+[Importance of data distribution in training machine learning models]:https://tekmarathon.com/2015/11/13/importance-of-data-distribution-in-training-machine-learning-models/
+[np.random.normal]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.random.normal.html#numpy.random.normal
 
 
 ```python
@@ -591,4 +650,244 @@ print(f'even numbers:\n{seq4}\n')
 
 ### Arithmetic and Broadcasting
 
+- [Mathematical functions] documentation
+- [Broadcasting] documentation
+
+[Broadcasting]:https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html
+[Mathematical functions]:https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.math.html
+
+
+```python
+# rank 1 arrays
+ax = np.array([1,2,3,4])
+ay = np.array([5,6,7,8])
+
+print(f'add two arrays:\n{ np.add(ax,ay) } \n')
+print(f'      subtract:\n{ np.subtract(ax,ay) } \n')
+print(f'      multiply:\n{ np.multiply(ax,ay) } \n')
+print(f'        divide:\n{ np.divide(ax,ay) } \n')
+```
+
+    add two arrays:
+    [ 6  8 10 12] 
+    
+          subtract:
+    [-4 -4 -4 -4] 
+    
+          multiply:
+    [ 5 12 21 32] 
+    
+            divide:
+    [ 0.2         0.33333333  0.42857143  0.5       ] 
+    
+
+
+
+```python
+# rank 2 arrays
+aX = np.array([1,2,3,4]).reshape(2,2)
+aY = np.array([5,6,7,8]).reshape(2,2)
+
+print(f'add two arrays:\n{ np.add(aX,aY) } \n')
+print(f'      subtract:\n{ np.subtract(aX,aY) } \n')
+print(f'      multiply:\n{ np.multiply(aX,aY) } \n')
+print(f'        divide:\n{ np.divide(aX,aY) } \n')
+```
+
+    add two arrays:
+    [[ 6  8]
+     [10 12]] 
+    
+          subtract:
+    [[-4 -4]
+     [-4 -4]] 
+    
+          multiply:
+    [[ 5 12]
+     [21 32]] 
+    
+            divide:
+    [[ 0.2         0.33333333]
+     [ 0.42857143  0.5       ]] 
+    
+
+
+
+```python
+print(f'square roots:\n{ np.sqrt(aX) } \n')
+print(f'exp (Euler\'s number):\n{ np.exp(aX) } \n')
+print(f'average of all elements (mean):\n{ aX.mean() } \n')
+print(f'average each column (mean):\n{ aX.mean(axis=0) } \n')
+print(f'average each row (mean):\n{ aX.mean(axis=1) } \n')
+```
+
+    square roots:
+    [[ 1.          1.41421356]
+     [ 1.73205081  2.        ]] 
+    
+    exp (Euler's number):
+    [[  2.71828183   7.3890561 ]
+     [ 20.08553692  54.59815003]] 
+    
+    average of all elements (mean):
+    2.5 
+    
+    average each column (mean):
+    [ 2.  3.] 
+    
+    average each row (mean):
+    [ 1.5  3.5] 
+    
+
+
+
+```python
+aE = np.full((4,4), 1)
+aF = np.array([1,2,3,4])
+aG = np.add(aE, aF)
+
+print(f' 4x4 of ones:\n{ aE } \n')
+print(f' brodcasting sum of [1,2,3,4]:\n{ aG } \n')
+
+```
+
+     4x4 of ones:
+    [[1 1 1 1]
+     [1 1 1 1]
+     [1 1 1 1]
+     [1 1 1 1]] 
+    
+     brodcasting sum of [1,2,3,4]:
+    [[2 3 4 5]
+     [2 3 4 5]
+     [2 3 4 5]
+     [2 3 4 5]] 
+    
+
+
 ### Mean normalization
+
+Mean normalization scales data.
+
+- [Normalizing inputs] - Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
+- [Mean Normalization] - Machine Learning
+- [Feature scaling]
+- [Statistics Normalization]
+
+[Normalizing inputs]:https://www.coursera.org/learn/deep-neural-network/lecture/lXv6U/normalizing-inputs
+[Mean Normalization]:https://www.coursera.org/learn/machine-learning/lecture/Adk8G/implementational-detail-mean-normalization
+[Feature scaling]:https://en.wikipedia.org/wiki/Feature_scaling
+[Statistics Normalization]: https://en.wikipedia.org/wiki/Normalization_(statistics)
+
+
+```python
+MN = np.random.randint(5000, size=(10,10))
+
+print(f'a 10x10 of random integers 0-4999:\n{ MN } \n')
+print(f'max value:\n{ MN.max() } \n')
+print(f'min value:\n{ MN.min() } \n')
+print(f'mean value:\n{ MN.mean() } \n')
+```
+
+    a 10x10 of random integers 0-4999:
+    [[1363  941 2244 3740  131 2652 2374 2420  252 4859]
+     [2902  275 4906 2677 3735 1955 2148 3565  792 2112]
+     [1651 2195 1586 4975 1647  471  970  278 4116 4092]
+     [1379 4697 2481 1421 3384 3528 4206 2108 2848 4494]
+     [4047   43 2115 4063 3864 2261  128 2000 1633 2718]
+     [ 393 2173 1442 2517 4527 3091  745  444 3053   61]
+     [1145  653 3907  830  228 4055 3314 1010  936  676]
+     [4846 2543 4079 2492 2817 1608  874 4627  672 3586]
+     [4441 2559 3305 4077  964 4623 1594 3166 2136 4421]
+     [2303  156 4824 1973  313 2170 3686 2381  342 1027]] 
+    
+    max value:
+    4975 
+    
+    min value:
+    43 
+    
+    mean value:
+    2352.47 
+    
+
+
+
+```python
+# average of each column
+MN_ave_cols = MN.mean(axis=0, dtype=np.float64)
+
+# standard Deviation of each column
+MN_std_cols = MN.std(axis=0, dtype=np.float64)
+
+print(f'average of each column:\n{ NM_ave_cols } \n')
+print(f'standard Deviation of each column:\n{ NM_std_cols } \n')
+```
+
+    average of each column:
+    [ 2369.9  2147.2  1968.4  2359.1  2340.   1867.4  2614.5  2289.4  2856.1
+      2552. ] 
+    
+    standard Deviation of each column:
+    [ 1273.86643334  1413.64400045  1386.22604217  1333.5585064   1390.563411
+      1505.58043292  1436.11470642  1456.26400079  1253.61225664  1444.22394385] 
+    
+
+
+
+```python
+# substract the mean from each column then divide by the standard deviation
+MN_norm = (MN - MN_ave_cols) / MN_std_cols
+
+print(f'scaled and normalized:\n{ MN_norm } \n')
+
+print(f'old max value: { MN.max() }')
+print(f'      new max: { MN_norm.max() }\n')
+
+print(f'old min value: { MN.min() }')
+print(f'      new max: { MN_norm.min() }\n')
+
+```
+
+    scaled and normalized:
+    [[-0.51966084 -1.19801688  0.0295472   0.59720419 -1.55766063  0.57982528
+       0.50089332 -0.28174638 -2.35596301  2.03185556]
+     [ 0.56903781 -1.70761594  1.7431561  -0.32901124  1.04590533  0.07928253
+       0.33885225  0.53620394 -1.91369783  0.13435183]
+     [-0.31592776 -0.23850154 -0.39402705  1.67328703 -0.46248694 -0.98643548
+      -0.50576889 -1.81192071  0.80869008  1.50204654]
+     [-0.50834233  1.67593816  0.18211118 -1.42339184  0.79233938  1.20891489
+       1.81442977 -0.50462892 -0.22981409  1.77973002]
+     [ 1.37901829 -1.88513393 -0.05349395  0.87864124  1.13909623  0.299033
+      -1.10947942 -0.58178056 -1.22491075  0.5529493 ]
+     [-1.20584517 -0.25533514 -0.48672415 -0.46842278  1.61805412  0.89508822
+      -0.66709297 -1.69333577 -0.06191713 -1.28238648]
+     [-0.67387546 -1.41838404  1.10006996 -1.93834323 -1.48758685  1.58737405
+       1.17486945 -1.28900399 -1.79576044 -0.85757222]
+     [ 1.94423611  0.02777544  1.2107915  -0.49020583  0.38273286 -0.16991164
+      -0.5746005   1.2948618  -2.01197898  1.15252456]
+     [ 1.65773646  0.04001806  0.71254459  0.89083975 -0.95589303  1.9952769
+      -0.05836346  0.25117147 -0.81294893  1.72930491]
+     [ 0.1453013  -1.79867043  1.69037025 -0.94242202 -1.426182    0.23368237
+       1.44159191 -0.3096067  -2.28225215 -0.61511724]] 
+    
+    old max value: 4975
+          new max: 2.0318555579499042
+    
+    old min value: 43
+          new max: -2.355963009127506
+    
+
+
+## Essential Python 3
+
+A lot of data science in done in [Jupyter Notbooks] and libraries like [NumPy] make developing reports or documenting numerical processes. However if you a software developer like me, this code needs to run in a script on a server, in Amazon's [Lambda Function Handler] or even [kubeless] in a custom [kubernetes] cluster.
+
+Check out my article on [Essential Python 3] for a clean boilerplate script template to get you going.
+
+[Essential Python 3]: https://mk.imti.co/essential-python3/
+[kubernetes]: https://mk.imti.co/hobby-cluster/
+[kubeless]:https://kubeless.io/
+[Jupyter Notbooks]:https://mk.imti.co/golang-to-jupyter/
+[Numpy]:https://docs.scipy.org/doc/numpy-1.13.0/reference/index.html
+[Lambda Function Handler]:https://docs.aws.amazon.com/lambda/latest/dg/python-programming-model-handler-types.html
