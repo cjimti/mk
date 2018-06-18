@@ -1,75 +1,200 @@
 ---
 published: true
 layout: post
-title: Python Data Essentials - Numpy
+title: Python Data Essentials - Pandas
 tags: coding python
 featured: python coding
-mast: sorting
+mast: columns
 ---
-Python is one of [The Most Popular Languages for Data Science], and because of this adoption by the [data science] community, we have libraries like [NumPy], [Pandas] and [Matplotlib]. [NumPy] at it's core provides a powerful N-dimensional array objects in which we can perform linear algebra, [Pandas] give us data structures and data analysis tools, similar to working with a specialized database or powerful spreadsheets and finally [Matplotlib] to generate plots, histograms, power spectra, bar charts, error charts and scatterplots to name a few.
+[Pandas] bring Python a data type equivalent to super-charged spreadsheets. Pandas add two highly expressive data structures to Python, [Series] and [DataFrame]. Pandas [Series] and [DataFrame]s provide a performant analysis and manipulation of “relational” or “labeled” data similar to relational database tables like MySQL or the rows and columns of Excel. [Pandas] are great for working with time series data as well as arbitrary matrix data, and unlabeled data.
 
-**Quick Reference:**
+[Pandas] leverage [NumPy] and if you are not familiar with this fundamental library for working with numbers, then I suggest you take a look at [Python Data Essentials - NumPy][Numpy] to get a decent footing.
 
-* Do not remove this line (for toc on rendered blog)
+[Series]: https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html
+[DataFrame]: https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
+[NumPy]: https://mk.imti.co/python-data-essentials-numpy/
+[Pandas]:https://pandas.pydata.org/
+
+**Quick reference to the examples below:**
+
+* Do not remove this line (for toc on a rendered blog)
 {:toc}
 
-## Microservices Data Eco-System
+If you want to go beyond this brief overview of [Pandas] I suggest the following resources:
 
-I am not a data scientist, but like most software architects and full stack developers, I interact with data science at many points. However, where I spend the majority of my time building frameworks and pipelines, those in data science have been busy churning out amazing libraries.
+- [10 Minutes to pandas] - Official
+- [Official Tutorials]
+- [Data Analysis with Python and Pandas Tutorial Introduction] - Video
 
-One of the advantages of microservice architecture allows not only a higher level of the separation of responsibility but allowing each service to leverage the ecosystem most suited to it. While Monoliths often embed DSLs like SQL or use language bindings libraries to use C drivers in a Java application, they must be written to the strengths of the language to get the most out of them.
+[Data Analysis with Python and Pandas Tutorial Introduction]:https://www.youtube.com/watch?v=Iqjy9UqKKuo
+[Official Tutorials]:http://pandas.pydata.org/pandas-docs/stable/tutorials.html
+[10 Minutes to pandas]:http://pandas.pydata.org/pandas-docs/stable/10min.html
 
-It's 2018, and in my world [Go] binaries power most of my containerized API endpoints, Python functions run in [kubeless] configurations, and it's all wired together in [kubernetes] with it's robust [services] and [ingress] management. In this team of experts, I let Python do the math, why? Because libraries like [NumPy] and [Pandas] make the kind of math I need easy, fast and maintainable.
+## Getting Started
 
-The [NumPy] and [Pandas] libraries have a tremendous number of options, far too many to cover here, but the documentation is fantastic, so, for this reason, I'll only be going over the essentials. Once you get past the essentials, as always, you'll need the documentation. However, if you are like me you don't do the same job every day, so you only need to be an expert in the essentials of many things and the documentation and google lead you to the experts in whatever niche of functionality you are set to build. My favorite type of resources are by example, and I will attempt that below.
-
-This article will focus on [NumPy] because it is the core numeric library that most of the [scientific Python ecosystem](http://www.physics.nyu.edu/pine/pymanual/html/apdx3/apdx3_resources.html) is built on. Understanding and using [NumPy] is vital to effective use of [Pandas], [Matplotlib] and much more.
-
-[data science]:http://www.scipy-lectures.org/intro/intro.html#why-python
-[kubeless]:https://kubeless.io/
-[kubernetes]: http://localhost:4000/tag/kubernetes/
-[go]:https://golang.org/
-[Numpy]:http://www.numpy.org/
-[pandas]:https://mk.imti.co/python-data-essentials-pandas/
-[Matplotlib]:https://matplotlib.org/
-[The Most Popular Languages for Data Science]: https://dzone.com/articles/which-are-the-popular-languages-for-data-science
-[services]: https://kubernetes.io/docs/concepts/services-networking/service/
-[ingress]: https://kubernetes.io/docs/concepts/services-networking/ingress/
-[Juypter Notebooks]: http://jupyter.readthedocs.io/en/latest/install.html#installing-jupyter-using-anaconda-and-conda
-[Anaconda]: https://www.anaconda.com/download/#macos
-
-## Getting Started with Numpy
-
-This article is written using [Juypter Notebooks] installed and running under [Anaconda]. If you don't already have this setup I highly recomend it, along with downloading this article itself as a notbook, executing and modifying the following examples. All the code below is executes here in [Juypter Notebooks].
-
+In this article, I'll be working with [Pandas] version 0.22.0. If you are running a newer version, there is a possibility of interfaces changing or functionality being deprecated or replaced. I these cases a quick review of the official documentation should suffice.
 
 
 ```python
-!conda list numpy
+!conda list pandas
 ```
 
     # packages in environment at /Users/cjimti/anaconda3:
     #
     # Name                    Version                   Build  Channel
-    numpy                     1.13.3           py36ha9ae307_4  
-    numpy-base                1.14.3           py36ha9ae307_2  
-    numpydoc                  0.8.0                    py36_0  
+    pandas                    0.22.0           py36h0a44026_0  
 
 
-I am running numpy 1.13.3 for the following examples.
+## Series
 
-### Numpy 1.13 Resources
+[Series] data structures support integer and label based indexing. 
 
-If you get stuck or interested in learning far more than the examples below, I suggest the following resources:
+> One-dimensional ndarray with axis labels (including time series).
 
-- [NumPy 1.13 Manual](https://docs.scipy.org/doc/numpy-1.13.0/contents.html)
-- [NumPy 1.13 User Guide](https://docs.scipy.org/doc/numpy-1.13.0/user/index.html)
-- [NumPy 1.13 Reference](https://docs.scipy.org/doc/numpy-1.13.0/reference/index.html#reference)
-- [Cheat Sheet](https://www.dataquest.io/blog/numpy-cheat-sheet/)
+- [Series] official documentation
 
-For a deep dive on all things [NumPy] try [Scipy Lectures on Numpy](http://www.scipy-lectures.org/intro/numpy/index.html).
+[Series]: https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html
 
-Why NumPy? Let's say we would like to find the mean of one hundred million random numbers:
+
+```python
+import pandas as pd
+
+fields = ['Name','CPU', 'GHz', 'Cores','Ram','Own']
+b1 = ['Orange Pi Plus','ARM Cortex-A7',1.536,4,1046,2]
+board = pd.Series(data=b1, index = fields)
+
+print(f'Series: \n{board}\n')
+print(f'     Shape: {board.shape}')
+print(f'Dimensions: {board.ndim}')
+print(f'      Size: {board.size}')
+```
+
+    Series: 
+    Name     Orange Pi Plus
+    CPU       ARM Cortex-A7
+    GHz               1.536
+    Cores                 4
+    Ram                1046
+    Own                   2
+    dtype: object
+    
+         Shape: (6,)
+    Dimensions: 1
+          Size: 6
+
+
+
+```python
+# check for label
+print(f'Do we have GPU data? {"GPU" in board}')
+print(f'Do we have CPU data? {"CPU" in board}')
+```
+
+    Do we have GPU data? False
+    Do we have CPU data? True
+
+
+### Accessing and Deleting Elements
+
+- [pandas.DataFrame.iloc] - explicit selection by integer-index
+- [pandas.DataFrame.loc] - explicit selection by label
+- [pandas.Series.drop] - return Series with specified index labels removed.
+- [Indexing and Selecting Data] official documentation.
+
+[pandas.DataFrame.iloc]:http://pandas.pydata.org/pandas-docs/version/0.22/generated/pandas.DataFrame.iloc.html
+[pandas.DataFrame.loc]: http://pandas.pydata.org/pandas-docs/version/0.22/generated/pandas.DataFrame.loc.html
+[pandas.Series.drop]:https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.drop.html
+[Indexing and Selecting Data]:https://pandas.pydata.org/pandas-docs/stable/indexing.html
+
+
+```python
+print(f'The {board["Name"]} runs at {board["GHz"]} GHz.')
+print(f'The {board[0]} has {board[3]} cores.')
+print(f'The {board[0]} has {board[-1]:,} megabytes of ram.')
+```
+
+    The Orange Pi Plus runs at 1.536 GHz.
+    The Orange Pi Plus has 4 cores.
+    The Orange Pi Plus has 2 megabytes of ram.
+
+
+
+```python
+# select specific columns
+cc = board[["CPU","Cores"]]
+
+print(f'Series: \n{cc}\n')
+print(f'     Shape: {cc.shape}')
+print(f'Dimensions: {cc.ndim}')
+print(f'      Size: {cc.size}')
+```
+
+    Series: 
+    CPU      ARM Cortex-A7
+    Cores                4
+    dtype: object
+    
+         Shape: (2,)
+    Dimensions: 1
+          Size: 2
+
+
+
+```python
+# remove a column return or inplace=True
+nb = board.drop("Cores")
+
+print(f'Series: \n{nb}\n')
+print(f'     Shape: {nb.shape}')
+print(f'Dimensions: {nb.ndim}')
+print(f'      Size: {nb.size}')
+```
+
+    Series: 
+    Name    Orange Pi Plus
+    CPU      ARM Cortex-A7
+    GHz              1.536
+    Ram               1046
+    Own                  2
+    dtype: object
+    
+         Shape: (5,)
+    Dimensions: 1
+          Size: 5
+
+
+
+```python
+inventory = pd.Series([1,3,2],['Orange Pi Plus', 'Raspberry Pi 3', 'Asus Tinker Board'])
+print(f'Series: \n{inventory}\n')
+```
+
+    Series: 
+    Orange Pi Plus       1
+    Raspberry Pi 3       3
+    Asus Tinker Board    2
+    dtype: int64
+    
+
+
+
+```python
+inventory = inventory.add(1)
+print(f'Add 1 to all values: \n{inventory}\n')
+```
+
+    Add 1 to all values: 
+    Orange Pi Plus       2
+    Raspberry Pi 3       4
+    Asus Tinker Board    3
+    dtype: int64
+    
+
+
+#### [NumPy] on [Series] data.
+
+[NumPy]: https://mk.imti.co/python-data-essentials-numpy/
+[Series]: https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html
 
 
 ```python
@@ -78,818 +203,910 @@ import numpy as np
 
 
 ```python
-# create some random numbers
-x = np.random.random(100000000)
+print(f'Square root of each item: \n{np.sqrt(inventory)}\n')
+print(f'Each item to the power of 2: \n{np.power(inventory,2)}\n')
 ```
 
-
-```python
-%%timeit -n1 -r1
-sum(x) / len(x)
-```
-
-    6.52 s ± 0 ns per loop (mean ± std. dev. of 1 run, 1 loop each)
-
-
-
-```python
-%%timeit -n1 -r1
-np.mean(x)
-```
-
-    65.7 ms ± 0 ns per loop (mean ± std. dev. of 1 run, 1 loop each)
-
-
-We wrote less code, arguably more verbose code, and accomplished the same task over one hundred times faster. It's more code if you include the import statment, but that is long forgotton with the 100x speed increase.
-
-Finding the mean of one hundred million random numbers is great use of NumPy, but it get's a lot more interesting with NumPy's powerful N-dimensional arrays. 
-
-### Creating Arrays
-
-NumPy's [array](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.array.html) function creates n-dimentional arrays from any object exposing the array interface, an object whose __array__ method returns an array, or any (nested) sequence. 
-
-- [Array Creation](https://docs.scipy.org/doc/numpy-1.13.0/user/basics.creation.html) Documentation
-
-
-```python
-x = np.array([1,2,3,4,5])
-
-print(f'data:\n{x}')
-print(f' type: {type(x)}')
-print(f' size: {x.size}')
-print(f'shape: {x.shape}')
-```
-
-    data:
-    [1 2 3 4 5]
-     type: <class 'numpy.ndarray'>
-     size: 5
-    shape: (5,)
-
-
-Rank 2 arrays are just arrays within arrays. The outter array holds rows of column data (axis=0) arrays. Row (axis=1) index 0 is being set to [1,1,1].
-
-
-```python
-y = np.array([[1,1,1],[2,2,2],[3,3,3]])
-
-print(f' data:\n{y}')
-print(f' type: {type(y)}')
-print(f' size: {y.size}')
-print(f'shape: {y.shape}')
-```
-
-     data:
-    [[1 1 1]
-     [2 2 2]
-     [3 3 3]]
-     type: <class 'numpy.ndarray'>
-     size: 9
-    shape: (3, 3)
-
-
-### Built-in Array Creation Functions
-
-- [Array creation routines](https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.array-creation.html) official documentation.
-
-[np.zeros] (shape, dtype=float, order='C') returns an array or zeros in the shape specified as a [tuple].
-
-[np.zeros]: https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.zeros.html
-[tuple]:https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences
-
-
-```python
-zros = np.zeros((10,12))
-print(f' data:\n{zros}')
-print(f' type: {type(zros)}')
-print(f' size: {zros.size}')
-print(f' size: {zros.dtype}')
-print(f'shape: {zros.shape}')
-```
-
-     data:
-    [[ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]]
-     type: <class 'numpy.ndarray'>
-     size: 120
-     size: float64
-    shape: (10, 12)
-
-
-[np.full] (shape, fill_value, dtype=None, order='C') will fill an array in the specified shape with the value provided. If not data type is specified one will be derrived by the input value.
-
-[np.full]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.full.html
-
-
-```python
-f = np.full((5,5), 5)
-print(f'5x5 of 5s:\n{f}\n')
-
-print(f' size: {f.size}')
-print(f'dtype: {f.dtype}')
-print(f'shape: {f.shape}')
-```
-
-    5x5 of 5s:
-    [[5 5 5 5 5]
-     [5 5 5 5 5]
-     [5 5 5 5 5]
-     [5 5 5 5 5]
-     [5 5 5 5 5]]
+    Square root of each item: 
+    Orange Pi Plus       1.414214
+    Raspberry Pi 3       2.000000
+    Asus Tinker Board    1.732051
+    dtype: float64
     
-     size: 25
+    Each item to the power of 2: 
+    Orange Pi Plus        4
+    Raspberry Pi 3       16
+    Asus Tinker Board     9
     dtype: int64
-    shape: (5, 5)
-
-
-Use the built in [np.eye] to create in identity matrix or build a custom diagonal with [np.diag].  
-
-[np.eye]: https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.eye.html
-[np.diag]: https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.diag.html
-
-
-```python
-# Identity and Diagonal Matrix
-ident = np.eye(8)
-print(f'Identity matrix:\n{ident}\n')
-
-diag = np.diag([2,4,5,6,8,10,12])
-print(f'Diagonal Matrix:\n{diag}\n')
-```
-
-    Identity matrix:
-    [[ 1.  0.  0.  0.  0.  0.  0.  0.]
-     [ 0.  1.  0.  0.  0.  0.  0.  0.]
-     [ 0.  0.  1.  0.  0.  0.  0.  0.]
-     [ 0.  0.  0.  1.  0.  0.  0.  0.]
-     [ 0.  0.  0.  0.  1.  0.  0.  0.]
-     [ 0.  0.  0.  0.  0.  1.  0.  0.]
-     [ 0.  0.  0.  0.  0.  0.  1.  0.]
-     [ 0.  0.  0.  0.  0.  0.  0.  1.]]
-    
-    Diagonal Matrix:
-    [[ 2  0  0  0  0  0  0]
-     [ 0  4  0  0  0  0  0]
-     [ 0  0  5  0  0  0  0]
-     [ 0  0  0  6  0  0  0]
-     [ 0  0  0  0  8  0  0]
-     [ 0  0  0  0  0 10  0]
-     [ 0  0  0  0  0  0 12]]
-    
-
-
-### Ranges, Random and Reshaping
-
-**Range Array Creation**
-- [numpy.arange] - Returns evenly spaced values within a given interval.
-- [numpy.linspace] - Returns evenly spaced numbers over a specified interval.
-- [numpy.logspace] - Return numbers spaced evenly on a log scale.
-
-**Random**
-- [Random sampling] - documentation
-
-**Reshaping Arrays**
-- [numpy.reshape] - Documentation
-
-[numpy.reshape]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.reshape.html
-[Random sampling]:https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.random.html
-[numpy.arange]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.arange.html
-[numpy.linspace]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.linspace.html#numpy.linspace
-[numpy.logspace]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.logspace.html#numpy.logspace
-
-
-```python
-# arange rank 1 arrays
-ar1 = np.arange(10)
-ar2 = np.arange(50,60)
-ar3 = np.arange(2,100,10)
-
-print(f'Stop at 10:\n{ar1}\n')
-print(f'Start at 50 and stop at 60:\n{ar2}\n')
-print(f'Start at 2 and stop at 100 by 10:\n{ar3}\n')
-```
-
-    Stop at 10:
-    [0 1 2 3 4 5 6 7 8 9]
-    
-    Start at 50 and stop at 60:
-    [50 51 52 53 54 55 56 57 58 59]
-    
-    Start at 2 and stop at 100 by 10:
-    [ 2 12 22 32 42 52 62 72 82 92]
-    
-
-
-Use [np.linspace] to return evenly spaced numbers over a specified interval. **endpoint=False** will exclude the stop value, and **retstep=True** is the spacing between samples.
-
-[np.linspace]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.linspace.html
-
-
-```python
-lsp1 = np.linspace(0, 20, 15)
-lsp2 = np.linspace(0, 20, 15, endpoint=False)
-
-print(f'10 evenly spaced floats from .0-20.:\n{lsp1}\n')
-print(f'excluding the endpoint:\n{lsp2}\n')
-```
-
-    10 evenly spaced floats from .0-20.:
-    [  0.           1.42857143   2.85714286   4.28571429   5.71428571
-       7.14285714   8.57142857  10.          11.42857143  12.85714286
-      14.28571429  15.71428571  17.14285714  18.57142857  20.        ]
-    
-    excluding the endpoint:
-    [  0.           1.33333333   2.66666667   4.           5.33333333
-       6.66666667   8.           9.33333333  10.66666667  12.          13.33333333
-      14.66666667  16.          17.33333333  18.66666667]
-    
-
-
-[np.reshape] gives a new shape to an array without changing its data.
-
-[np.reshape]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.reshape.html
-
-
-```python
-r1 = np.arange(10)
-r2 = np.reshape(r1, (2,5))
-
-print(f'reshaped range of 10 to a 2x5:\n{r2}\n')
-```
-
-    reshaped range of 10 to a 2x5:
-    [[0 1 2 3 4]
-     [5 6 7 8 9]]
-    
-
-
-[NumPy Random] provides functions for simple random data, permutations and distributions. 
-
-[NumPy Random]:https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.random.html
-
-
-```python
-rnd1 = np.random.random((4,4))
-rnd2 = np.random.randint(0,100,(5,5))
-
-print(f'random 4x4.:\n{rnd1}\n')
-print(f'random interger 5x5 between 0 and 99.:\n{rnd2}\n')
-```
-
-    random 4x4.:
-    [[ 0.18782149  0.24735819  0.62014626  0.21425457]
-     [ 0.99544511  0.50932097  0.25081655  0.87713039]
-     [ 0.30737421  0.44161637  0.81432926  0.16024983]
-     [ 0.95860737  0.35157861  0.8393971   0.25599258]]
-    
-    random interger 5x5 between 0 and 99.:
-    [[37 65 16 31 40]
-     [ 0 15 41 64 97]
-     [50 79 58 37 37]
-     [34 34 19 21 95]
-     [84 35 86 56 37]]
-    
-
-
-[np.random.normal] draws random samples from a normal (Gaussian) distribution. 
-
-Read the [Importance of data distribution in training machine learning models] to understand why we would need random numbers drawn from probability distributions.
-
-[Importance of data distribution in training machine learning models]:https://tekmarathon.com/2015/11/13/importance-of-data-distribution-in-training-machine-learning-models/
-[np.random.normal]:https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.random.normal.html#numpy.random.normal
-
-
-```python
-# random numbers drawn from probability distributions
-rn1 = np.random.normal(2,0.5, size=(10,4))
-print(f'random normals with mean of 2\n and standard deviation of .5.:\n{rn1}\n')
-print(f'mean: {rn1.mean()}')
-print(f' std: {rn1.std()}')
-```
-
-    random normals with mean of 2
-     and standard deviation of .5.:
-    [[ 1.54646756  1.43589436  2.09875212  1.3974066 ]
-     [ 1.08325865  2.0021442   1.47672472  2.85984543]
-     [ 1.21980609  2.45491494  1.82050565  1.88821092]
-     [ 1.94656678  2.0377511   2.29745424  1.84229137]
-     [ 1.28723268  2.1499935   3.07733785  1.86075005]
-     [ 2.32299782  2.28247921  2.19014796  1.89490517]
-     [ 2.19440292  1.97758462  2.64923712  1.93849335]
-     [ 2.58946891  1.7157246   2.46026935  1.95457179]
-     [ 2.2315923   2.10719654  2.86608878  1.41678298]
-     [ 2.04466755  1.00684125  2.36590025  2.88980114]]
-    
-    mean: 2.0220615601772067
-     std: 0.49562922344472393
-
-
-### Accessing, Deleting, and Inserting
-
-
-```python
-adi1 = np.arange(1,26).reshape(5,5)
-print(adi1)
-```
-
-    [[ 1  2  3  4  5]
-     [ 6  7  8  9 10]
-     [11 12 13 14 15]
-     [16 17 18 19 20]
-     [21 22 23 24 25]]
-
-
-
-```python
-print(f'row 1, col 2: {adi1[0][1]}')
-print(f'row 2, col 3: {adi1[2][2]}')
-```
-
-    row 1, col 2: 2
-    row 2, col 3: 13
-
-
-
-```python
-# return matrix without rows 1-2
-adi2 = np.delete(adi1, [1,2], axis=0)
-print(f'with rows 1-2 removed:\n{adi2}')
-```
-
-    with rows 1-2 removed:
-    [[ 1  2  3  4  5]
-     [16 17 18 19 20]
-     [21 22 23 24 25]]
-
-
-
-```python
-# return matrix without cols 1-2
-adi3 = np.delete(adi1, [1,2], axis=1)
-print(f'with cols 1-2 removed:\n{adi3}')
-```
-
-    with cols 1-2 removed:
-    [[ 1  4  5]
-     [ 6  9 10]
-     [11 14 15]
-     [16 19 20]
-     [21 24 25]]
-
-
-
-```python
-# simple append
-ap = np.arange(3)
-ap = np.append(ap, [3,4])
-
-print(f'append output: {ap}')
-```
-
-    append output: [0 1 2 3 4]
-
-
-
-```python
-print(adi1)
-```
-
-    [[ 1  2  3  4  5]
-     [ 6  7  8  9 10]
-     [11 12 13 14 15]
-     [16 17 18 19 20]
-     [21 22 23 24 25]]
-
-
-
-```python
-apnd1 = np.append(adi1, [[0,0,0,0,0]], axis=0)
-apnd2 = np.append(adi1, [[0],[0],[0],[0],[0]], axis=1)
-
-print(f'append row:\n{apnd1}\n')
-print(f'append column:\n{apnd2}\n')
-```
-
-    append row:
-    [[ 1  2  3  4  5]
-     [ 6  7  8  9 10]
-     [11 12 13 14 15]
-     [16 17 18 19 20]
-     [21 22 23 24 25]
-     [ 0  0  0  0  0]]
-    
-    append column:
-    [[ 1  2  3  4  5  0]
-     [ 6  7  8  9 10  0]
-     [11 12 13 14 15  0]
-     [16 17 18 19 20  0]
-     [21 22 23 24 25  0]]
     
 
 
 
 ```python
-params = np.array([0,0,0,0])
-params2 = np.insert(params, 2, [1,1,1])
-print(f'inserting [1,1,1] at index 2:\n{params2}\n')
+# Orange Pi Plus and Asus Tinker Boards
+inventory[['Orange Pi Plus', 'Asus Tinker Board']] * 2
 ```
 
-    inserting [1,1,1] at index 2:
-    [0 0 1 1 1 0 0]
+
+
+
+    Orange Pi Plus       4
+    Asus Tinker Board    6
+    dtype: int64
+
+
+
+### Arithmetic on Series Data
+
+
+```python
+containers = ['a','b','c']
+items = [1,10,100]
+
+item_containers = pd.Series(index=containers, data=items)
+
+print(f'All: \n{item_containers}\n')
+print(f'Greater than 1: \n{item_containers[item_containers > 1]}\n')
+```
+
+    All: 
+    a      1
+    b     10
+    c    100
+    dtype: int64
+    
+    Greater than 1: 
+    b     10
+    c    100
+    dtype: int64
     
 
 
 
 ```python
-ins = np.full((5,5), 0)
-ins2 = np.insert(ins, 3, np.full(5, 4), axis=0)
-ins3 = np.insert(ins, 3, np.full(5, 4), axis=1)
-
-print(f'insert a row of 4s at row index 3:\n{ins2}\n')
-print(f'insert a column of 4s at column index 3:\n{ins3}\n')
+# add 10 items to a
+item_containers = item_containers.add([10,0,0])
+print(f'All: \n{item_containers}\n')
 ```
 
-    insert a row of 4s at index 3:
-    [[0 0 0 0 0]
-     [0 0 0 0 0]
-     [0 0 0 0 0]
-     [4 4 4 4 4]
-     [0 0 0 0 0]
-     [0 0 0 0 0]]
-    
-    insert a column of 4s at index 3:
-    [[0 0 0 4 0 0]
-     [0 0 0 4 0 0]
-     [0 0 0 4 0 0]
-     [0 0 0 4 0 0]
-     [0 0 0 4 0 0]]
+    All: 
+    a     11
+    b     10
+    c    100
+    dtype: int64
     
 
 
 
 ```python
-# stacking 
-s1 = np.full((5,5), 0)
-s2 = np.full((5,5), 1)
-vs = np.vstack((s1, s2))
-hs = np.hstack((s1, s2))
-
-print(f'verticle stacking:\n{vs}\n')
-print(f'horizontal stacking:\n{hs}\n')
+half_containers = item_containers / 2
+print(f'Half: \n{half_containers}\n')
 ```
 
-    verticle stack:
-    [[0 0 0 0 0]
-     [0 0 0 0 0]
-     [0 0 0 0 0]
-     [0 0 0 0 0]
-     [0 0 0 0 0]
-     [1 1 1 1 1]
-     [1 1 1 1 1]
-     [1 1 1 1 1]
-     [1 1 1 1 1]
-     [1 1 1 1 1]]
-    
-    horizontal stack:
-    [[0 0 0 0 0 1 1 1 1 1]
-     [0 0 0 0 0 1 1 1 1 1]
-     [0 0 0 0 0 1 1 1 1 1]
-     [0 0 0 0 0 1 1 1 1 1]
-     [0 0 0 0 0 1 1 1 1 1]]
+    Half: 
+    a     5.5
+    b     5.0
+    c    50.0
+    dtype: float64
     
 
 
-### Slicing
+## [DataFrames]
+
+[DataFrames] are the central feature of [Pandas], a dictionary like data object. 
+
+> Two-dimensional size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns). Arithmetic operations align on both row and column labels. Can be thought of as a dict-like container for Series objects. The primary pandas data structure.
+
+- [pandas.DataFrame][DataFrames] official documentation.
+
+[Pandas]:https://pandas.pydata.org/
+[DataFrames]:https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
 
 
 ```python
-slc = np.arange(1, 21).reshape(4,5)
-slc1 = slc[1:4, 2:5]
-slc2 = slc[:, 1:2]
-slc3 = slc[:, [0,3,4]]
-cpy  = slc2.copy()
-
-print(f'a 4x5 range:\n{slc}\n')
-print(f'a slice from row 1 to 4 and cols 2 to 5:\n{slc1}\n')
-print(f'a slice of all rows of column 2:\n{slc2}\n')
-print(f'a slice of all rows of colums [0,3,4]:\n{slc3}\n')
-print(f'a copy:\n{cpy}\n')
+import pandas as pd
 ```
 
-    a 4x5 range:
-    [[ 1  2  3  4  5]
-     [ 6  7  8  9 10]
-     [11 12 13 14 15]
-     [16 17 18 19 20]]
-    
-    a slice from row 1 to 4 and cols 2 to 5:
-    [[ 8  9 10]
-     [13 14 15]
-     [18 19 20]]
-    
-    a slice all rows of column 2:
-    [[ 2]
-     [ 7]
-     [12]
-     [17]]
-    
-    a slice all rows of colums [0,3,4]:
-    [[ 1  4  5]
-     [ 6  9 10]
-     [11 14 15]
-     [16 19 20]]
-    
-    a copy:
-    [[ 2]
-     [ 7]
-     [12]
-     [17]]
-    
+### Creating
 
+[Pandas] can create a [DataFrame] from a [NumPy] ndarray (structured or homogeneous), dict, or another DataFrame. A DataFrame with a Python [Dict] can contain [Series], arrays, constants, or list-like objects.
 
-### Boolean Indexing and Sorting
+In the example below I create a [dictionary][Dict] that maps three indexes to three varied data sets. The fictional AI machines 'hal', 'johnny 5' and 'bender' all have different attributes with some overlap. Each of the dictionary keys contains a Pandas Series object. However, they may contain any list-like objects.
+
+[Dict]:http://www.pythonforbeginners.com/dictionary/how-to-use-dictionaries-in-python
 
 
 ```python
-seq = np.arange(25).reshape(5,5)
-seq2 = seq|seq < 7
-seq3 = seq[(seq > 7) & (seq < 12)]
-seq4 = seq[seq % 2 < 1]
+ai = {'hal': pd.Series(data = [100, 90], index = ['intellect', 'dangerous']),
+      'johnny 5': pd.Series(data = [12, 5, 2], index = ['dangerous','humor','bending']),
+      'bender': pd.Series(data = [20, 50, 50, 100], index = ['intellect', 'dangerous', 'humor', 'bending'])}
 
-print(f'sequence from 0 to 24:\n{seq} \n')
-print(f'less than 7:\n{seq2}\n')
-print(f'even numbers:\n{seq4}\n')
+df_ai = pd.DataFrame(ai)
+df_ai
 ```
 
-    sequence from 0 to 24:
-    [[ 0  1  2  3  4]
-     [ 5  6  7  8  9]
-     [10 11 12 13 14]
-     [15 16 17 18 19]
-     [20 21 22 23 24]] 
-    
-    less than 7:
-    [[ True  True  True  True  True]
-     [ True  True False False False]
-     [False False False False False]
-     [False False False False False]
-     [False False False False False]]
-    
-    even numbers:
-    [ 0  2  4  6  8 10 12 14 16 18 20 22 24]
-    
 
 
-### Arithmetic and Broadcasting
 
-- [Mathematical functions] documentation
-- [Broadcasting] documentation
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-[Broadcasting]:https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html
-[Mathematical functions]:https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.math.html
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+      <th>hal</th>
+      <th>johnny 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>50</td>
+      <td>90.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>50</td>
+      <td>NaN</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>20</td>
+      <td>100.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 
 ```python
-# rank 1 arrays
-ax = np.array([1,2,3,4])
-ay = np.array([5,6,7,8])
+print(f'     Shape: {df_ai.shape}')
+print(f'Dimensions: {df_ai.ndim}')
+print(f'      Size: {df_ai.size}')
+print(f'Total NaNs: {df_ai.isnull().sum().sum()}')
+print(f'NaN Counts: \n{df_ai.isnull().sum()}\n')
 
-print(f'add two arrays:\n{ np.add(ax,ay) } \n')
-print(f'      subtract:\n{ np.subtract(ax,ay) } \n')
-print(f'      multiply:\n{ np.multiply(ax,ay) } \n')
-print(f'        divide:\n{ np.divide(ax,ay) } \n')
 ```
 
-    add two arrays:
-    [ 6  8 10 12] 
-    
-          subtract:
-    [-4 -4 -4 -4] 
-    
-          multiply:
-    [ 5 12 21 32] 
-    
-            divide:
-    [ 0.2         0.33333333  0.42857143  0.5       ] 
+         Shape: (4, 3)
+    Dimensions: 2
+          Size: 12
+    Total NaNs: 3
+    NaN Counts: 
+    bender      0
+    hal         2
+    johnny 5    1
+    dtype: int64
     
 
 
 
 ```python
-# rank 2 arrays
-aX = np.array([1,2,3,4]).reshape(2,2)
-aY = np.array([5,6,7,8]).reshape(2,2)
-
-print(f'add two arrays:\n{ np.add(aX,aY) } \n')
-print(f'      subtract:\n{ np.subtract(aX,aY) } \n')
-print(f'      multiply:\n{ np.multiply(aX,aY) } \n')
-print(f'        divide:\n{ np.divide(aX,aY) } \n')
+print(f'DataFrame Values: \n{df_ai.values}\n')
 ```
 
-    add two arrays:
-    [[ 6  8]
-     [10 12]] 
+    DataFrame Values: 
+    [[ 100.   nan    2.]
+     [  50.   90.   12.]
+     [  50.   nan    5.]
+     [  20.  100.   nan]]
     
-          subtract:
-    [[-4 -4]
-     [-4 -4]] 
-    
-          multiply:
-    [[ 5 12]
-     [21 32]] 
-    
-            divide:
-    [[ 0.2         0.33333333]
-     [ 0.42857143  0.5       ]] 
-    
+
+
+### Selecting
+
+The methods [mask][pandas.DataFrame.mask] and [where][pandas.DataFrame.where] are provided by Panda's [Series] and [DataFrame] data types. See the examples below for some simple examples of value selection using basic arithmatic expressions.
+
+- [pandas.DataFrame.mask]
+- [pandas.DataFrame.where]
+- [pandas.Series.mask]
+- [pandas.Series.where]
+
+[pandas.DataFrame.mask]:http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.mask.html
+[pandas.Series.mask]:http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.mask.html
+[pandas.DataFrame.where]:http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.where.html
+[pandas.Series.where]:http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.where.html
+
+
+```python
+# mask out any data greater than 10
+df_ai.mask(df_ai > 10)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+      <th>hal</th>
+      <th>johnny 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 
 
 ```python
-print(f'square roots:\n{ np.sqrt(aX) } \n')
-print(f'exp (Euler\'s number):\n{ np.exp(aX) } \n')
-print(f'average of all elements (mean):\n{ aX.mean() } \n')
-print(f'average each column (mean):\n{ aX.mean(axis=0) } \n')
-print(f'average each row (mean):\n{ aX.mean(axis=1) } \n')
+# only return data greater than 10, otherwise NaN
+df_ai.where(df_ai > 10)
 ```
 
-    square roots:
-    [[ 1.          1.41421356]
-     [ 1.73205081  2.        ]] 
-    
-    exp (Euler's number):
-    [[  2.71828183   7.3890561 ]
-     [ 20.08553692  54.59815003]] 
-    
-    average of all elements (mean):
-    2.5 
-    
-    average each column (mean):
-    [ 2.  3.] 
-    
-    average each row (mean):
-    [ 1.5  3.5] 
-    
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+      <th>hal</th>
+      <th>johnny 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>100</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>50</td>
+      <td>90.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>20</td>
+      <td>100.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 
 
 ```python
-aE = np.full((4,4), 1)
-aF = np.array([1,2,3,4])
-aG = np.add(aE, aF)
-
-print(f' 4x4 of ones:\n{ aE } \n')
-print(f' brodcasting sum of [1,2,3,4]:\n{ aG } \n')
-
+# only return data greater than 10, otherwise 0
+df_ai.where(df_ai > 10, 0)
 ```
 
-     4x4 of ones:
-    [[1 1 1 1]
-     [1 1 1 1]
-     [1 1 1 1]
-     [1 1 1 1]] 
-    
-     brodcasting sum of [1,2,3,4]:
-    [[2 3 4 5]
-     [2 3 4 5]
-     [2 3 4 5]
-     [2 3 4 5]] 
-    
 
 
-### Mean normalization
 
-Mean normalization scales data.
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-- [Normalizing inputs] - Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
-- [Mean Normalization] - Machine Learning
-- [Feature scaling]
-- [Statistics Normalization]
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-[Normalizing inputs]:https://www.coursera.org/learn/deep-neural-network/lecture/lXv6U/normalizing-inputs
-[Mean Normalization]:https://www.coursera.org/learn/machine-learning/lecture/Adk8G/implementational-detail-mean-normalization
-[Feature scaling]:https://en.wikipedia.org/wiki/Feature_scaling
-[Statistics Normalization]: https://en.wikipedia.org/wiki/Normalization_(statistics)
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+      <th>hal</th>
+      <th>johnny 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>100</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>50</td>
+      <td>90.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>50</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>20</td>
+      <td>100.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Modifying
+
+The AI bots 'hal', 'johnny 5' and 'bender' share some common attributes, however where they do not, we get **nan** (not a number). Running the AI bot data through any math function would be problematic with the existence of non-numbers. Pandas give us quite a few options.
+
+There are many options for cleaning this data. I'll start with removing any rows that contain **nan** values. We can make these adjustments with the optional parameter **inplace=True** if we wanted to modify the DataFrame in place, however for the sake of examples it is better to keep the original in-tact.
 
 
 ```python
-MN = np.random.randint(5000, size=(10,10))
-
-print(f'a 10x10 of random integers 0-4999:\n{ MN } \n')
-print(f'max value:\n{ MN.max() } \n')
-print(f'min value:\n{ MN.min() } \n')
-print(f'mean value:\n{ MN.mean() } \n')
+# return a frame eliminating rows with NaN values
+df_ai_common_rows = df_ai.dropna(axis=0)
+df_ai_common_rows
 ```
 
-    a 10x10 of random integers 0-4999:
-    [[1363  941 2244 3740  131 2652 2374 2420  252 4859]
-     [2902  275 4906 2677 3735 1955 2148 3565  792 2112]
-     [1651 2195 1586 4975 1647  471  970  278 4116 4092]
-     [1379 4697 2481 1421 3384 3528 4206 2108 2848 4494]
-     [4047   43 2115 4063 3864 2261  128 2000 1633 2718]
-     [ 393 2173 1442 2517 4527 3091  745  444 3053   61]
-     [1145  653 3907  830  228 4055 3314 1010  936  676]
-     [4846 2543 4079 2492 2817 1608  874 4627  672 3586]
-     [4441 2559 3305 4077  964 4623 1594 3166 2136 4421]
-     [2303  156 4824 1973  313 2170 3686 2381  342 1027]] 
-    
-    max value:
-    4975 
-    
-    min value:
-    43 
-    
-    mean value:
-    2352.47 
-    
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+      <th>hal</th>
+      <th>johnny 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>dangerous</th>
+      <td>50</td>
+      <td>90.0</td>
+      <td>12.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 
 
 ```python
-# average of each column
-MN_ave_cols = MN.mean(axis=0, dtype=np.float64)
-
-# standard Deviation of each column
-MN_std_cols = MN.std(axis=0, dtype=np.float64)
-
-print(f'average of each column:\n{ NM_ave_cols } \n')
-print(f'standard Deviation of each column:\n{ NM_std_cols } \n')
+# return a frame eliminating rows with NaN values
+df_ai_common_cols = df_ai.dropna(axis=1)
+df_ai_common_cols
 ```
 
-    average of each column:
-    [ 2369.9  2147.2  1968.4  2359.1  2340.   1867.4  2614.5  2289.4  2856.1
-      2552. ] 
-    
-    standard Deviation of each column:
-    [ 1273.86643334  1413.64400045  1386.22604217  1333.5585064   1390.563411
-      1505.58043292  1436.11470642  1456.26400079  1253.61225664  1444.22394385] 
-    
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>20</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Depending on requirements, no data could mean zero in our scale of 0-100. While zero is not a reasonable assumption for our AI bots, it's an easy data fix:
+
+
+```python
+# fill all NaNs with 0
+df_ai.fillna(0)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+      <th>hal</th>
+      <th>johnny 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>100</td>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>50</td>
+      <td>90.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>50</td>
+      <td>0.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>20</td>
+      <td>100.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 
 
 ```python
-# substract the mean from each column then divide by the standard deviation
-MN_norm = (MN - MN_ave_cols) / MN_std_cols
-
-print(f'scaled and normalized:\n{ MN_norm } \n')
-
-print(f'old max value: { MN.max() }')
-print(f'      new max: { MN_norm.max() }\n')
-
-print(f'old min value: { MN.min() }')
-print(f'      new max: { MN_norm.min() }\n')
-
+# forward fill rows with previous column (axis=0) data 
+df_ai.fillna(method='ffill', axis=0)
 ```
 
-    scaled and normalized:
-    [[-0.51966084 -1.19801688  0.0295472   0.59720419 -1.55766063  0.57982528
-       0.50089332 -0.28174638 -2.35596301  2.03185556]
-     [ 0.56903781 -1.70761594  1.7431561  -0.32901124  1.04590533  0.07928253
-       0.33885225  0.53620394 -1.91369783  0.13435183]
-     [-0.31592776 -0.23850154 -0.39402705  1.67328703 -0.46248694 -0.98643548
-      -0.50576889 -1.81192071  0.80869008  1.50204654]
-     [-0.50834233  1.67593816  0.18211118 -1.42339184  0.79233938  1.20891489
-       1.81442977 -0.50462892 -0.22981409  1.77973002]
-     [ 1.37901829 -1.88513393 -0.05349395  0.87864124  1.13909623  0.299033
-      -1.10947942 -0.58178056 -1.22491075  0.5529493 ]
-     [-1.20584517 -0.25533514 -0.48672415 -0.46842278  1.61805412  0.89508822
-      -0.66709297 -1.69333577 -0.06191713 -1.28238648]
-     [-0.67387546 -1.41838404  1.10006996 -1.93834323 -1.48758685  1.58737405
-       1.17486945 -1.28900399 -1.79576044 -0.85757222]
-     [ 1.94423611  0.02777544  1.2107915  -0.49020583  0.38273286 -0.16991164
-      -0.5746005   1.2948618  -2.01197898  1.15252456]
-     [ 1.65773646  0.04001806  0.71254459  0.89083975 -0.95589303  1.9952769
-      -0.05836346  0.25117147 -0.81294893  1.72930491]
-     [ 0.1453013  -1.79867043  1.69037025 -0.94242202 -1.426182    0.23368237
-       1.44159191 -0.3096067  -2.28225215 -0.61511724]] 
-    
-    old max value: 4975
-          new max: 2.0318555579499042
-    
-    old min value: 43
-          new max: -2.355963009127506
-    
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+      <th>hal</th>
+      <th>johnny 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>50</td>
+      <td>90.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>50</td>
+      <td>90.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>20</td>
+      <td>100.0</td>
+      <td>5.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+# forward fill rows with previous column (axis=0) data 
+# then back fill
+df_ai.fillna(method='ffill', axis=0).fillna(method='bfill', axis=0)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+      <th>hal</th>
+      <th>johnny 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>100</td>
+      <td>90.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>50</td>
+      <td>90.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>50</td>
+      <td>90.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>20</td>
+      <td>100.0</td>
+      <td>5.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Forward (ffill) and backfilling (bfill) have far better uses in time-series data. In this case, `hal` having a danger rating of 90 should not assume that his bending ability would be 90 as well, but this example clearly illustrates the forward and backfilling capabilities of [DataFrame]'s [fillna] method.
+
+[DataFrame]:https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
+[fillna]:https://pandas.pydata.org/pandas-docs/version/0.22/generated/pandas.DataFrame.fillna.html
+
+If we needed to make assumptions regarding the ability of this team of AI bots we could assume unknown data could start as an average of known data.
+
+
+```python
+# get the mean of data for each attribute row by column (axis=1)
+df_ai.mean(axis=1)
+```
+
+
+
+
+    bending      51.000000
+    dangerous    50.666667
+    humor        27.500000
+    intellect    60.000000
+    dtype: float64
+
+
+
+[pandas.DataFrame.apply] method applies the return value of a function along an axis of DataFrame, axis=1 in the example below. The function given to [pandas.DataFrame.apply] is passed the row or column depending the axis specified, the function below receives rows (because axis=1 is specified) and assigns each row to the variable "x" in which the method "mean" is called and resulting data returned from the function. 
+
+We could have defied a named function; however this small opperation **x.fillna(x.mean())** is hardly worthy of such attention. Python's [lambda]s are one line, anonymous functions, and then used responsibly, can make the code more compact and readable at the same time. 
+
+[pandas.DataFrame.apply]:http://pandas.pydata.org/pandas-docs/version/0.22/generated/pandas.DataFrame.apply.html
+[lambda]:https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions
+
+
+```python
+clean_df_ai = df_ai.apply(lambda x: x.fillna(x.mean()),axis=1)
+clean_df_ai
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bender</th>
+      <th>hal</th>
+      <th>johnny 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>100.0</td>
+      <td>51.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>50.0</td>
+      <td>90.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>50.0</td>
+      <td>27.5</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>20.0</td>
+      <td>100.0</td>
+      <td>60.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Sorting
+
+
+```python
+# order the columns by ai bot with the highest intellect
+hii = clean_df_ai.sort_values(['intellect'], axis=1, ascending=False)
+hii
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hal</th>
+      <th>johnny 5</th>
+      <th>bender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bending</th>
+      <td>51.0</td>
+      <td>2.0</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>dangerous</th>
+      <td>90.0</td>
+      <td>12.0</td>
+      <td>50.0</td>
+    </tr>
+    <tr>
+      <th>humor</th>
+      <td>27.5</td>
+      <td>5.0</td>
+      <td>50.0</td>
+    </tr>
+    <tr>
+      <th>intellect</th>
+      <td>100.0</td>
+      <td>60.0</td>
+      <td>20.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+print(f'The bot with the highest intelligence is {hii.columns[0]}.')
+print(f'The bot with the lowest intelligence is {hii.columns[-1]}.')
+```
+
+    The bot with the highest intelligence is hal.
+    The bot with the lowest intelligence is bender.
+
+
+I doubt that `johnny 5` is more intelligent than `bender` but his data was unknown and therefore derived by using a mean, so the sore is mathematically correct. 
+
+I won't attempt even to scratch the surface of sorting functions and their parameters provided by [DataFrame]s. This article is only intended to give you a taste and get you going.
+
+### Math
+
+Use [NumPy] to perform any number of arithmetic operations on the values of a [DataFrames]. I suggest you take a look at my article [Python Data Essentials - Pandas][Numpy] for an overview of this compelling data science library.
 
 
 ## Essential Python 3
 
 A lot of data science in done in [Jupyter Notbooks] and libraries like [NumPy] make developing reports or documenting numerical processes. However if you a software developer like me, this code needs to run in a script on a server, in Amazon's [Lambda Function Handler] or even [kubeless] in a custom [kubernetes] cluster.
 
-- Check out my article on [Essential Python 3] for a clean boilerplate script template to get you going.
-- [Pandas] bring Python a data type equivalent to super-charged spreadsheets. Read [Python Data Essentials - Pandas][Pandas] to get a taste of this incredible library. 
+Check out my article on [Essential Python 3] for a clean boilerplate script template to get you going.
 
-[Pandas]:https://mk.imti.co/python-data-essentials-pandas/
 [Essential Python 3]: https://mk.imti.co/essential-python3/
 [kubernetes]: https://mk.imti.co/hobby-cluster/
 [kubeless]:https://kubeless.io/
 [Jupyter Notbooks]:https://mk.imti.co/golang-to-jupyter/
-[Numpy]:https://docs.scipy.org/doc/numpy-1.13.0/reference/index.html
+[Numpy]:https://mk.imti.co/python-data-essentials-numpy/
 [Lambda Function Handler]:https://docs.aws.amazon.com/lambda/latest/dg/python-programming-model-handler-types.html
+[DataFrame]:https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html

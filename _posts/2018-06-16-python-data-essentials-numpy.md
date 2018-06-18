@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Python Data Essentials - NumPy
+title: Python Data Essentials - Numpy
 tags: coding python
 featured: python coding
 mast: sorting
@@ -30,7 +30,7 @@ This article will focus on [NumPy] because it is the core numeric library that m
 [kubernetes]: http://localhost:4000/tag/kubernetes/
 [go]:https://golang.org/
 [Numpy]:http://www.numpy.org/
-[pandas]:https://pandas.pydata.org/
+[pandas]:https://mk.imti.co/python-data-essentials-pandas/
 [Matplotlib]:https://matplotlib.org/
 [The Most Popular Languages for Data Science]: https://dzone.com/articles/which-are-the-popular-languages-for-data-science
 [services]: https://kubernetes.io/docs/concepts/services-networking/service/
@@ -42,9 +42,7 @@ This article will focus on [NumPy] because it is the core numeric library that m
 
 This article is written using [Juypter Notebooks] installed and running under [Anaconda]. If you don't already have this setup I highly recomend it, along with downloading this article itself as a notbook, executing and modifying the following examples. All the code below is executes here in [Juypter Notebooks].
 
-**Download Notebook**
-- [2018-06-16-python-data-essentials-numpy.ipynb](http://mk.imti.co/notebooks/2018-06-16-python-data-essentials-numpy.ipynb)
-- Read in [nbviewer](https://nbviewer.jupyter.org/url/mk.imti.co/notebooks/2018-06-16-python-data-essentials-numpy.ipynb)
+
 
 ```python
 !conda list numpy
@@ -885,8 +883,10 @@ print(f'      new max: { MN_norm.min() }\n')
 
 A lot of data science in done in [Jupyter Notbooks] and libraries like [NumPy] make developing reports or documenting numerical processes. However if you a software developer like me, this code needs to run in a script on a server, in Amazon's [Lambda Function Handler] or even [kubeless] in a custom [kubernetes] cluster.
 
-Check out my article on [Essential Python 3] for a clean boilerplate script template to get you going.
+- Check out my article on [Essential Python 3] for a clean boilerplate script template to get you going.
+- [Pandas] bring Python a data type equivalent to super-charged spreadsheets. Read [Python Data Essentials - Pandas][Pandas] to get a taste of this incredible library. 
 
+[Pandas]:https://mk.imti.co/python-data-essentials-pandas/
 [Essential Python 3]: https://mk.imti.co/essential-python3/
 [kubernetes]: https://mk.imti.co/hobby-cluster/
 [kubeless]:https://kubeless.io/
