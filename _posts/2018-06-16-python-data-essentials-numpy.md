@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Python Data Essentials - Numpy
+title: Python Data Essentials - NumPy
 tags: coding python
 featured: python coding
 mast: sorting
