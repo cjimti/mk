@@ -44,8 +44,7 @@ This article is written using [Juypter Notebooks] installed and running under [A
 
 **Download Notebook**
 - [2018-06-16-python-data-essentials-numpy.ipynb](http://mk.imti.co/notebooks/2018-06-16-python-data-essentials-numpy.ipynb)
-
-
+- Read in [nbviewer](https://nbviewer.jupyter.org/url/mk.imti.co/notebooks/2018-06-16-python-data-essentials-numpy.ipynb)
 
 ```python
 !conda list numpy
