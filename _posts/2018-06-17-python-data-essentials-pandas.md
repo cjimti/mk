@@ -1088,7 +1088,7 @@ print(f'The bot with the lowest intelligence is {hii.columns[-1]}.')
     The bot with the lowest intelligence is bender.
 
 
-I doubt that `johnny 5` is more intelligent than `bender` but his data was unknown and therefore derived by using a mean, so the sore is mathematically correct. 
+I doubt that `johnny 5` is more intelligent than `bender` but his data was unknown and therefore derived by using a mean, so the score is mathematically correct.
 
 I won't attempt even to scratch the surface of sorting functions and their parameters provided by [DataFrame]s. This article is only intended to give you a taste and get you going.
 
