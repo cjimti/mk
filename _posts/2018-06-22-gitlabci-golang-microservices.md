@@ -11,7 +11,7 @@ Many of the resources on Cloud Native [Microservices] show you how easy it is to
 
 The following workflow currently manages dozens of projects for me, some of which have been through thousands of builds; I find it highly stable. This workflow is also much more flexible and customizable than a lot of turn-key solutions, it requires a bit of explanation but typically only involves about twenty minutes of setup per microservice application, well worth the investment considering you get a simplified build and deploy script.
 
-![Gitlab Microservices Workflow](/images/content/microservices-woirkflow.png)
+![Gitlab Microservices Workflow](https://mk.imti.co/images/content/microservices-woirkflow.png)
 
 **Outline:**
 
@@ -144,7 +144,7 @@ First, you need to obtain a token from Gitlab, see below.
 
 You need to create a [Gitlab] user with access to specific repositories, groups, or all (or use your personal account if you work solo). If your team is small, you may not need fine-grained security here. Remember we only need read-only access, so it's not essential to keep the secret safe from anyone who already had read access. Make sure to copy the generated token to your notes for use further down to configure the Gitlab project.
 
-![Gitlab Access Tokens](/images/content/gitlab_access_tokens.png)
+![Gitlab Access Tokens](https://mk.imti.co/images/content/gitlab_access_tokens.png)
 
 All you need is the generated token, the **Name** is used for keeping track of your tokens in **Gitlab**.
 
@@ -154,7 +154,7 @@ Assuming you have already setup a Gitlab repository for your Microservice, add t
 
 There are ways to avoid having to `go get` dependencies, by using utilities like `godeps` and pre-packaging required libraries you don't have to retrieve them at build time. However, this can also make development difficult if you are actively developing those libraries at the same time, as I often do. The configuration above gives you the option to do it either way.
 
-![Gitlab Project Settings](/images/content/gitlab_ci_cd_settings.png)
+![Gitlab Project Settings](https://mk.imti.co/images/content/gitlab_ci_cd_settings.png)
 
 #### Kubernetes: `./k8s/dev`
 
@@ -303,7 +303,7 @@ Before running you need another token from Gitlab, a Deploy Token Kubernetes nee
 
 In Gitlab under the repository settings for your **example-microservice**, choose **Repository** and expand the **Deploy Tokens** section. Create a deploy token by giving it a name (I leave the expiration empty) and check the **read_registry** scope. You need the generated **Username** and token below, keep them in your notes.
 
-![Gitlab Deploy Token](/images/content/gitlab_deploy_token.png)
+![Gitlab Deploy Token](https://mk.imti.co/images/content/gitlab_deploy_token.png)
 
  In the `40-deployment.yml` file above you can review the entry under **imagePullSecrets** to see we reference **example-microservice-regcred**.
 
@@ -586,7 +586,7 @@ Next, paste the key into Gitlab along with the path to your Kubernetes cluster.
 
 **Giltab Project** > **Settings (gear)** > **CI/CD** > **Secret variables**:
 
-![Gitlab secret variables](/images/content/gitlab_secret_variables.png)
+![Gitlab secret variables](https://mk.imti.co/images/content/gitlab_secret_variables.png)
 
 These four variables allow Gitlab to communicate with its own registry from a container in the **build stage** with `GITLAB_DOMAIN` and `GITLAB_TOKEN`, and allow it to communicate with Kubernetes in the **deploy stage** with `K8S_DEV_SERVER` and `K8S_DEV_TOKEN`.
 
@@ -635,7 +635,7 @@ Streamlining this workflow can be accomplished with utilities like the Kubernete
 [Gitlab container registry]:https://docs.gitlab.com/ee/user/project/container_registry.html
 [GitLab CI/CD Variables]:https://docs.gitlab.com/ee/ci/variables/
 [Docker login]:https://docs.docker.com/engine/reference/commandline/login/
-[.gitlab-ci.yml]:/gitlabci-golang-microservices/#automated-builds-and-deployments-gitlab-ciyml
+[.gitlab-ci.yml]:https://mk.imti.co/gitlabci-golang-microservices/#automated-builds-and-deployments-gitlab-ciyml
 [docker tag]:https://docs.docker.com/engine/reference/commandline/tag/
 [docker push]:https://docs.docker.com/engine/reference/commandline/push/
 [kubectl set image]:https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment
