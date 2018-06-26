@@ -250,7 +250,7 @@ metadata:
   namespace: fuse
   labels:
     app: example-microservice
-    client: jakes
+    client: internal
     env: dev
 spec:
   replicas: 2
@@ -261,7 +261,7 @@ spec:
     metadata:
       labels:
         app: example-microservice
-        client: jakes
+        client: internal
         env: dev
     spec:
       imagePullSecrets:
