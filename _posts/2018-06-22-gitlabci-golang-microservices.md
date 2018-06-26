@@ -522,7 +522,7 @@ Note the new variables **K8S_DEV_SERVER** and **K8S_DEV_TOKEN**.
 | `--server="${K8S_DEV_SERVER}"` | Tells [kubectl] what cluster to use. |
 | `--token="${K8S_DEV_TOKEN}"` | used for [authentication]. |
 
-If your [custom Kubernetes cluster][Production Hobby Cluster] uses Role-based access control ([RBAC]), and it should. Use the following steps to get a token granting `kubectl` access to `the-project` namespace.
+If your [custom Kubernetes cluster][Production Hobby Cluster] uses Role-based access control ([RBAC]), and it should, use the following steps to get a token granting `kubectl` access to `the-project` namespace.
 
 You can combine three configuration directives into one yaml file and get the objects you need in Kubernetes. You need a [ServiceAccount], a [Role] and a [RoleBinding] tying the two together.
 
