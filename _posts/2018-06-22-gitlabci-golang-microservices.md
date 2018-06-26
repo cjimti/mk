@@ -175,7 +175,7 @@ kind: Namespace
 metadata:
   name: the-project
   labels:
-    client: internel
+    client: internal
     env: dev
 ```
 
@@ -191,7 +191,7 @@ metadata:
   namespace: the-project
   labels:
     app: example-microservice
-    client: internel
+    client: internal
     env: dev
 spec:
   selector:
@@ -224,7 +224,7 @@ metadata:
   namespace: the-project
   labels:
     app: example-microservice
-    client: internel
+    client: internal
     env: dev
 data:
   dev_config.yml: |
@@ -338,7 +338,7 @@ metadata:
   namespace: the-project
   labels:
     app: example-microservice
-    client: internel
+    client: internal
     env: dev
 spec:
   rules:
