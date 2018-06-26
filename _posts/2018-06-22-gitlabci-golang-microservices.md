@@ -592,7 +592,7 @@ These four variables allow Gitlab to communicate with its own registry from a co
 
 ## Conclusion
 
-This process above takes me about twenty minutes per microservice application to setup. Considering that these project maybe around for years and go through hundreds or even thousands of builds makes this a minimal investment in time.
+The process above takes me about twenty minutes per microservice application to setup. Considering that these project maybe around for years and go through hundreds or even thousands of builds makes this a minimal investment in time.
 
 Streamlining this workflow can be accomplished with utilities like the Kubernetes package manager [Helm]. However, caution is advised to ensure that every step in the workflow should make the workflow more clear and easy to visualize and understand a year from now. We should not be developing workflows for the sake of the workflow setup process. Build and deploy pipeline should make the process of using them and debugging them easy, years after they are up and running.
 
