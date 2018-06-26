@@ -158,7 +158,7 @@ There are ways to avoid having to `go get` dependencies, by using utilities like
 
 #### Kubernetes: `./k8s/dev`
 
-My workflow starts with deploying a minimally working version of my microservice to a development environment; this can be a separate cluster, a just a separate [namespace]. I use a separate cluster. Setting up a cheap development cluster is easy and give your more opportunities to experiment, check out [Production Hobby Cluster] for an agile environment perfect for development and experimentation.
+My workflow starts with deploying a minimally working version of my microservice to a development environment; this can be a separate cluster, a just a separate [namespace]. I use a separate cluster. Setting up a cheap development cluster is easy and gives you more opportunities to experiment, check out [Production Hobby Cluster] for an agile environment perfect for development and experimentation.
 
 We use [kubectl] to configure and deploy the new service. I'll assume you have some familiarity with it. [kubectl] makes it easy to switch between multiple clusters: `kubectl config use-context phc-dev`, see my post, [kubectl Context Multiple Clusters](https://mk.imti.co/kubectl-remote-context/) for a detailed example.
 
@@ -209,7 +209,7 @@ Most of my services attach to [Pods] with the same name as the service. The **na
 kubectl get all -l app=example-microservice -n the-project
 ```
 
-I use **ClusterIP** for **type:** because I don't need a publicly accessible IP address or port. I use [Ingress on Custom Kubernetes].
+I use **ClusterIP** for **type:** because I don't need a publicly accessible IP address or port. I use [Ingress on Custom Kubernetes] for external access.
 
 ##### Config: `./k8s/dev/30-config.yml`
 
