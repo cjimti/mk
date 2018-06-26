@@ -9,15 +9,20 @@ mast: ci
 
 Many of the resources on Cloud Native [Microservices] show you how easy it is to get up and running with AWS or GKE. I think this is great but for the fact that I see a trend (in my clients at least) of associating concepts with particular products or worse, companies (I love Amazon, but it's not THE cloud). In my opinion, to embrace Cloud Native and [Microservices], you should develop some, and host them yourself. The cloud is not Google or Amazon; it's any cluster of virtualized systems, abstracted from their hardware interfaces and centrally managed.
 
+The following workflow currently manages dozens of projects for me, some of which have been through thousands of builds; I find it highly stable. This workflow is also much more flexible and customizable than a lot of turn-key solutions, it requires a bit of explanation but typically only involves about twenty minutes of setup per microservice application, well worth the investment considering you get a simplified build and deploy script.
+
+![Gitlab Microservices Workflow](/images/content/microservices-woirkflow.png)
+
+**Outline:**
+
 * Do not remove this line (for toc on a rendered blog)
 {:toc}
 
 ## Overview
 
-Many tutorials I run across assume you might get to live in a utopian world, where all your code is open source and hosted on public Github repositories and deployment means up and running a single node k8s cluster like Minikube. To be fair, this simplifies the technical details of the examples, and it broadens the audience by giving local sandbox examples that you can adapt to your production environment,  and helps many of us quickly get our head around novel concepts.
+Many tutorials I run across assume you might get to live in a utopian world, where all your code is open source and hosted on public Github repositories and deployment means up and running a single node [k8s] cluster like Minikube. To be fair, this simplifies the technical details of the examples, and it broadens the audience by giving local sandbox examples that you can adapt to your production environment,  and helps many of us quickly get our head around novel concepts.
 
 If you are like me your early days were developing Java or Perl scripts that were installed on dev, staging or production hardware and executed under the Apache or Tomcat web servers, and that may still be part of your architecture today. Big monolithic applications, running on big fast servers that you could visit at the data center. However many developers like myself have started moving new development to Cloud Native [Microservices].
-
 
 ## A Microservice Stack
 
@@ -384,7 +389,7 @@ List the Kubernetes objects:
 kubectl get po,svc,deploy,ing -l app=example-microservice -n the-project
 ```
 
-The deployment above fails, erroring on the fact that there is no container image to pull for the [Pod] we specified in the [Deployment]  (`40-deployment.yml`).  You can always build an image and push it to Gitlab's registry before configuring the deployment; however Kubernetes continues attempts to pull the image. This error is ok and how I typically set up new projects. Since the CI scripts job is to build and deploy by updating an image, it's easier if there is already a [Deployment] waiting for it. This process might make more sense when we review the `.gitlab-ci.yml` CI script below.
+The deployment above fails, erroring on the fact that there is no container image to pull for the [Pod] we specified in the [Deployment]  (`40-deployment.yml`).  You can always build an image and push it to Gitlab's registry before configuring the deployment; however, Kubernetes continues attempts to pull the image. This error is ok and how I typically set up new projects. Since the CI scripts job is to build and deploy by updating an image, it's easier if there is already a [Deployment] waiting for it. This process might make more sense when we review the `.gitlab-ci.yml` CI script below.
 
 #### Automated Builds and Deployments: `.gitlab-ci.yml`
 
@@ -429,7 +434,7 @@ dev_deploy:
 
 ##### Runner `image: txn2/docker-kubectl`
 
-The build script uses Docker and `kubectl`. You can use any base image and install these as part of the build and deploy stages; however I find it faster to use an image with these utilities already installed. Use the Docker container [txn2/docker-kubectl] or create your own.
+The build script uses Docker and `kubectl`. You can use any base image and install these as part of the build and deploy stages; however, I find it faster to use an image with these utilities already installed. Use the Docker container [txn2/docker-kubectl] or create your own.
 
 **Dockerfile** for Gitlab Kubernetes deployments:
 ```dockerfile
@@ -558,8 +563,41 @@ roleRef:
 You need to extract the generated token from a [secret] automatically created for the new [ServiceAccount].
 
 ```bash
- kubectl describe secret fuse-dev-token-bc7d2 -n fuse
+kubectl describe serviceaccount the-project -n fuse
+
+
+Name:                the-project
+Namespace:           the-project
+Labels:              <none>
+Annotations:         <none>
+Image pull secrets:  <none>
+Mountable secrets:   the-project-token-bc7d2
+Tokens:              the-project-token-bc7d2
+Events:              <none>
 ```
+
+The **Tokens:** key points to the name of the [secret] holding the token we need:
+
+```bash
+kubectl describe secret the-project-token-bc7d2 -n the-project
+```
+
+Under the **token:** key in the described [secret] cut and past this long password. The token is useful for any application needing to deploy into the-project [namespace].
+
+Next, paste the key into Gitlab along with the path to your Kubernetes cluster.
+
+**Giltab Project** > **Settings (gear)** > **CI/CD** > **Secret variables**:
+
+![Gitlab secret variables](/images/content/gitlab_secret_variables.png)
+
+These four variables allow Gitlab to communicate with its own registry from a container in the **build stage** with `GITLAB_DOMAIN` and `GITLAB_TOKEN`, and allow it to communicate with Kubernetes in the **deploy stage** with `K8S_DEV_SERVER` and `K8S_DEV_TOKEN`.
+
+## Conclusion
+
+This process above takes me about twenty minutes per microservice application to setup. Considering that these project maybe around for years and go through hundreds or even thousands of builds makes this a minimal investment in time.
+
+Streamlining this workflow can be accomplished with utilities like the Kubernetes package manager [Helm]. However, caution is advised to ensure that every step in the workflow should make the workflow more clear and easy to visualize and understand a year from now. We should not be developing workflows for the sake of the workflow setup process. Build and deploy pipeline should make the process of using them and debugging them easy, years after they are up and running.
+
 
 ## Resources
 - [Production Hobby Cluster]
@@ -609,3 +647,5 @@ You need to extract the generated token from a [secret] automatically created fo
 [ServiceAccount]:https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/
 [Role]:https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings
 [RoleBinding]:https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings
+[k8s]:https://mk.imti.co/tag/kubernetes/
+[ingress]:https://mk.imti.co/web-cluster-ingress/
