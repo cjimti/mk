@@ -7,7 +7,7 @@ featured: golang docker gitlab kubernetes
 mast: ci
 ---
 
-Many of the resources on Cloud Native [Microservices] show you how easy it is to get up and running with AWS or GKE. I think this is great but for the fact that I see a trend (in my clients at least) of associating concepts with particular products or worse, companies (I love Amazon, but it's not THE cloud). In my opinion, to embrace Cloud Native and [Microservices], you should develop some, and host them yourself. The cloud is not Google or Amazon; it's any cluster of virtualized systems, abstracted from their hardware interfaces and centrally managed.
+Many of the resources on Cloud Native [Microservices] show you how easy it is to get up and running with AWS or GKE. I think this is great but for the fact that I see a trend (in my clients at least) of associating concepts with particular products or worse, companies. I love Amazon, but it's not THE cloud). In my opinion, to embrace Cloud Native and [Microservices] you should develop some, and host them yourself. The cloud is not Google or Amazon; it's any cluster of virtualized systems, abstracted from their hardware interfaces and centrally managed.
 
 The following workflow currently manages dozens of projects for me, some of which have been through thousands of builds; I find it highly stable. This workflow is also much more flexible and customizable than a lot of turn-key solutions, it requires a bit of explanation but typically only involves about twenty minutes of setup per microservice application, well worth the investment considering you get a simplified build and deploy script.
 
@@ -20,33 +20,31 @@ The following workflow currently manages dozens of projects for me, some of whic
 
 ## Overview
 
-Many tutorials I run across assume you might get to live in a utopian world, where all your code is open source and hosted on public Github repositories and deployment means up and running a single node [k8s] cluster like Minikube. To be fair, this simplifies the technical details of the examples, and it broadens the audience by giving local sandbox examples that you can adapt to your production environment,  and helps many of us quickly get our head around novel concepts.
+If you are like me your early days were developing Java or Perl scripts that were installed on dev, staging or production hardware and executed under the Apache or Tomcat web servers, and that may still be part of your architecture today. Big monolithic applications, running on big fast servers that you could visit at the data center. However many developers like myself have started moving new development to Cloud Native [Microservices]. The process of deploying monoliths is not really any different, only in that traditional monoliths do not run in container, although they can.
 
-If you are like me your early days were developing Java or Perl scripts that were installed on dev, staging or production hardware and executed under the Apache or Tomcat web servers, and that may still be part of your architecture today. Big monolithic applications, running on big fast servers that you could visit at the data center. However many developers like myself have started moving new development to Cloud Native [Microservices].
+Many tutorials I run across assume you might get to live in a utopian world, where all your code is open source and hosted on public [Github] repositories and deployment means up and running a local, single node [k8s] cluster like Minikube. To be fair, this simplifies the technical details of the examples, and it broadens the audience by giving local sandbox examples that you can adapt to your production environment,  and helps many of us quickly get our head around novel concepts. This tutorial is intended to be applied directly to a production development process.
 
 ## A Microservice Stack
 
 I choose five technologies in my workflow to give you some examples. I am referring to open source (and free) software only, not services.
 
-- **Kubernetes with Alpine Linux Docker** containers is the core of my cloud. This cloud can be run almost anywhere from AWS to [Vultr], [Digital Ocean], [Linode] or some co-located servers you have running in a data center. If you want to learn how to set up a production style Kubernetes cluster on the cheap, I suggest reading my post, [Production Hobby Cluster]. [Production Hobby Cluster] gets you a legit, highly available, three node Kuberneteds cluster for about $15 a month. Don't plan on hosting Netflix on it, but when you need to scale your architecture won't require a complete overhaul. Larger instances and more of them with scale the [Production Hobby Cluster] from hobby to enterprise.
+- **Kubernetes with [Alpine Linux] Docker** containers is the core of my cloud. This cloud can be run almost anywhere from AWS to [Vultr], [Digital Ocean], [Linode] or some co-located servers you have running in a data center. If you want to learn how to set up a production style Kubernetes cluster on the cheap, I suggest reading my post, [Production Hobby Cluster]. The [Production Hobby Cluster] tutorial gets you a legit, highly available, three node Kuberneteds cluster for about $15 a month. Don't plan on hosting Netflix on it, but when you need to scale your architecture it won't require a complete overhaul. Larger instances and more of them is often all that is needed to scale the [Production Hobby Cluster] from hobby to enterprise.
 
-- **Golang** / Go to write your [Microservices], those small API endpoints that satisfy some simple, single or small group of requirements. I use Go because it compiles to a self-sufficient little binary that runs at home in the [smallest of Docker containers][Building Docker Images for Static Go Binaries] and able to efficiently serve raw TCP or HTTP traffic on a specified port. Go is also an excellent language for [extending the cloud itself][Extending Kubernetes: Create Controllers for Core and Custom Resources] but that is a bit much for this article.
+- **[Golang]** / [Go][Golang] to write your [Microservices], those small API endpoints that satisfy some simple, single or small group of requirements. I use [Go][Golang] because it compiles to a self-sufficient little binary that runs at home in the [smallest of Docker containers][Building Docker Images for Static Go Binaries] and able to efficiently serve raw TCP or HTTP traffic on a specified port. Go is also an excellent language for [extending the cloud itself][Extending Kubernetes: Create Controllers for Core and Custom Resources], but that is a bit much for this article.
 
-- **Gitlab** is my choice for self-hosted code and CI/CD (Automation). Github is fantastic and any code I do not need to keep private goes straight there; however, even my open source projects get cloned into Gitlab so I can take advantage of its simple build and deployment automation. I run [Gitlab itself in my cloud][Installing GitLab on Kubernetes]. Some of my older projects run through Jenkins, and it's an excellent tool but overkill these days for most of our workflow, now that Gitlab has matured. Rather than pay for services I would rather pay for instances to grow my cluster and self-host more services.
+- **[Gitlab]** is my choice for self-hosted code and CI/CD (Automation). Github is fantastic and any code I do not need to keep private goes straight there; however, even my open source projects get cloned into Gitlab so I can take advantage of its simple build and deployment automation. I run [a private copy of Gitlab in my cloud][Installing GitLab on Kubernetes]. Some of my older projects run through Jenkins, and it's an excellent tool but overkill these days for most of my workflow, now that [Gitlab] has matured. Rather than pay for services I would rather pay for instances to grow my cluster and self-host more services.
 
 
 ## The Microservice Application
 
-The following is a simplified workflow.
-
-An application and one or more libraries as separate repositories. Not every lib needs its own. However, it's a good idea to separate any libraries that many projects share. Examples would be common structs or system-wide service implementations.
+The following is a simplified workflow for a [Microservices] application and one or more libraries as separate repositories. Not every lib needs its own. However, it's a good idea to separate any libraries that many projects share. Examples would be common [structs] or system-wide service implementations.
 
 - **The Microservice application**: `/go/src/gitlab.example.com/proj/app`
 - **A library**: `/go/src/gitlab.example.com/lib/example`
 
 ### Workflow & Boilerplate
 
-Golang with Gitlab and Kubernetes, Microservice application, file structure boilerplate:
+[Golang] with [Gitlab] and [Kubernetes], Microservice application, file structure boilerplate:
 
 ```bash
 README.md
@@ -142,9 +140,9 @@ docker build --build-arg GITLAB_TOKEN=$GITLAB_TOKEN \
 
 First, you need to obtain a token from Gitlab, see below.
 
-##### Gitlab User Token
+##### [Gitlab User Token]
 
-You need to create a Gitlab user with access to specific repositories, groups, or all (or use your personal account if you work solo). If your team is small, you may not need fine-grained security here. Remember we only need read-only access, so it's not essential to keep the secret safe from anyone who already had read access. Make sure to copy the generated token to your notes for use further down to configure the Gitlab project.
+You need to create a [Gitlab] user with access to specific repositories, groups, or all (or use your personal account if you work solo). If your team is small, you may not need fine-grained security here. Remember we only need read-only access, so it's not essential to keep the secret safe from anyone who already had read access. Make sure to copy the generated token to your notes for use further down to configure the Gitlab project.
 
 ![Gitlab Access Tokens](/images/content/gitlab_access_tokens.png)
 
@@ -166,7 +164,7 @@ We use [kubectl] to configure and deploy the new service. I'll assume you have s
 
 ##### Namespace: `./k8s/dev/10-namespace.yml`
 
-I use a pretty standard form for all my Kubernetes objects. This example assumes we have a project called `the-project` and consists of many [Microservices]. Although the namespace is at the project level and not specific to a service, I keep a copy in each service. Duplicating this namespace configuration helps document the service and Kubernetes does not add the namespace if it already exists.
+I use a pretty standard form for all my Kubernetes objects. This example assumes we have a project called `the-project` and consists of many [Microservices]. Although the [namespace] is at the project level and not specific to a service, I keep a copy in each service. Duplicating this namespace configuration helps document the service and Kubernetes does not add the namespace if it already exists.
 
 I also label every configuration with a **client** and **env**, this aids in selection rules and adds additional clarity of purpose.
 
@@ -649,3 +647,11 @@ Streamlining this workflow can be accomplished with utilities like the Kubernete
 [RoleBinding]:https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings
 [k8s]:https://mk.imti.co/tag/kubernetes/
 [ingress]:https://mk.imti.co/web-cluster-ingress/
+[Gitlab]:https://about.gitlab.com/installation/
+[Github]:https://github.com/
+[Golang]:https://golang.org/
+[structs]:https://tour.golang.org/moretypes/2
+[Gitlab User Token]:https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
+[Alpine Linux]:https://alpinelinux.org/
+[Service]:https://kubernetes.io/docs/concepts/services-networking/service/
+[Kubernetes]:https://kubernetes.io/
