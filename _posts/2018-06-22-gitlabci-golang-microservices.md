@@ -587,7 +587,6 @@ Next, paste the key into Gitlab along with the path to your Kubernetes cluster.
 **Giltab Project** > **Settings (gear)** > **CI/CD** > **Secret variables**:
 
 ![Gitlab secret variables](https://mk.imti.co/images/content/gitlab_secret_variables_2.png)
-![Gitlab secret variables](https://mk.imti.co/images/content/gitlab_secret_variables_2.png)
 
 These four variables allow Gitlab to communicate with its own registry from a container in the **build stage** with `GITLAB_DOMAIN` and `GITLAB_TOKEN`, and allow it to communicate with Kubernetes in the **deploy stage** with `K8S_DEV_SERVER` and `K8S_DEV_TOKEN`.
 
