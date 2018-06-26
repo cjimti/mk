@@ -2,7 +2,7 @@
 published: true
 layout: post
 title: A Microservices Workflow with Golang and Gitlab CI
-tags: golang docker gitlab Kubernetes
+tags: golang docker gitlab kubernetes
 featured: golang docker gitlab Kubernetes
 mast: ci
 ---
