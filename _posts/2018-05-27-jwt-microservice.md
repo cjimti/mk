@@ -2,8 +2,8 @@
 published: true
 layout: post
 title: JWT Microservice, Tokenize Remote APIs
-tags: jwt go security docker kubernetes
-featured: docker kubernetes
+tags: jwt go security docker kubernetes golang
+featured: docker kubernetes golang
 mast: jwt
 ---
 
