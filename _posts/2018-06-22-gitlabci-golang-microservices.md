@@ -14,7 +14,7 @@ Many of the resources on Cloud Native [Microservices] show you how easy it is to
 
 ## Overview
 
-Alot of tutorials I run across assume you might get to live in a utopian world, where all your code is open source and hosted on public Github repositories and deployment means up and running a single node k8s cluster like Minikube. To be fair, this simplifies the technical details of the examples, and it broadens the audience by giving local sandbox examples that you can adapt to your production environment,  and helps many of us quickly get our head around novel concepts.
+Many tutorials I run across assume you might get to live in a utopian world, where all your code is open source and hosted on public Github repositories and deployment means up and running a single node k8s cluster like Minikube. To be fair, this simplifies the technical details of the examples, and it broadens the audience by giving local sandbox examples that you can adapt to your production environment,  and helps many of us quickly get our head around novel concepts.
 
 If you are like me your early days were developing Java or Perl scripts that were installed on dev, staging or production hardware and executed under the Apache or Tomcat web servers, and that may still be part of your architecture today. Big monolithic applications, running on big fast servers that you could visit at the data center. However many developers like myself have started moving new development to Cloud Native [Microservices].
 
@@ -23,11 +23,11 @@ If you are like me your early days were developing Java or Perl scripts that wer
 
 I choose five technologies in my workflow to give you some examples. I am referring to open source (and free) software only, not services.
 
-- **Kubernetes with Alpine Linux Docker** containers is the core of my cloud. This cloud can be run almost anywhere from AWS to [Vultr], [Digital Ocean], [Linode] or some co-located servers you have running in a data center. If you want to learn how to set up a production style Kubernetes cluster on the cheap, I suggest reading my post, [Production Hobby Cluster]. [Production Hobby Cluster] gets you a legit, highly available, three node Kuberneteds cluster for about $15 a month. Don't plan on hosting Netflix on it, but when you need to scale your architecture will not need a complete overhaul. Larger instances and more of them with scale the [Production Hobby Cluster] from hobby to enterprise.
+- **Kubernetes with Alpine Linux Docker** containers is the core of my cloud. This cloud can be run almost anywhere from AWS to [Vultr], [Digital Ocean], [Linode] or some co-located servers you have running in a data center. If you want to learn how to set up a production style Kubernetes cluster on the cheap, I suggest reading my post, [Production Hobby Cluster]. [Production Hobby Cluster] gets you a legit, highly available, three node Kuberneteds cluster for about $15 a month. Don't plan on hosting Netflix on it, but when you need to scale your architecture won't require a complete overhaul. Larger instances and more of them with scale the [Production Hobby Cluster] from hobby to enterprise.
 
 - **Golang** / Go to write your [Microservices], those small API endpoints that satisfy some simple, single or small group of requirements. I use Go because it compiles to a self-sufficient little binary that runs at home in the [smallest of Docker containers][Building Docker Images for Static Go Binaries] and able to efficiently serve raw TCP or HTTP traffic on a specified port. Go is also an excellent language for [extending the cloud itself][Extending Kubernetes: Create Controllers for Core and Custom Resources] but that is a bit much for this article.
 
-- **Gitlab** is my choice for self-hosted code and CI/CD (Automation). Github is fantastic and any code I do not need to keep private goes straight there; however even my open source projects get cloned into Gitlab so I can take advantage of its simple build and deployment automation. I run [Gitlab itself in my cloud][Installing GitLab on Kubernetes]. Some of my older projects run through Jenkins, and it's an excellent tool but overkill these days for most of our workflow, now that Gitlab has matured. Rather than pay for services I would rather pay for instnaces to grow my cluster and host more of my own services.
+- **Gitlab** is my choice for self-hosted code and CI/CD (Automation). Github is fantastic and any code I do not need to keep private goes straight there; however, even my open source projects get cloned into Gitlab so I can take advantage of its simple build and deployment automation. I run [Gitlab itself in my cloud][Installing GitLab on Kubernetes]. Some of my older projects run through Jenkins, and it's an excellent tool but overkill these days for most of our workflow, now that Gitlab has matured. Rather than pay for services I would rather pay for instances to grow my cluster and self-host more services.
 
 
 ## The Microservice Application
@@ -72,7 +72,7 @@ import (
 )
 ```
 
-It can be tricky allowing external build systems to pull these private libraries; however that is overcome easily with Gitlab tokens and some updates to the `Dockerfile` and `.gitlab-ci.yml`.
+It can be tricky allowing external build systems to pull these private libraries; however, that is overcome easily with Gitlab tokens and some updates to the `Dockerfile` and `.gitlab-ci.yml`.
 
 ##### Container: `Dockerfile`
 
@@ -294,15 +294,15 @@ spec:
               containerPort: 8080
 ```
 
-Before running you need another token from Gitlab, a Deploy Token Kubernetes needs in order to pull the image from Gitlab's repository.
+Before running you need another token from Gitlab, a Deploy Token Kubernetes needs to pull the image from Gitlab's repository.
 
 ##### Gitlab Project Settings: Generate Gitlab Deploy Token
 
-In Gitlab under the repository settings for your **example-microservice**, choose **Repository** and expand the **Deploy Tokens** section. Create a deploy token by giving it a name (I leave the expiration empty) and check the **read_registry** scope. You need the genereated **Username** and token below, keep them in your notes.
+In Gitlab under the repository settings for your **example-microservice**, choose **Repository** and expand the **Deploy Tokens** section. Create a deploy token by giving it a name (I leave the expiration empty) and check the **read_registry** scope. You need the generated **Username** and token below, keep them in your notes.
 
 ![Gitlab Deploy Token](/images/content/gitlab_deploy_token.png)
 
- In the `40-deployment.yml` file above you can review the entry under **imagePullSecrets** to see we refrence **example-microservice-regcred**.
+ In the `40-deployment.yml` file above you can review the entry under **imagePullSecrets** to see we reference **example-microservice-regcred**.
 
 Create the **example-microservice-regcred** [Secret] in Kubernetes:
 
@@ -315,13 +315,13 @@ kubectl create secret docker-registry example-microservice-regcred \
     --docker-email=developer@example.com
 ```
 
-The `kubectl create secret` command create a special kind of [Secret], [docker-registry](https://kubernetes-v1-4.github.io/docs/user-guide/kubectl/kubectl_create_secret_docker-registry/) used by Kubernetes when issuing pulls for Docker containers. This secret is make available for all the [deployments] in the `the-project` [namespace]. The `--docker-server` parameter specifies the repositor host and port. In this case we use the [Gitlab container registry] of our private Gitlab installation. The `--docker-username` and `--docker-password` parameters were generated above.
+The `kubectl create secret` command creates a special kind of [Secret], [docker-registry](https://kubernetes-v1-4.github.io/docs/user-guide/kubectl/kubectl_create_secret_docker-registry/) used by Kubernetes when issuing pulls for Docker containers. This secret is made available for all the [deployments] in the `the-project` [namespace]. The `--docker-server` parameter specifies the repository host and port. In this case, we use the [Gitlab container registry] of our private Gitlab installation. The `--docker-username` and `--docker-password` parameters were generated in the `kubectl create secret docker-registry` command above.
 
 Once the secret is created it can be used by adding `example-microservice-regcred` in the **imagePullSecrets** for our **example-microservice** [deployment].
 
 ##### Ingress `./k8s/dev/50-ingress.yml`
 
-Setup [Ingress on Custom Kubernetes] if you have not done so already. You should also secure your [ingress] api enpoints with HTTPS, a secure, free and easy way of doing this involves setting up [Let's Encrypt on Kubernetes] with [cert-manager](https://github.com/jetstack/cert-manager/).
+Setup [Ingress on Custom Kubernetes] if you have not done so already. You should also secure your [ingress] API endpoints with HTTPS, a secure, free and easy way of doing this involves setting up [Let's Encrypt on Kubernetes] with [cert-manager](https://github.com/jetstack/cert-manager/).
 
 **50-ingress.yml**
 
@@ -354,7 +354,7 @@ spec:
 
 #### Initial Kubernetes Deployment
 
-I never automate the initial configuration and deployment of [Microservices] in Kubernetes. There are a few things that once setup don't need to change per itteration. Packing the the install for automaic configuration and deployment is better left the the Kubernetes package manager [Helm] and after development itterations have stabelized into a more mature state, in this example workflow we are just getting started.
+I never automate the initial configuration and deployment of [Microservices] in Kubernetes. There are a few things that once setup don't need to change per iteration. Packing the install for automatic configuration and deployment is better left the Kubernetes package manager [Helm], and after development iterations have stabilized into a more mature state, in this example workflow we are just getting started.
 
 **The quick way**:
 
@@ -384,14 +384,189 @@ List the Kubernetes objects:
 kubectl get po,svc,deploy,ing -l app=example-microservice -n the-project
 ```
 
+The deployment above fails, erroring on the fact that there is no container image to pull for the [Pod] we specified in the [Deployment]  (`40-deployment.yml`).  You can always build an image and push it to Gitlab's registry before configuring the deployment; however Kubernetes continues attempts to pull the image. This error is ok and how I typically set up new projects. Since the CI scripts job is to build and deploy by updating an image, it's easier if there is already a [Deployment] waiting for it. This process might make more sense when we review the `.gitlab-ci.yml` CI script below.
+
 #### Automated Builds and Deployments: `.gitlab-ci.yml`
+
+Make sure to first [configure runners] in Gitlab and [enable runners for the current repository]. When you push source code into Gitlab and CI is enabled and executes the instructions found in `.gitlab-ci.yml` if one exists.
+
+The following is an example `.gitlab-ci.yml` I commonly use for building and deploying [Microservices] in Kubernetes. Skim over the file and after I'll go over the critical parts.
+
+```yaml
+image: txn2/docker-kubectl
+
+variables:
+  DOCKER_DRIVER: overlay2
+  GIT_STRATEGY: fetch
+
+before_script:
+    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} private-registry.example.com:5050
+
+dev_build:
+  stage: build
+  only:
+    - dev@the-project/example-microservice
+  script:
+    - docker build -t ${CI_REGISTRY_IMAGE}:dev-${CI_PIPELINE_ID} -f ./k8s/Dockerfile .
+    - docker push ${CI_REGISTRY_IMAGE}:dev-${CI_PIPELINE_ID}
+    - docker tag ${CI_REGISTRY_IMAGE}:dev-${CI_PIPELINE_ID} ${CI_REGISTRY_IMAGE}:dev-latest
+    - docker push ${CI_REGISTRY_IMAGE}:dev-latest
+
+# update the deployment image
+dev_deploy:
+  stage: deploy
+  only:
+    - dev@the-project/example-microservice
+  variables:
+    GIT_STRATEGY: none
+  script: |
+    kubectl set image deployment/example-microservice cog=${CI_REGISTRY_IMAGE}:dev-${CI_PIPELINE_ID} \
+    --namespace="the-project" \
+    --server="${K8S_DEV_SERVER}" \
+    --token="${K8S_DEV_TOKEN}" \
+    --insecure-skip-tls-verify=true
+```
+
+##### Runner `image: txn2/docker-kubectl`
+
+The build script uses Docker and `kubectl`. You can use any base image and install these as part of the build and deploy stages; however I find it faster to use an image with these utilities already installed. Use the Docker container [txn2/docker-kubectl] or create your own.
+
+**Dockerfile** for Gitlab Kubernetes deployments:
+```dockerfile
+FROM docker:latest
+
+RUN apk update
+RUN apk add curl
+
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+RUN chmod u+x kubectl && mv kubectl /bin/kubectl
+```
+
+If you choose to create a custom container, you need to make sure it is publicly accessible. [Docker Hub][txn2/docker-kubectl] hosts public images free of charge. You are welcome to stick with [txn2/docker-kubectl]
+
+##### Runner `before_script`
+
+The runner needs access to push Docker containers it builds back to the [Gitlab container registry]. [GitLab CI/CD Variables] provides the `CI_JOB_TOKEN` specifically for registry authentication. We don't need Docker access for every stage however it's a minor operation to issue a [Docker login], so it's one less thing we have to think about should we require access in later stages, for instance, a testing stage that may tag containers as passing or failing.
+
+**Excerpt from [.gitlab-ci.yml]**
+```yaml
+before_script:
+    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} private-registry.example.com:5050
+```
+
+##### Runner `dev_build`
+
+The `deb_build` might look a little complicated, but it is only the [docker build], [docker tag] and [docker push] commands along with the use of a few  [GitLab CI/CD Variables].
+
+The [GitLab CI/CD Variables] used:
+
+ - **`CI_REGISTRY_IMAGE`** returns the address of the registry tied to the specific project.
+ - **`CI_PIPELINE_ID`** is the unique id of the current pipeline that GitLab CI uses internally. This variable gives us an always incrementing number, and this helps to distinguish our new container from a previously built one more easily. We could use a separate versioning system or even re-tag with an assigned version number after passing some test. The options are limitless.
+
+**Excerpt from [.gitlab-ci.yml]**
+```yaml
+dev_build:
+  stage: build
+  only:
+    - dev@the-project/example-microservice
+  script:
+    - docker build -t ${CI_REGISTRY_IMAGE}:dev-${CI_PIPELINE_ID} -f ./k8s/Dockerfile .
+    - docker push ${CI_REGISTRY_IMAGE}:dev-${CI_PIPELINE_ID}
+    - docker tag ${CI_REGISTRY_IMAGE}:dev-${CI_PIPELINE_ID} ${CI_REGISTRY_IMAGE}:dev-latest
+    - docker push ${CI_REGISTRY_IMAGE}:dev-latest
+```
+
+The `dev_build:` section **only:** to ensure the `dev_build:` script is run when the **dev** branch of the main repository receives a merge (after a pull request is approved). The directive `dev@the-project/example-microservice` ensures it does not run on forks of this repository.
+
+Tagging a container `dev` lets us know that this container is not yet ready for production, it may need testing or may contain features not yet approved for production deployment. Additional tags can easily be given to this image in later stages, or new containers can be generated specifically for production.
+
+This workflow assumes four or more git branches. In the example [.gitlab-ci.yml] I only cover operations on the **dev** branch, but you can easily extrapolate how **stg** and **prod** branches might work.
+
+| Branch | Purpose |
+|    --- | ---     |
+| **dev** | The **dev** branch is anything in development, even features that may never be released. The code in the **dev** branch is continuously built and deployed to a development environment.|
+| **stg** | The **stg** branch is for staging a service for the next production release, and any merges to the **stg** is built and deployed to the stageing environment and awaits final approval for production release.|
+| **prod** | The **prod** branch contains code reflecting the current state of production and any code pushed to the **prod** branch is release to the production environment. |
+| **master** | The **master** branch is a reflection of the **prod** branch with no CI/CD triggers or jobs associated with it. |
+
+##### Runner `dev_deploy`
+
+In this example the **stage: deploy** runs directly after **stage: build**. In a more sophisticated setup, we may want to run some tests before and after a development deployment.
+
+The **`dev_deploy:`** script deploys our new container with one command: [kubectl set image]. Setting a new image on a [Deployment] triggers Kuberentes to pull the new image, spin up the defined number of required [Pods], then shut down any pods running the previous image. [Rolling updates] are a powerful feature of kubernetes and help prevent any downtime if handled correctly.
+
+**Excerpt from [.gitlab-ci.yml]**
+```yaml
+# update the deployment image
+dev_deploy:
+  stage: deploy
+  only:
+    - dev@the-project/example-microservice
+  variables:
+    GIT_STRATEGY: none
+  script: |
+    kubectl set image deployment/example-microservice example-microservice=${CI_REGISTRY_IMAGE}:dev-${CI_PIPELINE_ID} \
+    --namespace="the-project" \
+    --server="${K8S_DEV_SERVER}" \
+    --token="${K8S_DEV_TOKEN}" \
+    --insecure-skip-tls-verify=true
+```
+
+Note the new variables **K8S_DEV_SERVER** and **K8S_DEV_TOKEN**.
+
+| Parameter | Purpose |
+| ---      | ----     |
+| `--server="${K8S_DEV_SERVER}"` | Tells [kubectl] what cluster to use. |
+| `--token="${K8S_DEV_TOKEN}"` | used for [authentication]. |
+
+If your [custom Kubernetes cluster][Production Hobby Cluster] uses Role-based access control ([RBAC]), and it should. Use the following steps to get a token granting `kubectl` access to `the-project` namespace.
+
+You can combine three configuration directives into one yaml file and get the objects you need in Kubernetes. You need a [ServiceAccount], a [Role] and a [RoleBinding] tying the two together.
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: the-project
+  name: the-project
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  namespace: the-project
+  name: deployer
+rules:
+- apiGroups: ["apps","extensions"]
+  resources: ["deployments","configmaps","pods","secrets","ingresses"]
+  verbs: ["create","get","delete","list","update","edit","watch","exec","patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: deployer
+  namespace: the-project
+subjects:
+- kind: ServiceAccount
+  namespace: the-project
+  name: the-project
+roleRef:
+  kind: Role #this must be Role or ClusterRole
+  name: deployer # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io
+```
+
+You need to extract the generated token from a [secret] automatically created for the new [ServiceAccount].
+
+```bash
+ kubectl describe secret fuse-dev-token-bc7d2 -n fuse
+```
 
 ## Resources
 - [Production Hobby Cluster]
 - [Ingress on Custom Kubernetes]
 - [Let's Encrypt on Kubernetes]
 - [Extending Kubernetes: Create Controllers for Core and Custom Resources]
-- The package manger [Helm on Custom Kubernetes]
+- The package manager [Helm on Custom Kubernetes]
 
 [Building Docker Images for Static Go Binaries]:https://medium.com/@kelseyhightower/optimizing-docker-images-for-static-binaries-b5696e26eb07
 [Production Hobby Cluster]: https://mk.imti.co/hobby-cluster/
@@ -418,3 +593,19 @@ kubectl get po,svc,deploy,ing -l app=example-microservice -n the-project
 [Ingress on Custom Kubernetes]:https://mk.imti.co/web-cluster-ingress/
 [Helm]:https://mk.imti.co/helm-on-custom-cluster/
 [Helm on Custom Kubernetes]:https://mk.imti.co/helm-on-custom-cluster/
+[configure runners]:https://docs.gitlab.com/ee/ci/quick_start/#configuring-a-runner
+[enable runners for the current repository]:https://docs.gitlab.com/ee/ci/runners/
+[txn2/docker-kubectl]:https://github.com/txn2/docker-kubectl
+[Gitlab container registry]:https://docs.gitlab.com/ee/user/project/container_registry.html
+[GitLab CI/CD Variables]:https://docs.gitlab.com/ee/ci/variables/
+[Docker login]:https://docs.docker.com/engine/reference/commandline/login/
+[.gitlab-ci.yml]:/gitlabci-golang-microservices/#automated-builds-and-deployments-gitlab-ciyml
+[docker tag]:https://docs.docker.com/engine/reference/commandline/tag/
+[docker push]:https://docs.docker.com/engine/reference/commandline/push/
+[kubectl set image]:https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment
+[Rolling updates]:https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/
+[authentication]:https://kubernetes.io/docs/reference/access-authn-authz/authentication/
+[RBAC]: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+[ServiceAccount]:https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/
+[Role]:https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings
+[RoleBinding]:https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings

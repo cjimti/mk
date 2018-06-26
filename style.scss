@@ -88,12 +88,12 @@ tr:nth-child(even) {background-color: #edeae1;}
 table {
   border-collapse: collapse;
   width: 100%;
-  text-align:right;
+  text-align:left;
 }
 
 td {
   padding: .8em;
-  text-align:right;
+  text-align:left;
 }
 
 th {
@@ -104,7 +104,7 @@ th {
   font-size:1em;
   font-weight: 100;
   padding:.8em;
-  text-align:right;
+  text-align:left;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align:middle;
 }
