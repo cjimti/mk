@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: HTML to PDF Microservice
+title: Webpage to PDF Microservice
 tags: docker kubernetes
 featured: docker golang
 mast: document
@@ -11,7 +11,7 @@ I create a lot of data visualizations for clients, many of which are internal, p
 
 [![txn2/txpdf](https://raw.githubusercontent.com/txn2/txpdf/master/assets/mast.jpg)](https://github.com/txn2/txpdf)
 
-## Background
+## Background (HTML to PDF)
 
 The [wkhtmltopdf] utility has been around awhile and works great when you get it working correctly on your platform. However, the newest version as of this writing **0.12.5** has a [bug] prevening TOC generation on some platforms. Some Linux platforms require the installation of Microsoft font packs, and compiling from [source][wkhtmltopdf source] leads you down a rabbit hole of dependency hell.
 
