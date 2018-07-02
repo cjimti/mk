@@ -19,7 +19,7 @@ The [wkhtmltopdf] utility has been around awhile and works great when you get it
 
 ## Docker and Microservices
 
-[txpdf] wraps [wkhtmltopdf] in a small [![](https://images.microbadger.com/badges/image/txn2/txpdf.svg)](https://microbadger.com/images/txn2/txpdf "n2pdf") [Alpine Linux] container and exposes an API endpoint (/getPdf) on port 8080 by default.
+[txpdf] wraps [wkhtmltopdf] in a small [Alpine Linux] container and exposes an API endpoint (/getPdf) on port 8080 by default.
 
 ### Run [txn2/txpdf]
 
