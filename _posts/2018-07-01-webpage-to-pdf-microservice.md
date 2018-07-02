@@ -23,25 +23,25 @@ The [wkhtmltopdf] utility has been around awhile and works great when you get it
 
 ### Run [txn2/txpdf]
 
-To test it out make sure you have [Docker] installed, if not it should only take you about 10 minutes. Open a terminal and run the following command:
+To test it out make sure you have [Docker] installed. Open a terminal and run the following command:
 
 ```bash
 docker run --rm -p 8080:8080 -e DEBUG=true txn2/txpdf
 ```
 
-Docker pulls the latest [txn2/txpdf] container, and forward the port **8080** on the host machine to **8080** on the container. The `-e DEBUG=true` sets the environment variable `DEBUG` to `true`, which produces additional log data while you are testing.
+Docker pulls the latest [txn2/txpdf] container, and forwards the port **8080** on your host machine to **8080** on the container. The `-e DEBUG=true` sets the environment variable `DEBUG` to `true`, which produces additional log data while you are testing.
 
 ### Configuration
 
 [txpdf] is configured on each call to it by posting JSON data. The easiest way to test is by using [curl]. If you use MacOs and don't already have it, I recommend installing it with [homebrew] by typing `brew install curl`.
 
-Download or create a sample JSON configuration and use [curl] to POST this configuration to the API running on the Docker container. You can download the and browse [example JSON] configurations from the example folder in the [txpdf] project. I routinely use [wget] to download single files onto my mac; another easy [homebrew] install `brew install wget`.
+Download or create a sample JSON configuration and use [curl] to POST this configuration to the API running on the Docker container. You can download the and browse [example JSON] configurations from the example folder in the [txpdf] project. I routinely use [wget] to download single files onto my mac; another easy [homebrew] install: `brew install wget`.
 
 ```bash
 wget https://raw.githubusercontent.com/txn2/txpdf/master/examples/simple.json
 ```
 
-You can download the `simple.json` or create it in a text editor.
+You can download the `simple.json` with the command above, or create it in a text editor.
 
 ```json
 {
