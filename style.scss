@@ -14,14 +14,28 @@
 /* BASE RULES */
 /**************/
 
+@media print {
+  header nav {
+    display: none;
+  }
+
+  body {
+    background: white;
+    font: 5px $helvetica;
+    color: black;
+  }
+
+}
+
 html {
   font-size: 100%;
 }
 
 body {
-	background: $white;
+  background: white;
+  #background: #EFECDF;
   font: 18px/1.4 $helvetica;
-  color: $gray;
+  color: black;
 }
 
 td.a-thumb {
@@ -52,7 +66,7 @@ td.a-sum-info h2 {
 
 .home-mast .mast-body {
   min-height: 4em;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(239, 236, 223, 0.85);
   padding: 1em;
 }
 
