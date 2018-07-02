@@ -15,7 +15,7 @@ I create a lot of data visualizations for clients, many of which are internal, p
 
 The [wkhtmltopdf] utility has been around awhile and works great when you get it working correctly on your platform. However, the newest version as of this writing **0.12.5** has a [bug] prevening TOC generation on some platforms. Some Linux platforms require the installation of Microsoft font packs, and compiling from [source][wkhtmltopdf source] leads you down a rabbit hole of dependency hell.
 
-[txpdf] is a web server written in [golang] and utilizes the go library [go-wkhtmltopdf] interact with a custom [wkhtmltopdf] binary explicitly compiled for an [Alpine Linux] container with all the necessary dependencies. All the means that [Docker] is the only dependency for [txpdf], and therefore running web to PDF conversion service.
+[txpdf] is a web server written in [golang] and utilizes the go library [go-wkhtmltopdf] interact with a custom [wkhtmltopdf] binary explicitly compiled for an [Alpine Linux] container with all the necessary dependencies. With [txpdf], [Docker] is the only dependency, and therefore running web (html) to PDF conversion service.
 
 ## Docker and Microservices
 
