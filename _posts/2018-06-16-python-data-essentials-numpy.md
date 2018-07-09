@@ -27,11 +27,11 @@ This article will focus on [NumPy] because it is the core numeric library that m
 
 [data science]:http://www.scipy-lectures.org/intro/intro.html#why-python
 [kubeless]:https://kubeless.io/
-[kubernetes]: http://localhost:4000/tag/kubernetes/
+[kubernetes]: https://mk.imti.co/tag/kubernetes/
 [go]:https://golang.org/
 [Numpy]:http://www.numpy.org/
 [pandas]:https://mk.imti.co/python-data-essentials-pandas/
-[Matplotlib]:https://matplotlib.org/
+[Matplotlib]:https://mk.imti.co/python-data-essentials-matplotlib-seaborn/
 [The Most Popular Languages for Data Science]: https://dzone.com/articles/which-are-the-popular-languages-for-data-science
 [services]: https://kubernetes.io/docs/concepts/services-networking/service/
 [ingress]: https://kubernetes.io/docs/concepts/services-networking/ingress/
