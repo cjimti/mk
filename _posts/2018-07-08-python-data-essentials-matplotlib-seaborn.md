@@ -23,7 +23,7 @@ For large scale business analytics and analysis, there are commercial tools such
 
 For front-end interactive developers there are open source javascript libraries like [d3js]/[c3js]. However, these solutions are often overkill for simple, static bar charts, histograms and plots; they are also problematic for print and PDF.
 
-It's common in many of my projects to generate static reports. These static reports are designed in HTML and use a tool I build called [txpdf], a [Webpage to PDF Microservice] use to convert them to PDF and email them to the appropriate stakeholder. I use serverless [Python]s functions with [numpy] and [pandas] to processes many forms of data, which makes [Matplotlib] is [Seaborn] an excellent tool for adding data visualization to these reports.
+It's common in many of my projects to generate static reports. These static reports are designed in HTML and use a tool I build called [txpdf], a [Webpage to PDF Microservice] use to convert them to PDF and email them to the appropriate stakeholder. I use [serverless] [Python] functions with [numpy] and [pandas] to processes many forms of data, which makes [Matplotlib] is [Seaborn] an excellent tool for adding data visualization to these reports.
 
 
 ## Notes on Data
@@ -577,3 +577,4 @@ sb.regplot(ax=ax3, data = df_ai_t, marker="o", color="red", x='dangerous', y='hu
 [matplotlib.pyplot.hist2d]:https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist2d.html
 [matplotlib.pyplot.subplots]:https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplots.html
 [seaborn.countplot]:https://seaborn.pydata.org/generated/seaborn.countplot.html
+[serverless]:https://kubeless.io/
