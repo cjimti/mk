@@ -97,6 +97,7 @@ df_ai_t = df_ai.T
 # convert to intergers
 df_ai_t = df_ai_t.astype(int)
 
+# let juypter output a nice html table
 df_ai_t
 ```
 
