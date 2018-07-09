@@ -150,7 +150,9 @@ Postman sends back what is received, and with this, we can see the correct filte
 }
 ```
 
-In the **form** and **json** sections we see the word **taco** became **cato** as a result of the `shuffle` function in the first **postFilter** '{{ .Match | shuffle }}' and **good   times** became **GOODTIMES** from the from the `upper` and `nospace` functions in the second **postFilter** {{ .Match | upper | nospace }}
+In the **form** and **json** sections we see the word **taco** became **cato** as a result of the `shuffle` function in the first **postFilter**  `.Match | shuffle` and **good    times** became **GOODTIMES** from the from the `upper` and `nospace` functions in the second **postFilter** `.Match | upper | nospace`
+
+
 
 The response from [postman-echo.com] is a clear indication that rules in **postFilter** are functioning as intended.
 
