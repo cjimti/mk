@@ -11,26 +11,7 @@ I am a full stack software and systems architect based in Los Angeles, Californi
 
 A few of my current interests:
 
-- [Microservices] - [Articles](/tag/microservices/)
-- [Serverless]
-- [Docker] - [Articles](/tag/docker/)
-- [Kubernettes] - [Articles](/tag/kubernetes/)
-- [Helm]
-- [Golang]
-- [Rust]
-- [Apache Kafka]
-- [Apache Cassandra] - [Articles](/tag/cassandra/)
-- [ELK]
-- [PiFi] (Raspberry Pi Wifi API)
-- [Armbian]
-- [Orange Pi]
-- [Libre Computer]
-- [Raspberry Pi]
-- [intermezzOS]
-- [Github] - [Articles](/tag/github/)
-- [Github Pages] - [Articles](/tag/github-pages/)
-- [Jekyll] - [Articles](/tag/jekyll/)
-- [Markdown]
+{% include archive.html %}
 
 Wish I still had my old TRS-80. But thanks to Wikipedia I can still look at one!
 
