@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 layout: post
 title: Python Data Essentials - Matplotlib and Seaborn
 tags: coding python
@@ -8,31 +8,31 @@ mast: art
 ---
 There is an overwhelming number of options for developers needing to provide data visualization. The most popular library for data visualization in Python is [Matplotlib], and built directly on top of Matplotlib is [Seaborn]. The Seaborn library is "tightly integrated with the [PyData] stack, including support for [numpy] and [pandas] data structures and statistical routines from [scipy] and [statsmodels]."
 
-This article is only intended to get you started with [Matplotlib] and [Seaborn]. Both libraries have extensive, and mature documentation.
+This article is only intended to get you started with [Matplotlib] and [Seaborn]. Both libraries have extensive and mature documentation.
 
 
 **Quick Reference:**
 
-* Do not remove this line (for toc on rendered blog)
+* Do not remove this line (for toc on a rendered blog)
 {:toc}
 
 
 ## Data Visualization Landscape
 
-For large scale business analytics and analysis, there are commercial tools such as [Tableau] or [Pentaho], they look great and have ample features, yet they have high costs and implementation commitments, not to mention vendor lock-in. Commercial applications and large visualization platforms focus your development around their feature set. 
+For large scale business analytics and analysis, there are commercial tools such as [Tableau] or [Pentaho], they look great and have ample features, yet they have high costs and implementation commitments, not to mention vendor lock-in. Commercial applications and large visualization platforms focus your development around their feature set.
 
 For front-end interactive developers there are open source javascript libraries like [d3js]/[c3js]. However, these solutions are often overkill for simple, static bar charts, histograms and plots; they are also problematic for print and PDF.
 
-It's common in many of my projects to generate static reports. These static reports are designed in HTML and use a tool I build called [txpdf], a [Webpage to PDF Microservice] use to convert them to PDF and email them to the appropriate stakeholder. I use serverless [Python]s functions with [numpy] and [pandas] to processes many forms of data, which makes [Matplotlib] is [Seaborn] an excellent tool for adding data visualization to these reports. 
+It's common in many of my projects to generate static reports. These static reports are designed in HTML and use a tool I build called [txpdf], a [Webpage to PDF Microservice] use to convert them to PDF and email them to the appropriate stakeholder. I use serverless [Python]s functions with [numpy] and [pandas] to processes many forms of data, which makes [Matplotlib] is [Seaborn] an excellent tool for adding data visualization to these reports.
 
 
 ## Notes on Data
 
-In the following examples I'll be making up some very simple data with small datasets for the purpose of brevity in demonstration. However if you are looking to eperiment with a large variety of publicly available datasets I recommend you visit [kaggle].
+In the following examples, I'll be making up some simple data with small datasets for brevity in the demonstration. However, if you are looking to experiment with a large variety of publicly available datasets, I recommend you visit [kaggle].
 
 ## Python Libraries
 
-This article is written using [Juypter Notebooks] installed and running under [Anaconda]. I recomend this setup for experimenting and learning. In the examples below I use Python 3 with the libraries [numpy], [pandas], [Matplotlib] and [Seaborn]. The [Anaconda] command `conda list` shows me the available libraries and their installed versions. The line `%matplotlib inline` instructs [Juypter Notebooks] to display [Matplotlib] output inline, rather than rendered to a file. If you are running [Anaconda] you will likely have all the required libraries.
+This article is written using [Juypter Notebooks] installed and running under [Anaconda]. I recommend this setup for experimenting and learning. In the examples below I use Python 3 with the libraries [numpy], [pandas], [Matplotlib] and [Seaborn]. The [Anaconda] command `conda list` shows me the available libraries and their installed versions. The line `%matplotlib inline` instructs [Juypter Notebooks] to display [Matplotlib] output inline, rather than rendered to a file. If you are running [Anaconda] you likely have all the required libraries.
 
 
 ```python
@@ -74,7 +74,7 @@ warnings.filterwarnings('ignore')
 
 ## Dataset
 
-Below I setup a simple dataset in a [Pandas] using a [DataFrame].
+Below I set up a simple data set in a [Pandas] using a [DataFrame].
 
 
 ```python
@@ -192,9 +192,11 @@ df_ai_t
 
 ## Bar Charts
 
+Seaborn's [seaborn.countplot] delivers nice and simple quantitative representations of qualitative data sets.
+
 ### seaborn.countplot
 
-We have two types of AI bots, three of type 1 and 2 of type 2 using [seaborn.countplot].
+We have two types of AI bots, three of type 1 and 2 of type 2 using [seaborn.countplot] we can see a quantitative comparison.
 
 
 ```python
@@ -205,9 +207,9 @@ sb.countplot(data = df_ai_t, x = 'type'); # the semi-colon supresses object outp
 ![png](/images/content/2018-07-08-python-data-essentials-matplotlib-seaborn/output_7_0.png)
 
 
-Automatic coloring of the data can lead to unintended highlighting of data. If we want we only want to present the value differences it is better to have a uniform color.
+Automatic coloring of the data can lead to the unintended highlighting of data. If we want we only want to present the value differences, it is better to have a uniform color.
 
-We can get a list of colors from the [Seaborn] color pallet and set the color with one of the tupels.  
+We can get a list of colors from the [Seaborn] color pallet and set the color with one of the tuples.
 
 
 ```python
@@ -255,10 +257,11 @@ sb.countplot(data = df_ai_t, x = 'type', order=type_order, color=sb.color_palett
 
 ### matplotlib.pyplot.hist
 
-Using histograms for quantitative variables (univariate.) using [matplotlib.pyplot.hist].
+Using histograms for univariate quantitative variables using [matplotlib.pyplot.hist].
 
 
 ```python
+# the dataset
 df_ai_t
 ```
 
@@ -396,12 +399,12 @@ plt.ylabel('Humor');
 
 ## Scatterplots
 
+Using scatterplots for bivariate visulations of quantitative vs quantitative data.
 
 ```python
+# the dataset
 df_ai_t
 ```
-
-
 
 
 <div>
@@ -506,7 +509,7 @@ plt.ylabel('Humor');
 ![png](/images/content/2018-07-08-python-data-essentials-matplotlib-seaborn/output_23_0.png)
 
 
- ### seaborn.regplot
+### seaborn.regplot
  
  A linear regression model fit of humor and bending using [seaborn.regplot].
 
@@ -525,7 +528,7 @@ plt.ylabel('Humor');
 
 ### matplotlib.pyplot.subplots
 
-[matplotlib.pyplot.subplots]
+Visualizing correlations of bending, intellect and dangerous to the shared y-axis humor using [matplotlib.pyplot.subplots].
 
 
 ```python
@@ -573,3 +576,4 @@ sb.regplot(ax=ax3, data = df_ai_t, marker="o", color="red", x='dangerous', y='hu
 [seaborn.regplot]:https://seaborn.pydata.org/generated/seaborn.regplot.html
 [matplotlib.pyplot.hist2d]:https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist2d.html
 [matplotlib.pyplot.subplots]:https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplots.html
+[seaborn.countplot]:https://seaborn.pydata.org/generated/seaborn.countplot.html
