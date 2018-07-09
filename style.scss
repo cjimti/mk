@@ -391,3 +391,10 @@ footer {
 
 @import "highlights";
 @import "svg-icons";
+
+#subjects{
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+  list-style-type: none;
+}
