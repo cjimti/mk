@@ -22,27 +22,8 @@ Original Image by David Elsener ("Delsener") [CC BY 3.0](http://creativecommons.
 
 ### Contact me
 
-[mk@imti.co](mailto:mk@imti.co)
+[cjimti@gmail.com](mailto:cjimti@gmail.com)
 
-[PiFi]: http://pifi.imti.co
-[Serverless]: https://martinfowler.com/articles/serverless.html
-[Microservices]: http://mk.imti.co/microservices/
-[Docker]: https://www.docker.com/
-[Kubernettes]: https://kubernetes.io/
-[Golang]: https://golang.org/
-[Rust]: https://www.rust-lang.org/en-US/
-[Apache Kafka]: https://kafka.apache.org/
-[Apache Cassandra]: http://cassandra.apache.org/
-[ELK]: https://www.elastic.co/
-[Helm]: https://helm.sh/
-[Raspberry Pi]: https://www.raspberrypi.org/
-[Armbian]: https://www.armbian.com/
-[Libre Computer]: https://libre.computer/
-[Orange Pi]: http://www.orangepi.org/
-[intermezzOS]: http://intermezzos.github.io/
-[Github]: http://github.com/cjimti
-[Github Pages]: https://pages.github.com/
-[Jekyll]: https://jekyllrb.com/
-[Markdown]: https://daringfireball.net/projects/markdown/syntax
+
 [BASIC]: https://en.wikipedia.org/wiki/BASIC
 [TRS-80]: https://en.wikipedia.org/wiki/TRS-80
