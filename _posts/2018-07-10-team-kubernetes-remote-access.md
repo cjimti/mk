@@ -32,11 +32,11 @@ We create a separate deployment account for our continuous integration/deploymen
 
 ## Cluster Setup
 
-These cluster setup steps assume you are a cluster administrator if you are only looking to set up [kubectl] access on your local workstation to an existing cluster skip ahead to [Developer Setup] or set up a [Production Hobby Cluster] to help you follow along.
+These cluster setup steps assume you are a cluster administrator if you are only looking to set up [kubectl] access on your local workstation to an existing cluster skip ahead to the section: [Accessing a Remote Kubernetes Cluster], otherwise I suggestion that you set up a [Production Hobby Cluster] to help you follow along.
 
 ### Example Microservice
 
-You can skip the following steps and head directly to [Setup Remote Access] if you already have a [namespace] with projects you plan to provide [kubectl] with remote access.
+You can skip the following steps and head directly to [Setup Remote Access] if you already have a [namespace] with projects you plan to provide remote access [kubectl].
 
 To demonstrate team access control we need some pods running in the namespace `the-project`. The example below uses a pre-built Docker container designed specifically for testing called [txn2/ok]. If you are curious about how to automate subsequent deployments using the free and open source [GitlabCI], check out [A Microservices Workflow with Golang and Gitlab CI].
 
