@@ -57,7 +57,7 @@ metadata:
     env: dev
 ```
 
-The filename is not essential. I use a numeric value to represent an order in which to apply the configuration followed by the `kind` of the kubernetes object to create. However, this is not a rigid rule across all projects and only the [namespace[
+The filename is not important. I use a numeric value to represent a suggested order in which to apply the configuration, followed by the `kind` of the kubernetes object to create. However, this is not a rigid rule across all projects and only the [namespace[
 
 The `labels` section is optional and only used to give additional sections capabilities to command-line and automated tools.
 
