@@ -188,7 +188,7 @@ Create the [ingress]:
 kubectl create -f 80-ingress-ok.yml
 ```
 
-Adding TSL support is easy but out the scope of this article. If you are interested in setting up free, automated TLS certificate using [Let's Encrypt] on Kubernetes, check out my article: [Let's Encrypt, Kubernetes]. Setting up [Let's Encrypt, Kubernetes] should only have to be done once and take only about twenty minutes.
+Adding TLS support is easy but out the scope of this article. If you are interested in setting up free, automated TLS certificate using [Let's Encrypt] on Kubernetes, check out my article: [Let's Encrypt, Kubernetes]. Setting up [Let's Encrypt, Kubernetes] should only have to be done once and take only about twenty minutes.
 
 We now have a fully functional test API service answering at http://ok.d4ldev.txn2.com/. In the next few steps, we create Kubernetes [RBAC] tokens for deployment and ready-only developer access.
 
