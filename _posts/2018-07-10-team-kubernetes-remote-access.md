@@ -130,7 +130,7 @@ kubectl create -f 10-deployment-ok.yml
 ```
 #### Service
 
-[Deployment]s manage [Pods] and they can be ephemeral, being moved from one node to another, destroyed or re-created at any time. [Service]s are persistent and give us a point to attach our network [ingress]. If you don't already have ingress setup, you might want to read my article [Ingress on Custom Kubernetes] to get started. [Ingress] needs a [service] to attach to; however you don't need ingress to set up a service.
+Kubernetes [Deployment]s manage [Pods]. Consider [Pods] ephemeral, being moved from one node to another, destroyed or re-created at any time. [Service]s are persistent and give us a point to attach our network [ingress]. If you don't already have ingress setup, you might want to read my article [Ingress on Custom Kubernetes] to get started. [Ingress] needs a [service] to attach to; however you don't need ingress to set up a service.
 
 `50-service-ok.yml`:
 ```yaml
