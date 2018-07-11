@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ok
+  namespace: the-project
+  labels:
+    app: ok
+    client: mk.imti.co
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ok
+  template:
+    metadata:
+      namespace: the-project
+      labels:
+        app: ok
+        client: mk.imti.co
+        env: dev
+    spec:
+      containers:
+      - name: ok
+        image: txn2/ok
+        imagePullPolicy: Always
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: SERVICE_ACCOUNT
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.serviceAccountName
+        ports:
+        - name: http
+          containerPort: 8080

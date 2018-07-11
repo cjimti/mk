@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ok
+  namespace: the-project
+  labels:
+    app: ok
+    client: mk.imti.co
+    env: dev
+spec:
+  rules:
+  - host: ok.d4ldev.txn2.com
+    http:
+      paths:
+      - backend:
+          serviceName: ok
+          servicePort: 8080
+        path: /
