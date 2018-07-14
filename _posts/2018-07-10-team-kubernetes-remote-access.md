@@ -24,7 +24,7 @@ If you don't already have a Kubernetes cluster up and running, then I highly sug
 
 Development and staging environments share a cluster across many clients and projects. On the production front, more extensive projects and clients get a dedicated cluster, and smaller projects might share a cluster.
 
-We use Kubernetes [namespaces] to separate clients. All of out security revolves around [namespaces], and when [RBAC] is set up correctly, a context in which access granted to a developer can only operate and view within the assigned namespace.
+We use Kubernetes [namespaces] to separate clients. All of our security revolves around [namespaces], and when [RBAC] is set up correctly, a context in which access granted to a developer can only operate and view within the assigned namespace.
 
 We grant developers read-level access to one common developer account per [namespace] on the development cluster. We tighten access to some resources on production.
 
