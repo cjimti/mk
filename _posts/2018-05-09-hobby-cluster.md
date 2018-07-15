@@ -27,7 +27,7 @@ For my 15 dollars a month I am getting three 1 vCore, 1G ram and 25G of storage 
 
 ## Infrastructure
 
-Start with three **[Ubuntu 18.04 x64](https://amzn.to/2KLn3eE)** boxes of 1 vCore, 1G ram and 25G of storage each in Los Angeles (because I work in Los Angeles).
+Start with three **[Ubuntu 18.04 x64][vultr]** boxes of 1 vCore, 1G ram and 25G of storage each in Los Angeles (because I work in Los Angeles).
 
 I am calling my new servers lax1, lax2, and lax3.
 
