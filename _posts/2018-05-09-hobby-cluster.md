@@ -11,12 +11,21 @@ Setting up a production-grade Kubernetes cluster can be done on a hobby budget, 
 
 [![k8s performance hobby clusters](/images/content/k8s-tshirt-banner.jpg)](https://amzn.to/2IOe8Yu)
 
+**Quick Reference:**
+
+* Do not remove this line (for toc on a rendered blog)
+{:toc}
+
+## Motivation
+
 I have read my thousandth tutorial on how to do things the wrong way; well, the not-good-for-production-way, you know for "learning." The following are my notes as I unlearn the "not for production" tutorial way and re-apply my production notes to a 15 dollar-a-month production grade hobby way.
 
 In this article, I'll be using three $5 servers from [Vultr] (referral link). 
 There are a handful of cheap cloud providers these days, and in keeping competitive, they keep getting cheaper and better. Another good pick is [Digital Ocean]. You might want to run a [Vultr] cluster in LA with a set of services and a [Digital Ocean] cluster in New York with another set of services.
 
 For my 15 dollars a month I am getting three 1 vCore, 1G ram and 25G of storage each. I host application primarily written in Go and Python, and they make very efficient use of their resources.
+
+## Infrastructure
 
 Start with three **[Ubuntu 18.04 x64](https://amzn.to/2KLn3eE)** boxes of 1 vCore, 1G ram and 25G of storage each in Los Angeles (because I work in Los Angeles).
 
@@ -44,7 +53,7 @@ curl -L https://git.io/vpDYI | sh
 ufw enable
 ```
 
-#### Swap
+### Swap
 
 [Only move stuff to SWAP when you are completely OUT of RAM.](https://askubuntu.com/questions/259739/kswapd0-is-taking-a-lot-of-cpu?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa)
 
@@ -54,7 +63,7 @@ Run the following on each server:
 echo vm.swappiness=0 | sudo tee -a /etc/sysctl.conf
 ```
 
-#### VPN
+### VPN
 
 [WireGuard] is the VPN I use for cluster communication security. [Install WireGuard](https://www.wireguard.com/install/) 
 by following their instructions for Ubuntu below:

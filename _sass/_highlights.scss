@@ -8,8 +8,6 @@ div.highlight {
   color: #eee;
 }
 
-.gist-data {max-height: 400px;}
-
 code {
   font-family:'Space Mono','Bitstream Vera Sans Mono','Courier', monospace;
   font-weight: lighter;
@@ -49,6 +47,7 @@ code {
 .highlight .m { color: #2AA198 } /* Literal.Number */
 .highlight .s { color: #2AA198 } /* Literal.String */
 .highlight .na { color: #93A1A1 } /* Name.Attribute */
+.highlight .pi { color: #93A1A1 } /* Name.Attribute */
 .highlight .nb { color: #B58900 } /* Name.Builtin */
 .highlight .nc { color: #268BD2 } /* Name.Class */
 .highlight .no { color: #CB4B16 } /* Name.Constant */

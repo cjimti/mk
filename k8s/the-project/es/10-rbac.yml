@@ -1,0 +1,31 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: tp-elasticsearch
+  namespace: the-project
+  labels:
+    env: dev
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - endpoints
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tp-elasticsearch
+  namespace: the-project
+  labels:
+    env: dev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: tp-elasticsearch
+subjects:
+- kind: ServiceAccount
+  name: tp-elasticsearch
+  namespace: the-project

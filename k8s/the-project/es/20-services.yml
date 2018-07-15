@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: the-project 
+  name: elasticsearch
+  labels:
+    env: dev
+spec:
+  type: ClusterIP
+  selector:
+    app: elasticsearch
+    role: client
+  ports:
+  - name: http
+    port: 9200
+    protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: the-project 
+  name: elasticsearch-data
+  labels:
+    env: dev
+spec:
+  ports:
+  - port: 9300
+    name: transport
+  clusterIP: None
+  selector:
+    app: elasticsearch
+    role: data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: the-project 
+  name: elasticsearch-discovery
+  labels:
+    env: dev
+spec:
+  selector:
+    app: elasticsearch
+    role: master
+  ports:
+  - name: transport
+    port: 9300
+    protocol: TCP
