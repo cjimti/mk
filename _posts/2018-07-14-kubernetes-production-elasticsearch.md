@@ -2,8 +2,8 @@
 published: true
 layout: post
 title: Production Grade Elasticsearch on Kubernetes
-tags: kubernetes
-featured: kubernetes
+tags: kubernetes elastic
+featured: kubernetes elastic
 mast: es
 ---
 
