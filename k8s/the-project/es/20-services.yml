@@ -9,8 +9,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: elasticsearch
-    role: client
+    app: elasticsearch-client
   ports:
   - name: http
     port: 9200
@@ -24,13 +23,12 @@ metadata:
   labels:
     env: dev
 spec:
+  clusterIP: None
+  selector:
+    app: elasticsearch-data
   ports:
   - port: 9300
     name: transport
-  clusterIP: None
-  selector:
-    app: elasticsearch
-    role: data
 ---
 apiVersion: v1
 kind: Service
@@ -41,8 +39,7 @@ metadata:
     env: dev
 spec:
   selector:
-    app: elasticsearch
-    role: master
+    app: elasticsearch-master
   ports:
   - name: transport
     port: 9300
