@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kibana
+  namespace: the-project
+  labels:
+    app: kibana
+    env: dev
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: kibop-basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+spec:
+  rules:
+  - host: kib.the-project.d4ldev.txn2.com
+    http:
+      paths:
+      - backend:
+          serviceName: kibana
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - kib.the-project.d4ldev.txn2.com
+    secretName: kib-dev-production-tls

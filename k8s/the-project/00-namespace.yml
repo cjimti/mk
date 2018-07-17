@@ -3,5 +3,4 @@ kind: Namespace
 metadata:
   name: the-project
   labels:
-    client: mk.imti.co
     env: dev

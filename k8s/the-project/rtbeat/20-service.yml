@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wx-rtbeat
+  labels:
+    app: wx-rtbeat
+    env: dev
+spec:
+  type: ClusterIP
+  selector:
+    app: wx-rtbeat
+  ports:
+  - protocol: "HTTP"
+    port: 8080
+    targetPort: 8080

@@ -1,0 +1,113 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wx-rtbeat
+  labels:
+    app: wx-rtbeat
+    env: dev
+data:
+  rtbeat.yml: |-
+    rtbeat:
+      # beat configuration
+      # see https://github.com/txn2/rtbeat/blob/master/rtbeat.reference.yml
+      port: "80"
+      timeout: 5
+      name: wx-rtbeat
+
+    output.elasticsearch:
+      # Array of hosts to connect to.
+      hosts: ["byp-es:9200"]
+      # Elasticsearch Index (new index each month)
+      index: "wx-rtbeat-%{+yyyy.MM}"
+
+    # internal metrics through a HTTP endpoint
+    http.enabled: true
+    http.port: 5066
+
+    # turn on console output for debugging on
+    # @TODO set to false on production
+    output.console:
+      # Boolean flag to enable or disable the output module.
+      enabled: true
+      # Pretty print json event
+      pretty: true
+
+  fields.yml: |-
+    # see https://www.elastic.co/guide/en/elasticsearch/reference/6.3/mapping-types.html
+    - key: wx-rtbeat
+      title: wx-rtbeat
+      description: >
+        “Powered by Dark Sky” - https://darksky.net/poweredby/
+        The following fields are pulled from the Dark Sky API free tier allowing 1000 requests per day,
+        see https://darksky.net/dev/docs for API documentation. The fields below only
+        map to returned data excluding all but the "currently" key (exclude=minutely,hourly,daily,flags)
+      fields:
+      - name: latitude
+        required: true
+        type: half_float
+      - name: longitude
+        required: true
+        type: half_float
+      - name: timezone
+        required: true
+        type: keyword
+      - name: offset
+        required: true
+        type: byte
+
+
+    - key: beat
+      title: Beat
+      description: >
+        Contains common beat fields available in all event types.
+      fields:
+        - name: beat.name
+          description: >
+            The name of the Beat sending the log messages. If the Beat name is
+            set in the configuration file, then that value is used. If it is not
+            set, the hostname is used. To set the Beat name, use the `name`
+            option in the configuration file.
+        - name: beat.hostname
+          description: >
+            The hostname as returned by the operating system on which the Beat is
+            running.
+        - name: beat.version
+          description: >
+            The version of the beat that generated this event.
+
+        - name: "@timestamp"
+          type: date
+          required: true
+          format: date
+          example: August 26th 2016, 12:35:53.332
+          description: >
+            The timestamp when the event log record was generated.
+
+        - name: tags
+          description: >
+            Arbitrary tags that can be set per Beat and per transaction
+            type.
+
+        - name: fields
+          type: object
+          object_type: keyword
+          description: >
+            Contains user configurable fields.
+
+        - name: error
+          type: group
+          description: >
+            Error fields containing additional info in case of errors.
+          fields:
+            - name: message
+              type: text
+              description: >
+                Error message.
+            - name: code
+              type: long
+              description: >
+                Error code.
+            - name: type
+              type: keyword
+              description: >
+                Error type.
