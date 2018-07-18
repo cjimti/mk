@@ -38,7 +38,7 @@ The [kubectl create secret] command can create a secret from a local file, direc
 Create the [Secret]:
 
 ```bash
-kubectl create secret generic sysop --from-file htpasswd
+kubectl create secret generic sysop --from-file auth
 ```
 
 Ensure the [Secret] was created successfully by viewing the details:

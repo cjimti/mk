@@ -165,7 +165,7 @@ htpasswd -c ./htpasswd auth
 In this example I will create a user named **kibop** for Basic Auth, **kibop**'s password will be pulled from the **auth** user created above in the htpasswd file.
 
 ```bash
-kubectl create secret generic kibop-basic-auth --from-file htpasswd -n the-project
+kubectl create secret generic kibop-basic-auth --from-file auth -n the-project
 ```
 
 Our namespace `the-project` now has the secret **kibop-basic-auth** we will use to password protect Kibana in the [ingress] configuration.
