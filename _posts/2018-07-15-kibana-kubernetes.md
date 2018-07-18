@@ -156,13 +156,13 @@ Described below are a few commands to get you started, however, for a more in-de
 
 The [kubectl] makes it easy to create a Kubernetes [Secret] we can use for Basic Auth on our [Ingress Nginx][Ingress on Custom Kubernetes] we setup further down this guide.
 
-Begin with using the [htpasswd] command to generate the file `htpasswd` with a user named **auth** and a password specified with prompted. [kubectl] will use this file as generated to create the appropriate [Secret] needed for Basic Auth.
+Begin with using the [htpasswd] command to generate the file `auth` with a user named **kibop** and a password specified when prompted. [kubectl] will use this file as generated to create the appropriate [Secret] needed for Basic Auth.
 
 ```bash
-htpasswd -c ./htpasswd auth
+htpasswd -c ./auth kibop
 ```
 
-In this example I will create a user named **kibop** for Basic Auth, **kibop**'s password will be pulled from the **auth** user created above in the htpasswd file.
+In this example I will create a user named **kibop** for Basic Auth, **kibop**'s password will be pulled from the **auth** file created above and the filename used as the key. It is important to name the file **auth** since this will be a required key for Ingress to find the Basic Auth credentials.
 
 ```bash
 kubectl create secret generic kibop-basic-auth --from-file auth -n the-project

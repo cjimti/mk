@@ -22,16 +22,16 @@ For the [Production Hobby Cluster] we use [Let's Encrypt], so if you have not do
 Start by creating an [htpasswd] file that contains the [Basic Auth] credentials. The following creates a user called **sysop**, choose whatever username you like.
 
 ```bash
-htpasswd -c ./htpasswd auth
+htpasswd -c ./auth sysop
 ```
 
 It is important to name the file **auth**. The filename is used as the key in the key-value pair under the `data` section of secret.
 
-After entering a password for the new user twice, you end up with the file `htpasswd`. This file can also be named anything you like.
+After entering a password for the new user twice, you end up with the file `auth`.
 
 ### Create a [Secret]
 
-Kubernetes can create a **[generic]** [Secret] from the `htpasswd` file, or from any file, however, the format of the `htpasswd` file is necessary for use with [Basic Auth].  [Ingress] uses the new [Secret] in it's annotation section to provide [Basic Auth].
+Kubernetes can create a **[generic]** [Secret] from the generated `auth` file, or from any file, however, the format of the htpasswd generated file is necessary for use with [Basic Auth]. The file name is used as the key in Basic Auth secret, therefore its best to name it **auth** and avoid having to edit the secret.  [Ingress] uses the new [Secret] in it's annotation section to provide [Basic Auth].
 
 The [kubectl create secret] command can create a secret from a local file, directory or literal value using the **[generic]** directive. In the example below I call the new secret **sysop**, named after the single set of credentials stored in it. However, if you are grouping many credentials, it would be better to give it a more generic name.
 
