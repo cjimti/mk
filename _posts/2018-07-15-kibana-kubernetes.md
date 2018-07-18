@@ -7,7 +7,7 @@ featured: kubernetes elastic
 mast: kib
 ---
 
-This guide walks through my process for setting up [Kibana] within a [namespace] on a Kubernetes cluster. If you followed along with [Production Grade Elasticsearch on Kubernetes] then aside from personal or corporate preferences, little modifications are necessary for the configurations below.
+This guide walks through a process for setting up [Kibana] within a [namespace] on a Kubernetes cluster. If you followed along with [Production Grade Elasticsearch on Kubernetes] then aside from personal or corporate preferences, little modifications are necessary for the configurations below.
 
 **Quick Reference:**
 
@@ -99,7 +99,7 @@ kubectl create -f 30-configmap.yml
 
 The Kubernetes Kibana deployment below is set to create one replica, that is one Pod in the [ReplicaSet] automatically created by the Deployment. The Deployment and can be scaled as needed by changing **replicas: 1** to a suitable value.
 
-The volume **kibana-config-volume** is configured as part of the **spec:** for the Pod template in the Deployment. **kibana-config-volume** attaches to the [Kibana ConfigMap](#kibana-configmap) created above. Later, in the containers section, the **volumeMounts:** this **kibana-config-volume** to the directory **/usr/share/kibana/config** inside the Kibana container. By default Kibana looks in ****/usr/share/kibana/config**** to find the [kibana.yml] configuration file.
+The volume **kibana-config-volume** is configured as part of the **spec:** for the Pod template in the Deployment. **kibana-config-volume** attaches to the [Kibana ConfigMap](#kibana-configmap) created above. Later, in the containers section, the **volumeMounts:** this **kibana-config-volume** to the directory **/usr/share/kibana/config** inside the Kibana container. By default Kibana looks in **/usr/share/kibana/config** to find the [kibana.yml] configuration file.
 
 Elastic maintains an official set of Docker containers for Kibana at [www.docker.elastic.co]. If you followed along with the previous article [Production Grade Elasticsearch on Kubernetes], you might remember setting **CLUSTER_NAME** to **elasticsearch** in the StatefulSet and Deployments.
 
