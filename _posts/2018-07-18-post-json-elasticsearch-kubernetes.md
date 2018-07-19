@@ -69,7 +69,6 @@ In this tutorial, I use weather (wx) data from the [Dark Sky API]. Since the [Da
 [![](https://github.com/txn2/rxtx/raw/master/mast.jpg)][rxtx]
 [![Docker Container Image Size](https://shields.beevelop.com/docker/image/image-size/txn2/rxtx/latest.svg)](https://hub.docker.com/r/txn2/irsync/)
 [![Docker Container Layers](https://shields.beevelop.com/docker/image/layers/txn2/rxtx/latest.svg)](https://hub.docker.com/r/txn2/irsync/)
-[![Docker Container Pulls](https://img.shields.io/docker/pulls/txn2/rxtx.svg)](https://hub.docker.com/r/txn2/rxtx/)
 [![Go Report Card](https://goreportcard.com/badge/github.com/txn2/rxtx)](https://goreportcard.com/report/github.com/txn2/rxtx)
 
 [rxtx] is a queue based, store-and-forward data collector and data transmitter useful for online/offline data collection, back pressure buffering or general queuing. [rxtx] uses the highly efficient and fast bbolt maintained by CoreOs. [bbolt] stores message awaiting an interval and the ability to send them.
@@ -184,7 +183,6 @@ The **wx-rxtx service** should now be able to find **wx-rxtx** Pods deployed by 
 [![](https://raw.githubusercontent.com/txn2/rtbeat/master/mast-logo.jpg)][rtBeat]
 [![Docker Container Image Size](https://shields.beevelop.com/docker/image/image-size/txn2/rtbeat/latest.svg)](https://hub.docker.com/r/txn2/irsync/)
 [![Docker Container Layers](https://shields.beevelop.com/docker/image/layers/txn2/rtbeat/latest.svg)](https://hub.docker.com/r/txn2/rtbeat/)
-[![Docker Container Pulls](https://img.shields.io/docker/pulls/txn2/rtbeat.svg)](https://hub.docker.com/r/txn2/rtbeat/)
 [![Go Report Card](https://goreportcard.com/badge/github.com/txn2/rtbeat)](https://goreportcard.com/report/github.com/txn2/rtbeat)
 
 [rtBeat](https://github.com/txn2/rtbeat) processes HTTP POST data from [rxtx](https://github.com/txn2/rxtx) and publishes events into [Elasticsearch], [Logstash], [Kafka], [Redis] or directly to log files.
