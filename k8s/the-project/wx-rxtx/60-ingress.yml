@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wx-rxtx
+  namespace: the-project
+  labels:
+    app: wx-rxtx
+    env: dev
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: wxrxtx-basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+spec:
+  rules:
+  - host: wx-rxtx.the-project.d4ldev.txn2.com
+    http:
+      paths:
+      - backend:
+          serviceName: wx-rxtx
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - wx-rxtx.the-project.d4ldev.txn2.com
+    secretName: wx-rxtx-dev-production-tls

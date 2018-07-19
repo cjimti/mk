@@ -1,0 +1,35 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: wx-data
+  namespace: the-project
+  labels:
+    app: wx-data
+    env: dev
+spec:
+  schedule: "*/2 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 90
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: wx-data
+            image: txn2/curl:v3.0.0
+            env:
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: wd-data-api-key
+                  key: apikey
+            - name: DATA_FROM
+              value: "https://api.darksky.net/forecast/$(API_KEY)/33.8148455,-117.826581?exclude=minutely,hourly,daily,flags"
+            - name: DATA_TO
+              value: "http://wx-rxtx:80/rx/cron/collector/wx-data"
+            command: [
+              "/bin/sh",
+              "-c",
+              "/usr/bin/curl -sX GET $(DATA_FROM) > data && /usr/bin/curl -sX POST -d @data $(DATA_TO)"
+            ]
+          restartPolicy: OnFailure

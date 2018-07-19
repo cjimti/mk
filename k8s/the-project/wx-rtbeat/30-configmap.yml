@@ -1,0 +1,196 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wx-rtbeat
+  namespace: the-project
+  labels:
+    app: wx-rtbeat
+    env: dev
+data:
+  rtbeat.yml: |-
+    rtbeat:
+      # beat configuration
+      # see https://github.com/txn2/rtbeat/blob/master/rtbeat.reference.yml
+      port: "80"
+      timeout: 5
+      name: wx-rtbeat
+
+    output.elasticsearch:
+      # Array of hosts to connect to.
+      hosts: ["elasticsearch:9200"]
+      # Elasticsearch Index (new index each month)
+      index: "wx-rtbeat-%{+yyyy.MM}"
+
+    setup:
+      template.name: "wx-rtbeat"
+      template.pattern: "wx-rtbeat-*"
+      template.fields: "/config/fields.yml"
+      template.overwrite: true
+
+    #setup.kibana:
+    #  protocol: "http"
+    #  host: "kibana:80"
+    #  ssl.enabled: false
+
+    # internal metrics through a HTTP endpoint
+    http.enabled: true
+    http.port: 5066
+
+  fields.yml: |-
+    - key: rxtx
+      title: rtbeat
+      # Data sent in from rxtx will be in batches of rxtxMsg objects where
+      # the payload will hold the original post data and will be prefixed as such,
+      # model the data here for proper indexing into Elasticsearch.
+      # see https://www.elastic.co/guide/en/elasticsearch/reference/6.3/mapping-types.html
+      description: >
+        “Powered by Dark Sky” - https://darksky.net/poweredby/
+        The following fields are pulled from the Dark Sky API free tier allowing 1000 requests per day,
+        see https://darksky.net/dev/docs for API documentation. The fields below only
+        map to returned data excluding all but the "currently" key (exclude=minutely,hourly,daily,flags)
+      fields:
+      # rxtx standard fields (customizable)
+      - name: rxtxMsg.seq
+        required: true
+        type: long
+      - name: rxtxMsg.time
+        required: true
+        type: date
+      - name: rxtxMsg.producer
+        required: true
+        type: keyword
+      - name: rxtxMsg.label
+        required: true
+        type: keyword
+      - name: rxtxMsg.key
+        required: true
+        type: keyword
+      # custom
+      - name: rxtxMsg.payload.latitude
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.longitude
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.timezone
+        required: true
+        type: keyword
+      - name: rxtxMsg.payload.offset
+        required: true
+        type: byte
+      - name: rxtxMsg.payload.currently.time
+        required: true
+        type: long
+      - name: rxtxMsg.payload.currently.summary
+        required: true
+        type: keyword
+      - name: rxtxMsg.payload.currently.icon
+        required: true
+        type: keyword
+      - name: rxtxMsg.payload.currently.nearestStormDistance
+        required: true
+        type: integer
+      - name: rxtxMsg.payload.currently.precipIntensity
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.precipIntensityError
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.precipProbability
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.precipType
+        required: true
+        type: keyword
+      - name: rxtxMsg.payload.currently.temperature
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.apparentTemperature
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.dewPoint
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.humidity
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.pressure
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.windSpeed
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.windGust
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.windBearing
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.cloudCover
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.uvIndex
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.visibility
+        required: true
+        type: half_float
+      - name: rxtxMsg.payload.currently.ozone
+        required: true
+        type: half_float
+
+    - key: beat
+      title: Beat
+      description: >
+        Contains common beat fields available in all event types.
+      fields:
+        - name: beat.name
+          description: >
+            The name of the Beat sending the log messages. If the Beat name is
+            set in the configuration file, then that value is used. If it is not
+            set, the hostname is used. To set the Beat name, use the `name`
+            option in the configuration file.
+        - name: beat.hostname
+          description: >
+            The hostname as returned by the operating system on which the Beat is
+            running.
+        - name: beat.version
+          description: >
+            The version of the beat that generated this event.
+
+        - name: "@timestamp"
+          type: date
+          required: true
+          format: date
+          example: August 26th 2016, 12:35:53.332
+          description: >
+            The timestamp when the event log record was generated.
+
+        - name: tags
+          description: >
+            Arbitrary tags that can be set per Beat and per transaction
+            type.
+
+        - name: fields
+          type: object
+          object_type: keyword
+          description: >
+            Contains user configurable fields.
+
+        - name: error
+          type: group
+          description: >
+            Error fields containing additional info in case of errors.
+          fields:
+            - name: message
+              type: text
+              description: >
+                Error message.
+            - name: code
+              type: long
+              description: >
+                Error code.
+            - name: type
+              type: keyword
+              description: >
+                Error type.

@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: wx-rtbeat
+  namespace: the-project
   labels:
     app: wx-rtbeat
     env: dev
@@ -10,6 +11,7 @@ spec:
   selector:
     app: wx-rtbeat
   ports:
-  - protocol: "HTTP"
-    port: 8080
-    targetPort: 8080
+  - name: rtbeat
+    protocol: TCP
+    port: 80
+    targetPort: 80

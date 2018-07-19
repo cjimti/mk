@@ -1,0 +1,23 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: wx-rxtx-dev-cert
+  namespace: the-project
+spec:
+  secretName: wx-rxtx-dev-production-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: wx-rxtx.the-project.d4ldev.txn2.com
+  dnsNames:
+  - wx-rxtx.the-project.d4ldev.txn2.com
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - wx-rxtx.the-project.d4ldev.txn2.com
+    - http01:
+        ingressClass: nginx
+      domains:
+      - wx-rxtx.the-project.d4ldev.txn2.com

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wx-rtbeat
+  namespace: the-project
+  labels:
+    app: wx-rtbeat
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wx-rtbeat
+  template:
+    metadata:
+      labels:
+        app: wx-rtbeat
+        env: dev
+    spec:
+      containers:
+      - name: wx-rtbeat
+        image: txn2/rtbeat:1.0.2
+        imagePullPolicy: Always
+        args: ["-e", "--path.config=/config"]
+        volumeMounts:
+        - name: wx-rtbeat-config-volume
+          mountPath: /config
+        ports:
+        - name: rtbeat
+          containerPort: 80
+      volumes:
+      - name: wx-rtbeat-config-volume
+        configMap:
+          name: wx-rtbeat
