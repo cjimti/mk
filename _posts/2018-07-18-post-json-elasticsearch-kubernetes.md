@@ -19,7 +19,7 @@ IOT devices, Point-of-Sale systems, application events or any client that sends 
 
 High availability and high performance often mean burdensome complexity. Data replication, application, network and infrastructure redundancy, anything we can do to avoid a single point of failure. However, what happens when one of those points do fail? Alternatively, a cascade of problems causing slowdowns and back pressure builds to constant far too high for indexing to catch up?
 
-[Pub-Sub] style message queues like Kafka are growing in popularity because they add incredible flexibility to data pipelines, yet these queues can also suffer from data loss and duplication unless you expend sufficient effort in expert tuning and configuration. MQs can also overcomplicate the architecture depending on requirements. I found myself re-thinking some of my architectures after reading [Why Messaging Queues Suck] by Bob Reselman. I still use Messaging Queues but have pushed them back from the edge of my stack.
+[Pub-Sub] style message queues like Kafka are growing in popularity because they add incredible flexibility to data pipelines, yet these queues can also suffer from data loss and duplication unless you expend sufficient effort in expert tuning and configuration. [Pub-Sub] MQs can also over complicate the architecture depending on requirements. I found myself re-thinking some of my architectures after reading [Why Messaging Queues Suck] by Bob Reselman. I still use messaging queues but have pushed [Pub-Sub] further back from the edge of my stack.
 
 Over the years I have made conscious efforts to move complexity further from the edge. The edge, being the API endpoints relied upon by clients. If I can simplify and harden the edges, then the more sensitive and complex systems deeper down have less exposure to unknowns. An early layer of simplicity not only buffers API calls and data but moves complexity back a rung.
 
@@ -29,7 +29,7 @@ In the process below I demonstrate a store and forward setup used for asynchrono
 
 ![](/images/content/txn2/rxtx-rtbeat.png)
 
-I use [rxtx] to store-and-forward data to [rtBeat] which publishes it into Elasticsearch. This process of store-and-forward is simple message queue that can function independently or as a first layer of buffering to larger message queue applications.
+I use [rxtx] to store-and-forward data to [rtBeat] which publishes it into Elasticsearch. This process of store-and-forward achieved through a batching message queue that can function independently or as a first layer of buffering to larger message queue applications.
 
 Using [rxtx] with [rtBeat] you can achieve high performance, highly available service for accepting JSON POST data and delivering it to Elasticsearch. [rxtx] collects post data, writes it to a local [bbolt] database and sends batches on an interval to rtBeat. [rtBeat] processes the batches of POSTed JSON data and publishes them as events into Elasticsearch. [rtBeat] is an Elastic [beat] and can publish simultaneously to [elasticsearch], [logstash], [kafka] and [redis].
 
