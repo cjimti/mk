@@ -562,8 +562,13 @@ Example output:
 }
 ```
 
+### Next
 
+- Setup [Kibana on Kubernetes] for data exploration and visualization.
+- Process [High Traffic JSON Data into Elasticsearch on Kubernetes].
 
+[Kibana on Kubernetes]:https://mk.imti.co/kibana-kubernetes/
+[High Traffic JSON Data into Elasticsearch on Kubernetes]:https://mk.imti.co/post-json-elasticsearch-kubernetes/
 [recommendations for best practices]: https://www.elastic.co/guide/en/elasticsearch/reference/6.2/modules-node.html
 [kubernetes-elasticsearch-cluster]: https://github.com/pires/kubernetes-elasticsearch-cluster
 [txn2/k8s-es]:https://github.com/txn2/k8s-es
