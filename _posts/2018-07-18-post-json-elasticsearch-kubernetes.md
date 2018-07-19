@@ -25,7 +25,7 @@ Over the years I have made conscious efforts to move complexity further from the
 
 ## Overview
 
-In the process below I demonstrate a store and forward setup I use for asynchronous data gathering. The clients need to send data, and I need assurance that data makes it to its destination. I don't need the clients waiting for confirmation.
+In the process below I demonstrate a store and forward setup used for asynchronous data gathering. The clients need to send data, and I need assurance that data makes it to its destination. I don't need the clients waiting for confirmation.
 
 ![](/images/content/txn2/rxtx-rtbeat.png)
 
