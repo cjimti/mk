@@ -7,7 +7,7 @@ featured: kubernetes elastic docker
 mast: water
 ---
 
-IOT devices, Point-of-Sale systems, application events or any client that sends data destined for indexing in Elasticsearch often need to send and forget, however, unless that data is of low value there needs to be assurance that arrives at its final destination. Back-pressure and database outages can pose a considerable threat to data integrity. Publish-subscribe message ques like Kafka are abundant add incredible flexibility to data pipelines but can also suffer from data loss and duplication.
+IOT devices, Point-of-Sale systems, application events or any client that sends data destined for indexing in Elasticsearch often need to send and forget, however, unless that data is of low value there needs to be assurance that arrives at its final destination. Back-pressure and database outages can pose a considerable threat to data integrity.
 
 **Quick Reference:**
 
@@ -17,7 +17,9 @@ IOT devices, Point-of-Sale systems, application events or any client that sends 
 
 ## Background
 
-High availability and high performance often mean burdensome complexity. Data replication, application, network and infrastructure redundancy, anything we can do to avoid a single point of failure. However, what happens when one of those points do fail, or a cascade of problems causing slowdowns, or back pressure builds to constant far too high for indexing to catch up? In many of my systems, I needed an additional layer and in some systems where message queues like Kafka are overkill or not necessary I needed a failsafe.
+High availability and high performance often mean burdensome complexity. Data replication, application, network and infrastructure redundancy, anything we can do to avoid a single point of failure. However, what happens when one of those points do fail? Alternatively, a cascade of problems causing slowdowns and back pressure builds to constant far too high for indexing to catch up?
+
+[Pub-Sub] style message queues like Kafka are growing in popularity because they add incredible flexibility to data pipelines, yet these queues can also suffer from data loss and duplication unless you expend sufficient effort in expert tuning and configuration. MQs can also overcomplicate the architecture depending on requirements. I found myself re-thinking some of my architectures after reading [Why Messaging Queues Suck] by Bob Reselman. I still use Messaging Queues but have pushed them back from the edge of my stack.
 
 Over the years I have made conscious efforts to move complexity further from the edge. The edge, being the API endpoints relied upon by clients. If I can simplify and harden the edges, then the more sensitive and complex systems deeper down have less exposure to unknowns. An early layer of simplicity not only buffers API calls and data but moves complexity back a rung.
 
@@ -583,3 +585,5 @@ If you have setup [Kibana on Kubernetes], you should begin to see data. You are 
 [ConfigMap]:https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
 [Deployment]:https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 [cronjob]:https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
+[Why Messaging Queues Suck]:https://www.programmableweb.com/news/why-messaging-queues-suck/analysis/2017/02/13
+[Pub-Sub]:https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern
