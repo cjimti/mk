@@ -132,7 +132,7 @@ spec:
           name: kibana
       containers:
       - name: kibana
-        image: docker.elastic.co/kibana/kibana-oss:6.3.1
+        image: docker.elastic.co/kibana/kibana-oss:6.2.4
         imagePullPolicy: Always
         volumeMounts:
         - name: kibana-config-volume
