@@ -51,7 +51,7 @@ spec:
   selector:
     app: kibana
   ports:
-  - protocol: "HTTP"
+  - protocol: "TCP"
     port: 80
     targetPort: 5601
   type: ClusterIP
