@@ -309,6 +309,24 @@ subjects:
 
 ```
 
+If you want to give your team even more access, you can enable the ability to port-forward a service or pod directly to their local workstation. Add the following to the end of the **developer** role.
+
+```yaml
+- apiGroups:
+  - '*'
+  resources:
+  - 'pods/exec'
+  - 'pods/portforward'
+  - 'services/portforward'
+  verbs:
+  - create
+```
+
+Example `kubectl port-forward` to an `elasticsearch` service running in `the-project` namespace:
+```bash
+kubectl port-forward svc/elasticsearch 9200:9200 -n the-project
+```
+
 Create the new [Role]s and the RoleBindings that connect them to the ServiceAccounts [created with kubectl a bit earlier](#serviceaccount).
 
 Create the [Role]s and RoleBindings:
