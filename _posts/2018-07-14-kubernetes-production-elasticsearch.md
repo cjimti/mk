@@ -369,6 +369,8 @@ spec:
           value: elasticsearch
         - name: NODE_MASTER
           value: "false"
+        - name: NETWORK_HOST
+          value: "0.0.0.0"
         - name: NODE_INGEST
           value: "true"
         - name: NODE_DATA

@@ -51,6 +51,8 @@ spec:
           value: "false"
         - name: HTTP_ENABLE
           value: "true"
+        - name: NETWORK_HOST
+          value: "0.0.0.0"
         - name: ES_JAVA_OPTS
           value: -Xms256m -Xmx256m
         - name: PROCESSORS

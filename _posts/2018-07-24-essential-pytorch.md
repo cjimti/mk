@@ -20,7 +20,7 @@ conda install pytorch torchvision -c pytorch
 
 ### Tensors
 
-[PyTorch] allows you to build neural networks using tensors. Tensors in [PyTorch] are easlity converted to and from nsarrays in [numpy]. So, if you have worked with [numpy] you have worked with [PyTorch] tensors.
+[PyTorch] allows you to build neural networks using tensors. Tensors in [PyTorch] are easily converted to and from nsarrays in [numpy]. So, if you have worked with [numpy] you have worked with [PyTorch] tensors.
 
 
 
