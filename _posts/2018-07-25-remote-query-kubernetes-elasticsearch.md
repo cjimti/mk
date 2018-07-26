@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Remotely Query Elasticsearch on Kubernetes
+title: Remote Query Elasticsearch on Kubernetes
 tags: kubernetes elastic database
 featured: kubernetes elastic docker
 mast: lines
