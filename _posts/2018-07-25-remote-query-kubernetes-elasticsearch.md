@@ -88,7 +88,7 @@ See [Roles and RoleBindings] for a better understanding of how these rules apply
 
 ### Postman
 
-In the following examples, I use my favorite (and free) HTTP client, [Postman]. When working with HTTP based APIs, I almost always used [Postman]. However, I'll be exporting the [Postman] calls to `curl` commands so they can also be displayed here and tested on the command line.
+In the following examples, I use my favorite (and free) HTTP client, [Postman]. When working with HTTP based APIs, I typically use [Postman]. However, I'll be exporting the [Postman] calls to `curl` commands so they can also be displayed here and tested on the command line.
 
 If you want access to my [Postman] calls to run for yourself:
 
