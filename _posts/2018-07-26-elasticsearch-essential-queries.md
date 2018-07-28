@@ -7,7 +7,7 @@ featured: elastic
 mast: net
 ---
 
-The following is an overview for Querying [Elasticsearch]. Over the years I have tried to assemble developer notes for myself and my team on a variety of platforms, languages and frameworks, a type of cheat-sheet but with context, not a comprehensive how-to, but a decent 15-minute overview of the features we are most likely to implement in a given iteration.
+The following is an overview for querying [Elasticsearch]. Over the years I have tried to assemble developer notes for myself and my team on a variety of platforms, languages and frameworks, a type of cheat-sheet but with context, not a comprehensive how-to, but a decent 15-minute overview of the features we are most likely to implement in a given iteration.
 
 Explore the [Elasticsearch official documentation][Search in Depth]: [Search in Depth].
 
