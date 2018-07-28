@@ -41,10 +41,10 @@ Elasticsearch inherits the [Lucene] vocabulary, and so it's best not to think of
 - An **index** is a collection of **documents**.
 - A **document** is a record in an **index**.
 - A **field**s are **typed** elements of a document.
-- **Term**s are the values from the **index** documents use keys for an **inverted index**.
+- **Term**s are the values from the **index** documents use as keys for an **inverted index**.
 - An **inverted index** maps **terms** to **document** ids.
 
-With Elasticsearch it is common to split indexes by date for time-series data. Indexes with names like `payments-20180801`, `payments-20180802`, `payments-20180803` can be queried together with a wildcard, for instance, queries needing to search all payments for August may reference the index `payments-201808-*`.
+With [Elasticsearch] it is common to split indexes by date for time-series data. Indexes with names like `payments-20180801`, `payments-20180802`, `payments-20180803` can be queried together with a wildcard, for instance, queries needing to search all payments for August may reference the index `payments-201808-*`.
 
 
 ## Basic CRUD API
@@ -187,7 +187,7 @@ In this simple **example** index both **testId** and **description** are of **"t
 
 ### Create a Mapping
 
-First, create an index **example2** along with a mapping:
+Create the index **example2** along with a mapping:
 
 ```bash
 curl -X PUT \
@@ -205,13 +205,17 @@ curl -X PUT \
 }'
 ```
 
-For the complete, [official documentation on field datatypes for mapping][data types].
+For the complete, see the [official documentation on field datatypes for mapping][data types].
 
 ## Searching
 
-In the following examples assume JSON is POSTED to `http://localhost:9200/wx-rtbeat-%2A/_search`. The **%2A** is a URL encoded * (wildcard) allowing us to all indexes starting with **wx-rtbeat-**
+In the following examples assume the following example JSON snippets are  POSTed to `http://localhost:9200/wx-rtbeat-%2A/_search`. The **%2A** is a URL encoded * (wildcard) allowing us to all indexes starting with **wx-rtbeat-**.
 
 Returning all documents with the field **rxtxMsg.payload.currently.summary** mathing the term **"Partly Cloudy"**
+
+`POST http://localhost:9200/wx-rtbeat-%2A/_search`
+
+Post body:
 ```json
 {
   "query": {
@@ -226,6 +230,9 @@ Returning all documents with the field **rxtxMsg.payload.currently.summary** mat
 
 Return all documents whose **@timestamp** is greater than or equal to 24 hours ago:
 
+`POST http://localhost:9200/wx-rtbeat-%2A/_search`
+
+Post body:
 ```json
 {
   "query": {
@@ -240,6 +247,9 @@ Return all documents whose **@timestamp** is greater than or equal to 24 hours a
 
 If you are interested only in the number of matches, you can limit the size of returned documents to **0**
 
+`POST http://localhost:9200/wx-rtbeat-%2A/_search`
+
+Post body:
 ```json
 {
   "size":0,
@@ -255,12 +265,15 @@ If you are interested only in the number of matches, you can limit the size of r
 
 ## Filtering
 
-The **bool** operator allows you to return any documents where the subquery is true. In this case, we only implement one condition, a **filter**, however, that filter has an array of conditions.
+The **bool** operator allows you to return any documents where the sub-conditions are true. In this case, we only implement one condition, a **filter**, however, that filter has an array of conditions.
 
 In addition to the **query** the return fields are limited to those defined in **"_source"**.
 
 The following returns all documents in the last 72 hours where the summary is "Partly Cloudy" and the temperature is greater than or equal to 60 and less than or equal to 71.
 
+`POST http://localhost:9200/wx-rtbeat-%2A/_search`
+
+Post body:
 ```json
 {
   "query": {
@@ -285,7 +298,7 @@ The following returns all documents in the last 72 hours where the summary is "P
 
 ## Aggregations
 
-Below are examples of basic **counts**, **averages**, **miniumus** and **maximums** along with histograms for **percentile** and **percent rank**. See the [Official documentation on aggregations][Aggregations] for a deeper understanding.
+Below are examples of basic **counts**, **averages**, **minimums** and **maximums** along with histograms for **percentile** and **percent rank**. See the [Official documentation on aggregations][Aggregations] for a deeper understanding.
 
 ### Counts
 
@@ -293,6 +306,9 @@ Using the **aggs** condition, we can get document counts on all the terms for **
 
 Note that the **"size"** is set to **0** since we are not interested in returning any documents.
 
+`POST http://localhost:9200/wx-rtbeat-%2A/_search`
+
+Post body:
 ```json
 {
   "size": 0,
@@ -373,6 +389,9 @@ To demonstrate averages, minimums, and maximums, I use a nested **agg** conditio
 
 The following returns a count for each term used in the **summary** field, along with the average, minimum and maximum temperature for that group.
 
+`POST http://localhost:9200/wx-rtbeat-%2A/_search`
+
+Post body:
 ```json
 {
   "size": 0,
@@ -489,6 +508,10 @@ Example output:
 
 Obtaining the temperature field of our data in a series of percentiles requires creating a percentiles aggregator, this is merely wrapping the **"percentiles"** operator in a custom object. In this case I name the object **"pct_temp"**, however and name would suffice.
 
+`POST http://localhost:9200/wx-rtbeat-%2A/_search`
+
+Post body:
+
 ```json
 {
   "size": 0,
@@ -563,6 +586,10 @@ Example output:
 
 Below, I use **"percentile_ranks"** to bucket the temperatures into four categories of interest.
 
+`POST http://localhost:9200/wx-rtbeat-%2A/_search`
+
+Post body:
+
 ```json
 {
   "size": 0,
@@ -633,6 +660,10 @@ Example output:
 ### Percent by Rank Interval
 
 I use **"interval"** to automatically generate rank buckets based on the value range. Intervals make building histograms easy when you have dynamic data that should not be scaled.
+
+`POST http://localhost:9200/wx-rtbeat-%2A/_search`
+
+Post body:
 
 ```json
 {
@@ -733,6 +764,16 @@ Example output:
 ```
 
 The example data is powered by the [Dark Sky API]. If you are interested in gathering your own weather data, check out my article [High Traffic JSON Data into Elasticsearch on Kubernetes].
+
+## Resources
+
+- [Elasticsearch]
+- How to [install Elasticsearch]
+- [Production Grade Elasticsearch on Kubernetes]
+- [High Traffic JSON Data into Elasticsearch on Kubernetes]
+- Elasticsearch [Search in Depth] documentation
+- Elasticsearch [data types] for mapping indexes
+- Elasticsearch [Aggregations]
 
 
 [REST]:https://en.wikipedia.org/wiki/Representational_state_transfer
