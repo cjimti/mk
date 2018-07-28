@@ -22,13 +22,13 @@ My team and I work with a lot of SQL-based data, from MySQL, SQLite and even our
 
 ## Following Along with [Elasticsearch] and [Kubernetes]
 
-Many of the examples I use in the range, and filtering examples below are a result of setting up a reference implementation for supporting the ingestion of [High Traffic JSON Data into Elasticsearch on Kubernetes]. If you followed that guide, you could run against a similar set of data.
+Many of the examples I use in the range and filtering examples below are a result of setting up a reference implementation for supporting the ingestion of [High Traffic JSON Data into Elasticsearch on Kubernetes]. If you followed that guide, you could run against a similar set of data.
 
 If you want to set up a production-grade Kubernetes and Elastic cluster, I recommend checking out my [Production Hobby Cluster] guide, followed by [Kubernetes Team Access, RBAC for developers and QA], [Production Grade Elasticsearch on Kubernetes], [Kibana on Kubernetes] and finally [High Traffic JSON Data into Elasticsearch on Kubernetes].
 
-In a few hours, you can have a highly-available, horizontally scalable, big data solution, ready for enterprise style experiments and with some tuning domain-based tuning, a full production system.
+In a few hours, you can have a highly-available, horizontally scalable, big data solution, ready for enterprise style experiments, and with some domain-aware tuning, a full production system.
 
-Below I access the Elasticsearch API through my local port 9200. You can install Elastissearch directly on your workstation or port-forward services from a Kubernetes cluster.
+Below, I access the Elasticsearch API through my local port 9200. You can [install Elasticsearch] directly on your workstation, or [port-forward services from a Kubernetes cluster].
 
 ```bash
 kubectl port-forward svc/elasticsearch 9200:9200 -n the-project
@@ -750,3 +750,5 @@ The example data is powered by the [Dark Sky API]. If you are interested in gath
 [Aggregations]:https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html
 [Elasticsearch]:https://www.elastic.co/products/elasticsearch
 [Kubernetes]:https://kubernetes.io/
+[install Elasticsearch]:https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html
+[port-forward services from a Kubernetes cluster]:https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/
