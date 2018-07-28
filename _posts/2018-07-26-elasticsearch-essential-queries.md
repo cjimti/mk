@@ -7,9 +7,9 @@ featured: elastic
 mast: net
 ---
 
-The following is an overview for Querying Elasticsearch. Over the years I have tried to assemble developer notes for myself and my team on a variety of platforms, languages and frameworks, a type of cheat-sheet but with context, not a comprehensive how-to, but a decent 15-minute overview of the features we are most likely to implement.
+The following is an overview for Querying [Elasticsearch]. Over the years I have tried to assemble developer notes for myself and my team on a variety of platforms, languages and frameworks, a type of cheat-sheet but with context, not a comprehensive how-to, but a decent 15-minute overview of the features we are most likely to implement in a given iteration.
 
-Explore the Elasticsearch official documentation: [Search in Depth].
+Explore the [Elasticsearch official documentation][Search in Depth]: [Search in Depth].
 
 **Quick Reference:**
 
@@ -18,9 +18,9 @@ Explore the Elasticsearch official documentation: [Search in Depth].
 
 ## Motivation
 
-My team and I work with a lot of SQL-based data, from MySQL, SQLite and even our large Cassandra cluster, however, our reporting systems are built on Elasticsearch. Transitioning our thinking from SQL to the [Lucene] syntax on occasion requires hitting the docs. However, most technical documentation is either for getting started or gives you every variation of every feature, which is great when you are neck deep and need a specific problem solved.
+My team and I work with a lot of SQL-based data, from MySQL, SQLite and even our large Cassandra cluster, however, our reporting systems are built on [Elasticsearch]. Transitioning our thinking from SQL to the [Lucene] syntax on occasion requires hitting the docs. However, most technical documentation is either for getting started or gives you every variation of every feature, which is great when you are neck deep and need a specific problem solved.
 
-## Following Along with Elasticsearch and Kubernetes
+## Following Along with [Elasticsearch] and [Kubernetes]
 
 Many of the examples I use in the range, and filtering examples below are a result of setting up a reference implementation for supporting the ingestion of [High Traffic JSON Data into Elasticsearch on Kubernetes]. If you followed that guide, you could run against a similar set of data.
 
@@ -748,3 +748,5 @@ The example data is powered by the [Dark Sky API]. If you are interested in gath
 [http verbs]:https://www.restapitutorial.com/lessons/httpmethods.html
 [data types]:https://www.elastic.co/guide/en/elasticsearch/reference/6.3/mapping-types.html
 [Aggregations]:https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html
+[Elasticsearch]:https://www.elastic.co/products/elasticsearch
+[Kubernetes]:https://kubernetes.io/
