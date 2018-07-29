@@ -209,7 +209,7 @@ For the complete, see the [official documentation on field datatypes for mapping
 
 ## Searching
 
-In the following examples assume the following example JSON snippets are  POSTed to `http://localhost:9200/wx-rtbeat-%2A/_search`. The **%2A** is a URL encoded * (wildcard) allowing us to all indexes starting with **wx-rtbeat-**.
+In the following examples assume the following example JSON snippets are  POSTed to `http://localhost:9200/wx-rtbeat-%2A/_search`. The **%2A** is a URL encoded * (wildcard) allowing us to query all indexes starting with **wx-rtbeat-**.
 
 Returning all documents with the field **rxtxMsg.payload.currently.summary** mathing the term **"Partly Cloudy"**
 
