@@ -332,15 +332,7 @@ Post body:
         }
       }
     }
-  },
-  "_source": [
-    "rxtxMsg.payload.currently.time",
-    "rxtxMsg.payload.currently.temperature",
-    "rxtxMsg.payload.currently.humidity",
-    "rxtxMsg.payload.currently.pressure",
-    "rxtxMsg.payload.currently.windSpeed",
-    "rxtxMsg.payload.currently.summary"
-  ]
+  }
 }
 ```
 
@@ -425,15 +417,7 @@ Post body:
         "gt": "now-24h"
       }
     }
-  },
-  "_source": [
-    "rxtxMsg.payload.currently.time",
-    "rxtxMsg.payload.currently.temperature",
-    "rxtxMsg.payload.currently.humidity",
-    "rxtxMsg.payload.currently.pressure",
-    "rxtxMsg.payload.currently.windSpeed",
-    "rxtxMsg.payload.currently.summary"
-  ]
+  }
 }
 ```
 
@@ -537,15 +521,7 @@ Post body:
         "gt": "now-24h"
       }
     }
-  },
-  "_source": [
-    "rxtxMsg.payload.currently.time",
-    "rxtxMsg.payload.currently.temperature",
-    "rxtxMsg.payload.currently.humidity",
-    "rxtxMsg.payload.currently.pressure",
-    "rxtxMsg.payload.currently.windSpeed",
-    "rxtxMsg.payload.currently.summary"
-  ]
+  }
 }
 ```
 
@@ -615,15 +591,7 @@ Post body:
         "gt": "now-24h"
       }
     }
-  },
-  "_source": [
-    "rxtxMsg.payload.currently.time",
-    "rxtxMsg.payload.currently.temperature",
-    "rxtxMsg.payload.currently.humidity",
-    "rxtxMsg.payload.currently.pressure",
-    "rxtxMsg.payload.currently.windSpeed",
-    "rxtxMsg.payload.currently.summary"
-  ]
+  }
 }
 ```
 
@@ -682,15 +650,7 @@ Post body:
                 "gt" : "now-24h"
             }
         }
-    },
-    "_source": [
-        "rxtxMsg.payload.currently.time",
-        "rxtxMsg.payload.currently.temperature",
-        "rxtxMsg.payload.currently.humidity",
-        "rxtxMsg.payload.currently.pressure",
-        "rxtxMsg.payload.currently.windSpeed",
-        "rxtxMsg.payload.currently.summary"
-    ]
+    }
 }
 ```
 
