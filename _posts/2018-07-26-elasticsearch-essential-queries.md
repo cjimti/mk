@@ -238,7 +238,7 @@ Post body:
   "query": {
     "range" : {
       "@timestamp" : {
-        "gt" : "now-24h"
+        "gte" : "now-24h"
       }
     }
   }
@@ -256,7 +256,7 @@ Post body:
   "query": {
     "range" : {
       "@timestamp" : {
-        "gt" : "now-24h"
+        "gte" : "now-24h"
       }
     }
   }
@@ -414,7 +414,7 @@ Post body:
   "query": {
     "range": {
       "@timestamp": {
-        "gt": "now-24h"
+        "gte": "now-24h"
       }
     }
   }
@@ -518,7 +518,7 @@ Post body:
   "query": {
     "range": {
       "@timestamp": {
-        "gt": "now-24h"
+        "gte": "now-24h"
       }
     }
   }
@@ -588,7 +588,7 @@ Post body:
   "query": {
     "range": {
       "@timestamp": {
-        "gt": "now-24h"
+        "gte": "now-24h"
       }
     }
   }
@@ -647,7 +647,7 @@ Post body:
     "query": {
         "range" : {
             "@timestamp" : {
-                "gt" : "now-24h"
+                "gte" : "now-24h"
             }
         }
     }
