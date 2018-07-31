@@ -28,7 +28,7 @@ In this article I will use the term **Function** to describe a [Kubeless Functio
 
 ## Motivation
 
-While our industry sorts out the distinctive and vocabulary of these new architectures, please bear with me while I show you a simplified example, extracted from implementation I find successful. There are exciting and innovative ways to trigger and chain FaaS services. Implementations like Amazon's Alexa and its use of ASW lambdas are one successful example. However in this article I a basic implementation; the everyday needs of an HTTP API stack.
+While our industry sorts out the distinctive and vocabulary of these new architectures, please bear with me while I show you a simplified example, extracted from implementation I find successful. There are exciting and innovative ways to trigger and chain FaaS services. Implementations like Amazon's Alexa and its use of AWS lambdas are one successful example. However in this article I demonstrate a basic implementation; the everyday needs of an HTTP API stack.
 
 At this point most of my legacy systems are Monoliths; however they are containerized and live in the cluster as they would any hosting environment. I design most of my Microservices for generic or reusable functionality or more complex business logic not appropriate for pure functions. Functions are a great addition to data flow, and it's pipeline between monoliths, microservices and other functions. Kubeless Functions give me the **ability to quickly inject business logic at any point in the platform without significant architectural changes.**
 
