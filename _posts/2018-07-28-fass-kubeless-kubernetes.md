@@ -38,7 +38,7 @@ I appreciate the simplicity and elegance of [Kubeless] and its seamless integrat
 
 ![](/images/content/kubeless-overview.png)
 
-[Kubeless] comes with its own CLI for interacting with Functions, providing command such as:
+[Kubeless] comes with its own CLI for interacting with Functions, providing commands such as `kubeless function ls`:
 
  ```bash
  kubeless function ls -n the-project
@@ -52,7 +52,7 @@ wx-stats    the-project    wx-stats.stats     python3.6    python-dateutil==2.7.
  However, due to  [Kubeless] deep integration with Kubernetes, I often find myself executing kubectl commands simply out of habit:
 
 ```bash
-kubectl get functions
+kubectl get functions -n the-project
 ```
 
 These commands are nearly synonymous because Kubless Function are merely Kubernetes objects, or Custom Resources to be accurate and many operations on them are as they would be with other resources in the cluster, like services, deployment or pods.
