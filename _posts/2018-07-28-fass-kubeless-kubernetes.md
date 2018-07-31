@@ -301,7 +301,7 @@ Piping the curl output to [jsonpp] makes the JSON output a bit more readable for
 
 ## Python Resources
 
-Kubless supports a variety of [runtimes][Kubeless runtime]. In my case, most of my functions work with numbers, and It's tough to beat Python in simplifying the areas of statistics, analytics, and machine learning. Using Kubless means you don't need to become an expert on writing large Python stacks and spend more time focusing on individual packages that help you develop your business logic directly. I believe the advantage of FaaS is ** high-density business logic**.
+Kubless supports a variety of [runtimes][Kubeless runtime]. In my case, most of my functions work with numbers, and It's tough to beat Python in simplifying the areas of statistics, analytics, and machine learning. Using Kubless means you don't need to become an expert on writing large Python stacks and spend more time focusing on individual packages that help you develop your business logic directly. I believe the advantage of FaaS is **high-density business logic**.
 
 - [Elasticsearch DSL] delivers a clean [pythonic] syntax for working with Elasticsearch.
 - [Python Data Essentials - Numpy] provides a wide variety of options for working with numbers, extraordinarily powerful N-dimensional array objects in which we can perform linear algebra.
