@@ -55,7 +55,7 @@ wx-stats    the-project    wx-stats.stats     python3.6    python-dateutil==2.7.
 kubectl get functions -n the-project
 ```
 
-These commands are nearly synonymous because Kubless Function are merely Kubernetes objects, or Custom Resources to be accurate and many operations on them are as they would be with other resources in the cluster, like services, deployment or pods.
+These commands are nearly synonymous, because Kubless Function are merely Kubernetes objects, or Custom Resources to be accurate, and many operations on them are as they would be with other resources in the cluster, like services, deployment or pods.
 
 ### Install Kubeless
 
