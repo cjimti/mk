@@ -180,7 +180,7 @@ The python script `wx-stats.py` can be run on the command line. In a separate te
 kubectl port-forward service/elasticsearch 9200:9200 -n the-project
 ```
 
-At this point **localhost:9200** responds aa local Elasticsearch would. In another terminal you can run the python script, when run as a script the function specified in the **if __name__ == '__main__':** conditional is executed, in this case **stats(event, context)**.
+At this point **localhost:9200** responds as a local Elasticsearch would. In another terminal you can run the python script, when run as a script the function specified in the **if __name__ == '__main__':** conditional is executed, in this case **stats(event, context)**.
 
 I wrap the returned [python dict] in **json.dumps** to encode as json as Kubeless will when called in the cluster.
 
