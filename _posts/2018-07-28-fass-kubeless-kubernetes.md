@@ -203,7 +203,7 @@ kubeless function deploy wx-stats --runtime python3.6 \
                                   -n the-project
 ```
 
-The `kubeless` command provides many options for**deploy** and **update** along with help for any sub-command:
+The `kubeless` command provides many options for a function **deploy** and **update**, along with help for any sub-command:
 
 ```bash
 kubeless function deploy -h
