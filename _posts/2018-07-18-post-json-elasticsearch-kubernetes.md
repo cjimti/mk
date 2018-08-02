@@ -143,7 +143,7 @@ spec:
         env: dev
     spec:
       containers:
-      - name: wx-rtbeat
+      - name: wx-rxtx
         image: txn2/rxtx:1.1.4
         imagePullPolicy: Always
         args: [
@@ -154,14 +154,14 @@ spec:
           "--batch=4000",  # maximum batch size
           "--maxq=500000"] # maximum message to store
         volumeMounts:
-        - name: wx-rtbeat-data-volume
+        - name: wx-rxtx-data-volume
           mountPath: /data
         ports:
         - name: rxtx
           containerPort: 80
   volumeClaimTemplates:
   - metadata:
-      name: wx-rtbeat-data-volume
+      name: wx-rxtx-data-volume
     spec:
       storageClassName: rook-block
       accessModes: [ ReadWriteOnce ]
