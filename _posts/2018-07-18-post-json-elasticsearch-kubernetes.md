@@ -283,7 +283,7 @@ data:
       # rxtx standard fields (customizable)
       - name: rxtxMsg.seq
         required: true
-        type: long
+        type: keyword
       - name: rxtxMsg.time
         required: true
         type: date
