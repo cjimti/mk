@@ -144,7 +144,7 @@ spec:
     spec:
       containers:
       - name: wx-rxtx
-        image: txn2/rxtx:1.1.4
+        image: txn2/rxtx:1.2.0
         imagePullPolicy: Always
         args: [
           "--ingest=http://wx-rtbeat:80/in",
