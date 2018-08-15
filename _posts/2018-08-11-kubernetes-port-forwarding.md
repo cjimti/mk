@@ -3,7 +3,7 @@ published: true
 layout: post
 title: Kubernetes Port Forwarding for Local Development
 tags: kubernetes kubectl microservices
-featured: kubernetes docker
+featured: kubernetes docker cli
 mast: patch
 ---
 
