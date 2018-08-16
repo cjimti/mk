@@ -7,9 +7,9 @@ featured: kubernetes docker cli
 mast: patch
 ---
 
-[kubefwd] helps to enable a seamless and efficient way to develop applications and services on a local workstation. Locally develop applications that intend to interact with other services in a Kubernetes cluster. [kubefwd] allows application with connection strings like http://elasticsearch:9200/ or tcp://db:3306 to communicate into the cluster. [kubefwd] can be used to reduce or eliminate the need for local environment specific connection configurations.
+[kubefwd] helps to enable a seamless and efficient way to develop applications and services on a local workstation. Locally develop applications that intend to interact with other services in a Kubernetes cluster. [kubefwd] allows applications with connection strings like http://elasticsearch:9200/ or tcp://db:3306 to communicate into the remote cluster. [kubefwd] can be used to reduce or eliminate the need for local environment specific connection configurations.
 
-Developing services in a [Microservices] architecture presents local development challenges, especially when the service you are developing need to interact with a mixture of other services. [Microservices], like any other applications are rarely ever self-contained and often need access to databases, authentication services, and other public or private APIs. Loosely-coupled applications still have couplings, they happen on a higher layer of the application stack and often through TCP networking.
+Developing services in a [Microservices] architecture presents local development challenges, especially when the service you are developing needs to interact with a mixture of other services. [Microservices], like any other applications are rarely ever self-contained and often need access to databases, authentication services, and other public or private APIs. Loosely-coupled applications still have couplings, they happen on a higher layer of the application stack and often through TCP networking.
 
 **Quick Reference:**
 
@@ -19,19 +19,19 @@ Developing services in a [Microservices] architecture presents local development
 
 ### [kubectl port-forward][port-forward]
 
-The [kubectl] command offers a vast array of features for working with a [Kubernetes] cluster, one of which is the [port-forward] command. Forwarding one or more ports on your local workstation to a Kubernetes service, deployment or individual pod is a simple command.
+The [kubectl] command offers a vast array of features for working with a [Kubernetes] cluster, one of which is the [port-forward] command. Forwarding one or more ports on your local workstation to a Kubernetes service, deployment or individual pod is a simple command. The [kubectl] [port-forward] was likely developed as a debugging utility and works great for that.
 
 In most cases, it makes sense to port forward a Kubernetes [Service]. A Kubernetes Service can listen-on and forward to one or more ports of an associated [Pod]. Services are a persistent resource the provide a consistent way to reach a Pod. Pods can come and go, where Services persist and find the appropriate Pod when one is available.
 
-The following is an example of a Kubectl [port-forward] command forwarding port 8080 on the local workstation to 8080 for the service `ok`, additionally port 8081 on the local workstation to port 80 on `ok` service, in the [Namespace] `the-project`:
+The following is an example of a Kubectl [port-forward] command, forwarding port 8080 on the local workstation to 8080 for the service `ok`, additionally port 8081 on the local workstation to port 80 on `ok` service, in the [Namespace] `the-project`:
 
 ```bash
 kubectl port-forward service/ok 8080:8080 8081:80 -n the-project
 ```
 
-Access the Service through `http://localhost:8081/` and `http://localhost:8080/`. Additional services can be port forwarded by backgrounding the command or opening new terminals and issues more kubectl port-forward commands.
+Access the Service through `http://localhost:8081/` and `http://localhost:8080/`. Additional services can be port forwarded by back-grounding the command or opening new terminals and issuing more kubectl port-forward commands.
 
-[kubectl port-forward][port-forward] is convenient for quick one-off port forward access to a service in your cluster. Your application can use environment variables or configuration files along with scripts that set up all the required forwards to bootstrap your local app. However, I find this cumbersome.
+[kubectl port-forward][port-forward] is convenient for quick one-off port forward access to a Services, Deployments or directly to Pods in your cluster. Your application can use environment variables or configuration files along with scripts that set up all the required forwards to bootstrap your local app. However, I find this cumbersome. [kubectl port-forward][port-forward] is great for debugging but falls a bit short for a development utility.
 
 ### [kubefwd]
 
