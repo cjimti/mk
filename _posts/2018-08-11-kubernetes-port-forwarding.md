@@ -75,17 +75,17 @@ brew install txn2/tap/kubefwd
 ```
 
 #### Linux
-Check the [kubefwd releases] section on [Github] for pre-compiled binary distributions as **.deb**, **.rpm**, **.snap** and **.tar.gz** for Linux based operating system.
+Check the [kubefwd releases] section on [Github] for pre-compiled binary distributions as **.deb**, **.rpm**, **.snap** and **.tar.gz** for Linux based operating systems or Docker containers.
 
 #### Windows
-[kubefwd] is not tested on Windows. If you are interested in testing developing [kubefwd] for windows, please contact me on [twitter] [@cjimti].
+[kubefwd] is not tested on Windows. If you are interested in testing and developing [kubefwd] for windows, please contact me on [twitter] [@cjimti].
 
 
 ### [kubefwd] in Docker
 
 Add [kubefwd] to an existing docker container by installing it with one of the binary distributions found in the [kubefwd releases] on Github. You may also use the container [txn2/kubefwd] as the base container for another project.
 
-The [txn2/kubefwd] is based on Alpine linux 3.7, only contains the [kubefwd] linux binary and the `curl` utility (optional).  See the [txn2/kubefwd] source [Dockerfile] if you are curious.
+The [txn2/kubefwd] is based on Alpine linux 3.7 and only contains the [kubefwd] linux binary and the `curl` utility (optional).  See the [txn2/kubefwd] source [Dockerfile] if you are curious.
 
 [kubefwd] does not require [kubectl] to run. However [kubefwd] does require the [kubectl] configuration to connect to the cluster.
 
