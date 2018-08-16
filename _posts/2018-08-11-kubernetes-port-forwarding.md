@@ -53,17 +53,17 @@ sudo kubefwd services -n the-project
 
 After [kubefwd] begins forwarding Services from a Namespace they can be accessed directly on the local workstation. The example above illustrates using **curl** to call an HTTP Service called **ok** on port 80 followed Elasticsearch on port 9200.
 
-Local access to Service named `ok` listening on port 80 in `the-project` Namespace on a remote Kubernetes cluster:
+Local access to a Service named `ok` listening on port 80 in `the-project` Namespace on a remote Kubernetes cluster:
 ```bash
 curl http://ok:80
 ```
 
-Local access to Service named `elasticsearch` listening on port 9200 in `the-project` Namespace on a remote Kubernetes cluster:
+Local access to a Service named `elasticsearch` listening on port 9200 in `the-project` Namespace on a remote Kubernetes cluster:
 ```bash
 curl http://elasticsearch:9200
 ```
 
-[kubefwd] gives each Service forward it's own IP address, allowing multiple services to use the same port just as they may in the cluster. You might have a few services responding to port 80 or 8080 or have multiple databases like `db-customer:3600` and `db-auth:3600`.
+[kubefwd] gives each Service forward it's own IP address, allowing multiple services to use the same port just as they may in the cluster. You might have a few services responding to port 80 or 8080 or have multiple databases like `db-customer:3306` and `db-auth:3306`.
 
 ### Install [kubefwd]
 
